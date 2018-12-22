@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "alwaysStrict": true,
+    "outDir": "dist",
+    "module": "commonjs",
+    "target": "es2017",
+    "lib": ["es7"]
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
+}
