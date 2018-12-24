@@ -6,6 +6,7 @@ import * as mysql from 'mysql'
 import * as express from 'express'
 import { setup as missionSetup } from './routes/missions';
 import { setup as playerSetup } from './routes/player';
+import { SQL } from './sql_functions';
 
 
 var app = express();
@@ -29,15 +30,18 @@ conn.connect((err) => {
     if(err) throw err;
     console.log("Connection to database established");
 
-    
-    initializeRoutes();
+    var SQLData = createSQL();
+    initializeRoutes(SQLData);
 
     app.listen(1000);
 });
 
-
-function initializeRoutes() {
+function initializeRoutes(SQLData:SQL) {
     // Setup paths
-    missionSetup(app, conn);
-    playerSetup(app, conn);
+    missionSetup(app, SQLData);
+    playerSetup(app, SQLData);
+}
+
+function createSQL():SQL {
+    return new SQL(conn);
 }
