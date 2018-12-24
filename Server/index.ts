@@ -6,6 +6,8 @@ import * as mysql from 'mysql'
 import * as express from 'express'
 import { setup as missionSetup } from './routes/missions';
 import { setup as playerSetup } from './routes/player';
+import { setup as leaderboardSetup } from './routes/leaderboard';
+
 import { SQL } from './sql_functions';
 
 
@@ -40,6 +42,7 @@ function initializeRoutes(SQLData:SQL) {
     // Setup paths
     missionSetup(app, SQLData);
     playerSetup(app, SQLData);
+    leaderboardSetup(app, SQLData);
 }
 
 function createSQL():SQL {
