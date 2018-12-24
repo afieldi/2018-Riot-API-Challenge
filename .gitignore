@@ -1,3 +1,5 @@
 /Client/LCUProxy/node_modules
 /Client/LCUProxy/dist
 node_modules
+/Client/node_modules
+/Client/dist

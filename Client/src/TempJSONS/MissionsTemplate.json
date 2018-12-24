@@ -1,0 +1,88 @@
+{
+  "backgroundImageUrl": "",
+  "celebrationType": "VIGNETTE",
+  "clientNotifyLevel": "ALWAYS",
+  "completedDate": -1,
+  "completionExpression": "1 or 2",
+  "cooldownTimeMillis": -1,
+  "description": "",
+  "display": {
+    "attributes": []
+  },
+  "displayType": "ALWAYS",
+  "expiringWarnings": [
+    {
+      "alertTime": 1546675140000,
+      "message": "",
+      "type": ""
+    }
+  ],
+  "helperText": "",
+  "iconImageUrl": "/lol-game-data/assets/v1/items/icons2d/4004.png",
+  "id": "ef810430-f81d-11e8-81fc-02cbe124d5e4",
+  "internalName": "neeko18_intro",
+  "isNew": false,
+  "locale": "en_US",
+  "metadata": {
+    "tutorial": {
+      "displayRewards": {},
+      "queueId": "",
+      "stepNumber": -1,
+      "useChosenChampion": false,
+      "useQuickSearchMatchmaking": false
+    }
+  },
+  "missionType": "ONETIME",
+  "objectives": [
+    {
+      "description": "Win Worlds",
+      "hasObjectiveBasedReward": false,
+      "progress": {
+        "currentProgress": 0,
+        "lastViewedProgress": 0,
+        "totalCount": 1
+      },
+      "rewardGroups": [],
+      "sequence": 1,
+      "type": "LEGS"
+    },
+    {
+      "description": "Win MSI",
+      "hasObjectiveBasedReward": false,
+      "progress": {
+        "currentProgress": 4,
+        "lastViewedProgress": 4,
+        "totalCount": 4
+      },
+      "rewardGroups": [],
+      "sequence": 2,
+      "type": "LEGS"
+    }
+  ],
+  "requirements": [],
+  "rewardStrategy": {
+    "groupStrategy": "ALL_GROUPS",
+    "selectMaxGroupCount": 0,
+    "selectMinGroupCount": 0
+  },
+  "rewards": [
+    {
+      "description": "",
+      "iconUrl": "/fe/lol-loot/assets/loot_item_icons/currency_champion.png",
+      "isObjectiveBasedReward": false,
+      "itemId": "",
+      "quantity": 3000,
+      "rewardFulfilled": false,
+      "rewardGroup": "0",
+      "rewardGroupSelected": false,
+      "rewardType": "BLUE_ESSENCE",
+      "sequence": 1,
+      "uniqueName": ""
+    }
+  ],
+  "seriesName": "",
+  "startTime": 1544025600000,
+  "status": "PENDING",
+  "title": "Worlds BTW",
+  "viewed": false
+}
