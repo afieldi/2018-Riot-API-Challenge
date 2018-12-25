@@ -67,6 +67,7 @@ export default class LCUProxy {
             // If this is a plaintext socket, maybe change it's contents.
             if (request.url === "/") {
                 let [ op, ev, payload ] = JSON.parse(<string>msg);
+                console.log(payload.data);
                 if (op === 8 && ev === "OnJsonApiEvent" && (payload.eventType === "Update" || payload.eventType === "Create")) {
                     for (const [ match, fn ] of this.downstreamEdits) {
                         if (!match.test(payload.uri)) continue;

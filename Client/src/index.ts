@@ -21,7 +21,7 @@ const LEAGUE_TICKER_PROXY_INFO = {
     "message": "CLIENT IS CURRENTLY IN PROXY MODE",
     "severity": "info",
     "updatedAt": new Date().toISOString()
-}
+};
 
 
 RunProxyLCU();
@@ -38,7 +38,7 @@ async function RunProxyLCU() {
 
         // Connect to league and load the normal window.
         const league = new LeagueConnection(PORT, PWD);
-        await league.request("/riotclient/launch-ux", "POST");
+        await league.request("/riotclient/launch-ux", "POST"); //need this to launch the ux
 
         let args = null;
         while (!args) {
@@ -55,7 +55,7 @@ async function RunProxyLCU() {
         }
 
         // Kill UX
-        await league.request("/riotclient/kill-ux", "POST");
+        await league.request("/riotclient/kill-ux", "POST"); //need this to prevent mulitple instances of client
 
         // Configure the proxy.
         const proxy = new LCUProxy(league);

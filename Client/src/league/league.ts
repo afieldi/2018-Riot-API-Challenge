@@ -24,7 +24,7 @@ export default class LeagueConnection {
             socket.onopen = () => {
                 resolve({
                     send: msg => {
-                        if (socket.readyState !== 1) console.error("SERVER NO LONGER IN ACTION RIP RIP");
+                        if (socket.readyState !== 1) console.error("SERVER NO LONGER IN ACTION");
                         socket.readyState === 1 && socket.send(msg)
                     },
                     close() {
