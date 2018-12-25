@@ -49,11 +49,14 @@ export class LeaderboardSQL {
                 var newQuery:string = "INSERT INTO leaderboard (leaderboard_title, month, year, active, type) VALUES (?, ?, ?, ?, ?)";
                 var sqlValues:any[] = [`${type} Leaderboard for Year ${date.getFullYear()}, Month ${date.getMonth()}`, date.getMonth(), date.getFullYear(), 1, type];
                 this.sql.query(newQuery, sqlValues, (err, results:any[], fields) => {
+                    console.log(fields);
                     if(err)
                         throw err;
                     callback();
                 });
             }
+            else
+                callback();
         });
 
     }
@@ -67,5 +70,17 @@ export class LeaderboardSQL {
             }
             callback();
         });
+    }
+
+    private populateLeaderboardEntriesClan(callback:Function, leaderboard_id:number) {
+        var query:string = "INSERT INTO leaderboard_entry (leaderboard_id, entity) SELECT ?, entity_id FROM clan";
+        this.sql.query(query, [leaderboard_id], (err, results, fields) => {
+            if(err) throw err;
+            callback(results); 
+        });
+    }
+
+    private populateLeaderboardEntriesPlayer(callback:Function) {
+
     }
 }
