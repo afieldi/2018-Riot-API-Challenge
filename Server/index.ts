@@ -4,15 +4,16 @@
 
 import * as mysql from 'mysql'
 import * as express from 'express'
+import * as dotenv from 'dotenv';
 import { setup as missionSetup } from './routes/missions';
 import { setup as playerSetup } from './routes/player';
 import { setup as leaderboardSetup } from './routes/leaderboard';
 
 import { SQL } from './sql_functions';
 
+dotenv.config();
 
 var app = express();
-
 // Connect to mysql
 var conn = mysql.createConnection({
     host: "localhost",

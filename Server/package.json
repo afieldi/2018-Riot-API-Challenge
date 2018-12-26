@@ -9,8 +9,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^6.2.0",
     "express": "^4.16.4",
     "mysql": "^2.16.0",
+    "request": "^2.88.0",
     "typescript": "^3.2.2"
   }
 }
