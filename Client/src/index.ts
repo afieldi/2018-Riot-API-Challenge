@@ -2,6 +2,7 @@ import LeagueConnection from "./league/league";
 import { getUxArguments, startFoundation, startUx, stopLeague } from "./league/util";
 import LCUProxy from "./league/proxy";
 import * as tempjson from "..//src//TempJSONS//MissionsTemplate.json";
+import fs = require("fs");
 
 const PORT = 49000 + (100 * Math.random())|0;
 const REPLACE_PORT = 49100 + (100 * Math.random())|0;
@@ -10,6 +11,7 @@ const LEAGUE_PATH = 'C:/Riot Games/League of Legends/';
 
 console.log(`LOCKFILE: LeagueClient:1:${PORT}:${PWD}:https`);
 console.log(`PROXY PORT: ${REPLACE_PORT}`);
+
 
 const REGION = process.argv[2];
 const USERNAME = process.argv[3];
@@ -23,8 +25,10 @@ const LEAGUE_TICKER_PROXY_INFO = {
     "updatedAt": new Date().toISOString()
 };
 
+fs.writeFileSync(LEAGUE_PATH + "lockfile", `LeagueClient:1:${PORT}:${PWD}:https`);
 
-RunProxyLCU();
+console.log(RunProxyLCU());
+
 
 async function RunProxyLCU() {
     (async () => {
@@ -38,7 +42,7 @@ async function RunProxyLCU() {
 
         // Connect to league and load the normal window.
         const league = new LeagueConnection(PORT, PWD);
-        await league.request("/riotclient/launch-ux", "POST"); //need this to launch the ux
+        await league.request("/riotclient/launch-ux", "POST");
 
         let args = null;
         while (!args) {
