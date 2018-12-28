@@ -82,3 +82,8 @@ async function RunProxyLCU() {
         startUx(args.replace("" + PORT, "" + REPLACE_PORT) + ` "--use-http"`);
     })().catch(console.error);
 }
+
+async function WatchSocket()
+{
+
+}
