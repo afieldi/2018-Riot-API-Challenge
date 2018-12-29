@@ -12,10 +12,14 @@ const LEAGUE_PATH = 'C:/Riot Games/League of Legends/';
 console.log(`LOCKFILE: LeagueClient:1:${PORT}:${PWD}:https`);
 console.log(`PROXY PORT: ${REPLACE_PORT}`);
 
+var proxy = new LCUProxy(new LeagueConnection(PORT, PWD));
+var firstConnection = false;
 
 const REGION = process.argv[2];
 const USERNAME = process.argv[3];
 const PASSWORD = process.argv[4];
+
+
 
 const LEAGUE_TICKER_PROXY_INFO = {
     "createdAt": new Date().toISOString(),
@@ -26,8 +30,9 @@ const LEAGUE_TICKER_PROXY_INFO = {
 };
 
 fs.writeFileSync(LEAGUE_PATH + "lockfile", `LeagueClient:1:${PORT}:${PWD}:https`);
-
 console.log(RunProxyLCU());
+
+var timer = setInterval(CheckIfSocketIsActive, 3);
 
 
 async function RunProxyLCU() {
@@ -62,8 +67,9 @@ async function RunProxyLCU() {
         await league.request("/riotclient/kill-ux", "POST"); //need this to prevent mulitple instances of client
 
         // Configure the proxy.
-        const proxy = new LCUProxy(league);
+        proxy = new LCUProxy(league);
         proxy.listen(REPLACE_PORT);
+        firstConnection = true;
 
         // Show a ticker message as an example of how to intercept/change stuff
         proxy.adjust(/ticker-messages/, data => {
@@ -81,9 +87,21 @@ async function RunProxyLCU() {
         // Start a new league window that refers to the proxy.
         startUx(args.replace("" + PORT, "" + REPLACE_PORT) + ` "--use-http"`);
     })().catch(console.error);
+
 }
 
 async function WatchSocket()
 {
 
+}
+
+async function CheckIfSocketIsActive()
+{
+    if(firstConnection)
+    {
+        if(proxy.isConnected())
+        {
+            RunProxyLCU();
+        }
+    }
 }

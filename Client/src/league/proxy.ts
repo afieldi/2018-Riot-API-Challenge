@@ -24,6 +24,7 @@ export default class LCUProxy {
         // Listen to WS connections.
         this.wss.on("connection", this.onWebsocketRequest);
 
+
     }
 
     adjust(regexp: RegExp, handler: (body: string) => string) {
@@ -33,6 +34,15 @@ export default class LCUProxy {
     listen(port: number) {
         this.server.listen(port);
         console.log("[+] Listening on 0.0.0.0:" + port + "... ^C to exit.");
+    }
+
+    isConnected()
+    {
+        this.wss.clients.forEach(function each(client)
+        {
+            console.log(client.readyState === client.OPEN);
+            return client.readyState === client.OPEN;
+        });
     }
 
     private onWebRequest = async (req: express.Request, res: express.Response) => {
@@ -88,8 +98,7 @@ export default class LCUProxy {
             if (client.readyState === 1) client.send(msg);
         }, () =>
         {
-            console.log("closing?");
-            //client.close();
+            client.close();
         });
 
         // Send the messages we buffered, then remove the listener.
