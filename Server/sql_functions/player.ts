@@ -2,6 +2,20 @@ export class PlayerSQL {
     constructor(private sql) {
 
     }
+    addPlayer(data:Object, callback:Function) {
+        var query:string = "INSERT INTO entity (display_name) VALUES (?)";
+        // Create general entity
+        this.sql.query(query, [data["name"], data["id"], data["accountId"]], (err, results, fields) => {
+            if(err) throw err;
+
+            // Now add player
+            query = "INSERT INTO player (puuid, summoner_id, account_id) VALUES (?, ?, ?)";
+            this.sql.query(query, [data["puuid"], data["id"], data["accountId"]], (err, results, fields) => {
+                if(err) throw err;
+                callback();
+            });
+        });
+    }
     selectPlayerByAccountId(accountId:Number, callback:Function) {
         var query:string = "SELECT * FROM player WHERE account_id=?";
         this.sql.query(query, [accountId], (err, results, fields) => {
