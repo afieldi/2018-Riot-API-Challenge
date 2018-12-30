@@ -3,9 +3,9 @@ export class PlayerSQL {
 
     }
     addPlayer(data:Object, callback:Function) {
-        var query:string = "INSERT INTO entity (display_name) VALUES (?)";
+        var query:string = "INSERT INTO entity (entity_id, display_name) VALUES (?, ?)";
         // Create general entity
-        this.sql.query(query, [data["name"], data["id"], data["accountId"]], (err, results, fields) => {
+        this.sql.query(query, [data["puuid"], data["name"]], (err, results, fields) => {
             if(err) throw err;
 
             // Now add player
@@ -30,6 +30,17 @@ export class PlayerSQL {
     selectPlayerBySummonerId(summoner_id:Number, callback:Function) {
         var query:string = "SELECT * FROM player WHERE summoner_id=?";
         this.sql.query(query, [summoner_id], (err, results, fields) => {
+            if(err) {
+                console.log(err);
+                callback({"message": "Sorry there was an unexpected error"});
+                return;
+            }
+            callback(results);
+        });
+    }
+    selectPlayerByPuuid(puuid:String, callback:Function) {
+        var query:string = "SELECT * FROM player WHERE puuid=?";
+        this.sql.query(query, [puuid], (err, results, fields) => {
             if(err) {
                 console.log(err);
                 callback({"message": "Sorry there was an unexpected error"});
