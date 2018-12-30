@@ -37,6 +37,10 @@ var timer = setInterval(CheckIfSocketIsActive, 3);
 
 async function RunProxyLCU() {
     (async () => {
+        /**
+         * Segment 1
+         */
+
         process.chdir(LEAGUE_PATH);
 
         // Stop an existing league process, if needed. Then start league and find the arguments.
@@ -49,12 +53,18 @@ async function RunProxyLCU() {
         const league = new LeagueConnection(PORT, PWD);
         await league.request("/riotclient/launch-ux", "POST");
 
+        /**
+         * Segment 2
+         */
         let args = null;
         while (!args) {
             args = await getUxArguments();
             await new Promise(resolve => setTimeout(resolve, 1000));
         }
 
+        /**
+         * Segment 1
+         */
         // Wait for user to log in.
         while (true) {
             let resp = await league.request("/lol-summoner/v1/current-summoner");
@@ -66,10 +76,13 @@ async function RunProxyLCU() {
         // Kill UX
         await league.request("/riotclient/kill-ux", "POST"); //need this to prevent mulitple instances of client
 
+
+        /**
+         * Segment LCU
+         */
         // Configure the proxy.
         proxy = new LCUProxy(league);
         proxy.listen(REPLACE_PORT);
-        firstConnection = true;
 
         // Show a ticker message as an example of how to intercept/change stuff
         proxy.adjust(/ticker-messages/, data => {
@@ -86,6 +99,8 @@ async function RunProxyLCU() {
 
         // Start a new league window that refers to the proxy.
         startUx(args.replace("" + PORT, "" + REPLACE_PORT) + ` "--use-http"`);
+        firstConnection = true;
+
     })().catch(console.error);
 
 }
@@ -102,6 +117,7 @@ async function CheckIfSocketIsActive()
         if(proxy.isConnected())
         {
             RunProxyLCU();
+            firstConnection = false;
         }
     }
 }
