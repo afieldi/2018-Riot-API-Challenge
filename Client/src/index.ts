@@ -29,18 +29,16 @@ const LEAGUE_TICKER_PROXY_INFO = {
     "updatedAt": new Date().toISOString()
 };
 
+
 fs.writeFileSync(LEAGUE_PATH + "lockfile", `LeagueClient:1:${PORT}:${PWD}:https`);
-console.log(RunProxyLCU());
+RunProxyLCU();
 
 var timer = setInterval(CheckIfSocketIsActive, 3);
 
 
+
 async function RunProxyLCU() {
     (async () => {
-        /**
-         * Segment 1
-         */
-
         process.chdir(LEAGUE_PATH);
 
         // Stop an existing league process, if needed. Then start league and find the arguments.
@@ -53,18 +51,6 @@ async function RunProxyLCU() {
         const league = new LeagueConnection(PORT, PWD);
         await league.request("/riotclient/launch-ux", "POST");
 
-        /**
-         * Segment 2
-         */
-        let args = null;
-        while (!args) {
-            args = await getUxArguments();
-            await new Promise(resolve => setTimeout(resolve, 1000));
-        }
-
-        /**
-         * Segment 1
-         */
         // Wait for user to log in.
         while (true) {
             let resp = await league.request("/lol-summoner/v1/current-summoner");
@@ -76,47 +62,55 @@ async function RunProxyLCU() {
         // Kill UX
         await league.request("/riotclient/kill-ux", "POST"); //need this to prevent mulitple instances of client
 
-
-        /**
-         * Segment LCU
-         */
-        // Configure the proxy.
-        proxy = new LCUProxy(league);
-        proxy.listen(REPLACE_PORT);
-
-        // Show a ticker message as an example of how to intercept/change stuff
-        proxy.adjust(/ticker-messages/, data => {
-            let json: Array<Object> = JSON.parse(data);
-            json.push(LEAGUE_TICKER_PROXY_INFO);
-            return JSON.stringify(json);
-        });
-
-        proxy.adjust(/lol-missions\/v1\/missions/, data => {
-            let json: Array<Object> = JSON.parse(data);
-            json.unshift(tempjson);
-            return JSON.stringify(json);
-        });
-
-        // Start a new league window that refers to the proxy.
-        startUx(args.replace("" + PORT, "" + REPLACE_PORT) + ` "--use-http"`);
-        firstConnection = true;
-
+        SetupProxy(league);
     })().catch(console.error);
 
 }
+
 
 async function WatchSocket()
 {
 
 }
 
-async function CheckIfSocketIsActive()
+async function SetupProxy(league: LeagueConnection)
+{
+    let args = null;
+    while (!args) {
+        args = await getUxArguments();
+        await new Promise(resolve => setTimeout(resolve, 1000));
+    }
+    // Configure the proxy.
+    proxy = new LCUProxy(league);
+    proxy.listen(REPLACE_PORT);
+
+    // Show a ticker message as an example of how to intercept/change stuff
+    proxy.adjust(/ticker-messages/, data => {
+        let json: Array<Object> = JSON.parse(data);
+        json.push(LEAGUE_TICKER_PROXY_INFO);
+        return JSON.stringify(json);
+    });
+
+    proxy.adjust(/lol-missions\/v1\/missions/, data => {
+        let json: Array<Object> = JSON.parse(data);
+        json.unshift(tempjson);
+        return JSON.stringify(json);
+    });
+
+    // Start a new league window that refers to the proxy.
+    startUx(args.replace("" + PORT, "" + REPLACE_PORT) + ` "--use-http"`);
+    firstConnection = true;
+}
+
+function CheckIfSocketIsActive()
 {
     if(firstConnection)
     {
-        if(proxy.isConnected())
+        console.log(!proxy.isConnected());
+        if(!proxy.isConnected())
         {
-            RunProxyLCU();
+            console.log("Reconnecting League Proxy LCU");
+            SetupProxy(new LeagueConnection(REPLACE_PORT, PWD));
             firstConnection = false;
         }
     }
