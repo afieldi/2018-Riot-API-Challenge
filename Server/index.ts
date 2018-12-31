@@ -27,8 +27,14 @@ var conn = mysql.createConnection({
     database: "riot-2018"
 });
 
-// respond with "hello world" when a GET request is made to the homepage
+app.use(function (request, response, next) {
+    response.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
+    response.header("Access-Control-Allow-Headers", "Origin, XRequested-With, Content-Type, Accept ");
+    response.header('Access-Control-Allow-Methods', 'POST, PATCH, GET, PUT, DELETE, OPTIONS ');
+    next();
+});
 
+// respond with "hello world" when a GET request is made to the homepage
 app.route("/").get((req, res) => {
       res.send('hello world')
 });

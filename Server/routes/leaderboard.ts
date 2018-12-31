@@ -1,13 +1,13 @@
 import { SQL } from "../sql_functions";
 
 export function setup(app, sql:SQL) {
-    app.route('/leaderboard/current/players').get((req, res) => {
+    app.route('/leaderboard/current/player').get((req, res) => {
         sql.leaderboard.getCurrentPlayerLeaderboard((results) => {
             res.send(results);
         });
     });
 
-    app.route('/leaderboard/current/clans').get((req, res) => {
+    app.route('/leaderboard/current/clan').get((req, res) => {
         sql.leaderboard.getCurrentClanLeaderboard((results) => {
             res.send(results);
         });

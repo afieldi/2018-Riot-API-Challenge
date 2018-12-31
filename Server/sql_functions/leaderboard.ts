@@ -4,9 +4,10 @@ export class LeaderboardSQL {
     }
 
     getCurrentPlayerLeaderboard(callback:Function) {
-        var query:string = "SELECT * FROM leaderboard l, leaderboard_entry le, player p where l.leaderboard_id = le.leaderboard_id and le.entry_id = p.entity_id";
+        var query:string = "SELECT * FROM leaderboard l, leaderboard_entry le, player p where l.leaderboard_id = le.leaderboard_id and le.entry_id = p.puuid";
         this.sql.query(query, [], (err, results, fields) => {
             if(err) {
+                console.log(err);
                 callback({"message": "Sorry there was an unexpected error"});
                 return;
             }
@@ -18,6 +19,7 @@ export class LeaderboardSQL {
         var query:string = "SELECT * FROM leaderboard l, leaderboard_entry le, clan c where l.leaderboard_id = le.leaderboard_id and le.entry_id = c.entity_id";
         this.sql.query(query, [], (err, results, fields) => {
             if(err) {
+                console.log(err);
                 callback({"message": "Sorry there was an unexpected error"});
                 return;
             }
