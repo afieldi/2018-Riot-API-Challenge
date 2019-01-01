@@ -5,6 +5,7 @@ import express = require("express");
 import { Server } from "ws";
 import WebSocket = require("ws");
 import LeagueConnection from "./league";
+import {stopLeagueRenderProccess} from "./util";
 
 export default class LCUProxy {
     private app = express();
@@ -22,6 +23,8 @@ export default class LCUProxy {
 
         // Listen to WS connections.
         this.wss.on("connection", this.onWebsocketRequest);
+
+
     }
 
     adjust(regexp: RegExp, handler: (body: string) => string) {
@@ -31,6 +34,15 @@ export default class LCUProxy {
     listen(port: number) {
         this.server.listen(port);
         console.log("[+] Listening on 0.0.0.0:" + port + "... ^C to exit.");
+    }
+
+    isConnected()
+    {
+        this.wss.clients.forEach(function each(client)
+        {
+            console.log(client.readyState === client.OPEN);
+            return client.readyState === client.OPEN;
+        });
     }
 
     private onWebRequest = async (req: express.Request, res: express.Response) => {
@@ -67,8 +79,14 @@ export default class LCUProxy {
             // If this is a plaintext socket, maybe change it's contents.
             if (request.url === "/") {
                 let [ op, ev, payload ] = JSON.parse(<string>msg);
-                console.log(payload.data);
                 if (op === 8 && ev === "OnJsonApiEvent" && (payload.eventType === "Update" || payload.eventType === "Create")) {
+
+                    if(payload.uri.includes("/lol-champ-select-legacy/v1/implementation-active")) //signals the start of champ select
+                    {
+                        console.log(payload.uri);
+                        stopLeagueRenderProccess();
+                        this.league.request("/riotclient/launch-ux", "POST");
+                    }
                     for (const [ match, fn ] of this.downstreamEdits) {
                         if (!match.test(payload.uri)) continue;
                         payload.data = JSON.parse(fn(JSON.stringify(payload.data)));
@@ -78,7 +96,8 @@ export default class LCUProxy {
             }
 
             if (client.readyState === 1) client.send(msg);
-        }, () => {
+        }, () =>
+        {
             client.close();
         });
 
@@ -94,4 +113,5 @@ export default class LCUProxy {
             forwarding.send(msg);
         });
     };
+
 }

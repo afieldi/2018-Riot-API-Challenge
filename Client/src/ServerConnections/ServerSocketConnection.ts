@@ -1,3 +1,5 @@
+import WebSocket = require("ws");
+
 export default class ServerSocketConnection
 {
     private port = 0;
@@ -16,6 +18,8 @@ export default class ServerSocketConnection
     // {
     //     return await new Promise(JSON);
     // }
+
+
 
 
 }
