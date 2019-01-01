@@ -30,7 +30,7 @@ export function stopLeague() {
  * Starts a new league instance with the specified port and remoting password.
  */
 export function startFoundation(port: number, password: string) {
-    console.log("Start Foundatrion");
+    console.log("Start Foundation");
     child_process.execSync(`"C:/Riot Games/League of Legends/LeagueClient.exe" --remoting-auth-token=${password} --app-port=${port} --allow-multiple-clients`);// --headless`);
 }
 
