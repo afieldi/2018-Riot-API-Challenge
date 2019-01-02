@@ -4,9 +4,10 @@ export class LeaderboardSQL {
     }
 
     getCurrentPlayerLeaderboard(callback:Function) {
-        var query:string = "SELECT * FROM leaderboard l, leaderboard_entry le, player p where l.leaderboard_id = le.leaderboard_id and le.entry_id = p.entity_id";
+        var query:string = "SELECT * FROM leaderboard l, leaderboard_entry le, player p where l.leaderboard_id = le.leaderboard_id and le.entry_id = p.puuid";
         this.sql.query(query, [], (err, results, fields) => {
             if(err) {
+                console.log(err);
                 callback({"message": "Sorry there was an unexpected error"});
                 return;
             }
@@ -18,6 +19,7 @@ export class LeaderboardSQL {
         var query:string = "SELECT * FROM leaderboard l, leaderboard_entry le, clan c where l.leaderboard_id = le.leaderboard_id and le.entry_id = c.entity_id";
         this.sql.query(query, [], (err, results, fields) => {
             if(err) {
+                console.log(err);
                 callback({"message": "Sorry there was an unexpected error"});
                 return;
             }
@@ -48,17 +50,32 @@ export class LeaderboardSQL {
                 // There is no one for the current month!
                 var newQuery:string = "INSERT INTO leaderboard (leaderboard_title, month, year, active, type) VALUES (?, ?, ?, ?, ?)";
                 var sqlValues:any[] = [`${type} Leaderboard for Year ${date.getFullYear()}, Month ${date.getMonth()}`, date.getMonth(), date.getFullYear(), 1, type];
+                // Create new leaderboard
                 this.sql.query(newQuery, sqlValues, (err, results:any[], fields) => {
-                    console.log(fields);
                     if(err)
                         throw err;
-                    callback();
+                    // Get new leaderboard ID
+                    this.getLeaderboardId(type, (row) => {
+                        this.populateLeaderboardEntries(row.leaderboard_id, type, (back) => {
+                            console.log("created all");
+                            callback();
+                        });
+                    });
                 });
             }
             else
                 callback();
         });
+    }
 
+    getLeaderboardId(type:string, callback:Function) {
+        var query:string = "SELECT 1 from leaderboard WHERE type=?";
+        this.sql.query(query, [type], (err, results, fields) => {
+            if(results.length != 1) {
+                throw "No Leaderboard found for type"
+            }
+            callback(results[0]);
+        });
     }
 
     private deactivatePastLeaderboards(callback:Function) {
@@ -72,15 +89,19 @@ export class LeaderboardSQL {
         });
     }
 
-    private populateLeaderboardEntriesClan(callback:Function, leaderboard_id:number) {
-        var query:string = "INSERT INTO leaderboard_entry (leaderboard_id, entity) SELECT ?, entity_id FROM clan";
-        this.sql.query(query, [leaderboard_id], (err, results, fields) => {
+    private populateLeaderboardEntries(leaderboard_id:number, type:string, callback:Function) {
+        var query:string = "INSERT INTO leaderboard_entry (leaderboard_id, entity) SELECT ?, entity_id FROM ?";
+        this.sql.query(query, [leaderboard_id, type.toLowerCase()], (err, results, fields) => {
             if(err) throw err;
             callback(results); 
         });
     }
 
-    private populateLeaderboardEntriesPlayer(callback:Function) {
-
+    private populateLeaderboardEntriesPlayer(leaderboard_id:number, callback:Function) {
+        var query:string = "INSERT INTO leaderboard_entry (leaderboard_id, entity) SELECT ?, entity_id FROM player";
+        this.sql.query(query, [leaderboard_id], (err, results, fields) => {
+            if(err) throw err;
+            callback(results); 
+        });
     }
 }

@@ -1,0 +1,31 @@
+.nav-items-left {
+    list-style: none;
+    padding: 0;
+    display: inline;
+}
+
+.nav-item {
+    display: inline-block;
+    min-width: 50px;
+    padding: 0 10px;
+    height: 100%;
+    line-height: 50px;
+    text-align: center;
+    transition: .5s;
+    color: white;
+    font-family: sans-serif;
+}
+
+.nav-item:hover {
+    cursor: pointer;
+    background-color: #B75D69;
+}
+
+.nav-bar {
+    padding: 0;
+    position: static;
+    left: 0;
+    top: 0;
+    height: 50px;
+    background-color: #372549;
+}
