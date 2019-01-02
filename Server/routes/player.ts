@@ -15,12 +15,10 @@ export function setup(app, sql:SQL) {
             sql.player.addPlayer(data, () => {
                 console.log("Player added");
             });
-        })
-
-        
-        
+        });
     });
 
+    app.route("/")
 
     // Summoner ID
     app.route("/player/summoner/:id").get((req, res) => {
