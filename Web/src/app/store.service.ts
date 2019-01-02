@@ -12,7 +12,6 @@ export class StoreService {
     getLeaderboard(type:LeaderboardType, numb:Number = 100, callback:Function) {
         var uri = this.host + "/leaderboard/current/" + type.toLowerCase();
         this.http.get(uri).subscribe((data) => {
-            console.log(data);
             callback(data);
         });
     }

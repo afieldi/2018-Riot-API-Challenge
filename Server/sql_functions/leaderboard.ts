@@ -4,7 +4,7 @@ export class LeaderboardSQL {
     }
 
     getCurrentPlayerLeaderboard(callback:Function) {
-        var query:string = "SELECT * FROM leaderboard l, leaderboard_entry le, player p where l.leaderboard_id = le.leaderboard_id and le.entry_id = p.puuid";
+        var query:string = "SELECT * FROM leaderboard l, leaderboard_entry le, player p, entity e where l.leaderboard_id = le.leaderboard_id and le.entity = p.entity_id and e.entity_id = p.entity_id";
         this.sql.query(query, [], (err, results, fields) => {
             if(err) {
                 console.log(err);
@@ -16,7 +16,7 @@ export class LeaderboardSQL {
     }    
 
     getCurrentClanLeaderboard(callback:Function) {
-        var query:string = "SELECT * FROM leaderboard l, leaderboard_entry le, clan c where l.leaderboard_id = le.leaderboard_id and le.entry_id = c.entity_id";
+        var query:string = "SELECT * FROM leaderboard l, leaderboard_entry le, clan c, entity e where l.leaderboard_id = le.leaderboard_id and le.entity = c.entity_id and e.entity_id = c.entity_id";
         this.sql.query(query, [], (err, results, fields) => {
             if(err) {
                 console.log(err);
@@ -69,7 +69,7 @@ export class LeaderboardSQL {
     }
 
     getLeaderboardId(type:string, callback:Function) {
-        var query:string = "SELECT 1 from leaderboard WHERE type=?";
+        var query:string = "SELECT * from leaderboard WHERE type=? AND active=1";
         this.sql.query(query, [type], (err, results, fields) => {
             if(results.length != 1) {
                 throw "No Leaderboard found for type"
@@ -90,15 +90,7 @@ export class LeaderboardSQL {
     }
 
     private populateLeaderboardEntries(leaderboard_id:number, type:string, callback:Function) {
-        var query:string = "INSERT INTO leaderboard_entry (leaderboard_id, entity) SELECT ?, entity_id FROM ?";
-        this.sql.query(query, [leaderboard_id, type.toLowerCase()], (err, results, fields) => {
-            if(err) throw err;
-            callback(results); 
-        });
-    }
-
-    private populateLeaderboardEntriesPlayer(leaderboard_id:number, callback:Function) {
-        var query:string = "INSERT INTO leaderboard_entry (leaderboard_id, entity) SELECT ?, entity_id FROM player";
+        var query:string = `INSERT INTO leaderboard_entry (leaderboard_id, entity) SELECT ?, entity_id FROM ${type.toLowerCase()}`;
         this.sql.query(query, [leaderboard_id], (err, results, fields) => {
             if(err) throw err;
             callback(results); 
