@@ -10,6 +10,7 @@ import { StoreService } from '../store.service';
 export class LeaderboardComponent implements OnInit {
     @Input() type:LeaderboardType;
     title:string = "";
+    leaderboard:Array<Object>;
     constructor(private store:StoreService) {
         
     }
@@ -17,8 +18,9 @@ export class LeaderboardComponent implements OnInit {
     ngOnInit() {
         this.title = "Leaderboard for " + this.type.toLowerCase() + "s";
         console.log(this.type);
-        this.store.getLeaderboard(this.type, 100, () => {
-
+        this.store.getLeaderboard(this.type, 100, (leaderboard) => {
+            console.log(leaderboard);
+            this.leaderboard = leaderboard;
         });
     }
 }

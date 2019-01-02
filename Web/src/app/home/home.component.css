@@ -1,0 +1,14 @@
+.leaderboards-home {
+    display: grid;
+    grid-template-columns: auto auto;
+    width: 90%;
+    left: 5%;
+    position: relative;
+    column-gap: 50px;
+}
+
+.home-leaderboard {
+    border: 1px black solid;
+    border-radius: 10px 10px 0 0;
+    padding: 5px 0 0 0;
+}

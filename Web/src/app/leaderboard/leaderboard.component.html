@@ -7,6 +7,9 @@
         </tr>
     </thead>
     <tbody>
-        
+        <tr *ngFor="let entry of leaderboard">
+            <td>{{entry.display_name}}</td>
+            <td>{{entry.points}}</td>
+        </tr>
     </tbody>
 </table>
