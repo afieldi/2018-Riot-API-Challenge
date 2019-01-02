@@ -36,7 +36,7 @@ app.use(function (request, response, next) {
 
 // respond with "hello world" when a GET request is made to the homepage
 app.route("/").get((req, res) => {
-      res.send('hello world')
+      res.send('hello world');
 });
 
 // Connect to database
