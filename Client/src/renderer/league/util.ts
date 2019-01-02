@@ -22,7 +22,6 @@ export function getUxArguments(): Promise<string | undefined> {
  * Stops all league processes, if it is currently running.
  */
 export function stopLeague() {
-    console.log("Stop League");
     child_process.execSync(`WMIC PROCESS WHERE name='LeagueClient.exe' DELETE`);
 }
 
@@ -30,7 +29,6 @@ export function stopLeague() {
  * Starts a new league instance with the specified port and remoting password.
  */
 export function startFoundation(port: number, password: string) {
-    console.log("Start Foundation");
     child_process.execSync(`"C:/Riot Games/League of Legends/LeagueClient.exe" --remoting-auth-token=${password} --app-port=${port} --allow-multiple-clients`);// --headless`);
 }
 
@@ -38,7 +36,6 @@ export function startFoundation(port: number, password: string) {
  * Starts the UX process with the provided commandline.
  */
 export function startUx(commandLine: string) {
-    console.log("Start Ux");
     const [ , cwd ] = /"(.*)?LeagueClientUx\.exe"/.exec(commandLine)!;
     console.log("Starting " + commandLine + " in " + cwd);
     child_process.exec(commandLine, {
@@ -48,9 +45,3 @@ export function startUx(commandLine: string) {
         process.exit(0);
     });
 }
-
-export function stopLeagueRenderProccess()
-{
-    child_process.exec(`WMIC PROCESS WHERE name='LeagueClientUx.exe' DELETE`);
-}
-
