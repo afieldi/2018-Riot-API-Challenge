@@ -1,5 +1,5 @@
 {
-  "name": "riot-hackathon",
+  "name": "riot-API-Challenge",
   "version": "0.1.0",
   "description": "Electron app that hooks into the new LoL client (LCU)",
   "private": true,
@@ -11,10 +11,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/lol-matchmaker/riot-hackathon.git"
+    "url": "https://github.com/Earleking/2018-Riot-API-Challenge"
   },
   "bugs": {
-    "url": "https://github.com/lol-matchmaker/riot-hackathon/issues"
+    "url": "https://github.com/Earleking/2018-Riot-API-Challenge/issues"
   },
   "dependencies": {
     "@types/express": "^4.16.0",
@@ -60,7 +60,7 @@
   },
   "build": {
     "appId": "com.lolhack.app",
-    "productName": "LoLHack",
+    "productName": "LolAPIChallenge",
     "mac": {
       "category": "public.app-category.utilities"
     }

@@ -45,3 +45,6 @@ export function startUx(commandLine: string) {
         process.exit(0);
     });
 }
+ export function stopLeagueRenderProccess() {
+     child_process.exec(`WMIC PROCESS WHERE name='LeagueClientUxRender.exe' DELETE`);
+}
