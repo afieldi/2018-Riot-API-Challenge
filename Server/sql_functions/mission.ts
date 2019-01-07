@@ -36,6 +36,6 @@ export class MissionSQL {
         });
     }
     assignToAllPlayers(mission_id:number, callback:Function) {
-        var query:string = "INSERT INTO assigned_mission SELECT "
+        var query:string = "INSERT INTO assigned_mission () SELECT mission_id, 0, max_progress, "
     }
 }

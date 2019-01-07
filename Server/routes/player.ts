@@ -10,15 +10,35 @@ export function setup(app, sql:SQL) {
             res.json({"message": "A display_name is required"});
             return;
         }
-        
-        riotApi.user.getUser(body["display_name"], (data) => {
-            sql.player.addPlayer(data, () => {
-                console.log("Player added");
+        if(body["clan_tag"] != undefined && body["clan_tag"].length >= 1 && body["clan_name"] != undefined && body["clan_name"].length >= 1) {
+            // They have a clan
+            sql.clan.addClan(body, () => {
+                // Add player
+                riotApi.user.getUser(body["display_name"], (data) => {
+                    sql.player.addPlayer(data, () => {
+                        // Add player to clan
+                        sql.clan.addPlayer(body["clan_tag"], data["puuid"], () => {
+                            console.log("Player added");
+                            res.json({"message": "Player added"});
+                            return;
+                        });
+                    });
+                });
             });
-        });
-    });
+        }
+        else {
+            // They don't have a clan
+            riotApi.user.getUser(body["display_name"], (data) => {
+                sql.player.addPlayer(data, () => {
+                    console.log("Player added");
+                    res.json({"message": "Player added"});
+                    return;
+                });
+            });
+        }
 
-    app.route("/")
+        
+    });
 
     // Summoner ID
     app.route("/player/summoner/:id").get((req, res) => {

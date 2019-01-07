@@ -10,13 +10,15 @@ export class PlayerSQL {
             if(err){
                 console.log(err);
                 callback();
+                return;
             }
 
             // Now add player
             query = "INSERT INTO player (entity_id, summoner_id, account_id) VALUES (?, ?, ?)";
             this.sql.query(query, [data["puuid"], data["id"], data["accountId"]], (err, results, fields) => {
-                if(err) throw err;
+                if(err) console.log(err);
                 callback();
+                return;
             });
         });
     }
@@ -25,6 +27,7 @@ export class PlayerSQL {
         this.sql.query(query, [clan_id, player_id], (err, results, fields) => {
             if(err) console.log(err);
             callback();
+            return;
         });
     }
     selectPlayerByAccountId(accountId:Number, callback:Function) {
@@ -36,6 +39,7 @@ export class PlayerSQL {
                 return;
             }
             callback(results);
+            return;
         });
     }
     selectPlayerBySummonerId(summoner_id:Number, callback:Function) {
