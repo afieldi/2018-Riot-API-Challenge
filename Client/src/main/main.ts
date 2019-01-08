@@ -12,5 +12,6 @@ app.on('ready', () => {
     tray = new Tray(iconPath);
     tray.setToolTip('LOL API CHALLENGE');
     RunProxy();
+    //todo async function for webserver managing 
 });
 
