@@ -1,17 +1,13 @@
 import LeagueConnection from "./league/league";
 import { getUxArguments, startFoundation, startUx, stopLeague } from "./league/util";
 import LCUProxy from "./league/proxy";
-const PORT = 49000 + (100 * Math.random())|0;
-const REPLACE_PORT = 49100 + (100 * Math.random())|0;
-const PWD = "dankmemes";
-
-// LOCKFILE: LeagueClient:20904:63769:3UMgPMIfav6dqRUHowD0Aw:https
-console.log(`LOCKFILE: LeagueClient:1:${PORT}:${PWD}:https`);
-console.log(`PROXY PORT: ${REPLACE_PORT}`);
 
 
-export async function RunProxy()
+export async function RunProxy(PORT: number, REPLACE_PORT: number, PWD: string)
 {
+    // LOCKFILE: LeagueClient:20904:63769:3UMgPMIfav6dqRUHowD0Aw:https
+    console.log(`LOCKFILE: LeagueClient:1:${PORT}:${PWD}:https`);
+    console.log(`PROXY PORT: ${REPLACE_PORT}`);
     (async () => {
         process.chdir('C:/Riot Games/League of Legends/');
 
