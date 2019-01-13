@@ -1,13 +1,54 @@
 {
+  "compileOnSave": true,
   "compilerOptions": {
-    "noImplicitAny": true,
-    "strictNullChecks": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
     "alwaysStrict": true,
-    "outDir": "dist",
+    "declaration": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
+    "importHelpers": true,
+    "lib": ["dom", "dom.iterable", "es2017"],
     "module": "commonjs",
-    "target": "es2017",
-    "lib":["es2015", "dom"]
+    "moduleResolution": "node",
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": false,
+    "noImplicitUseStrict": false,
+    "noLib": false,
+    "noResolve": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "removeComments": true,
+    "rootDir": ".",
+    "strictNullChecks": true,
+    "target": "es2017"
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules"]
+  "exclude": [
+    ".git",
+    "js",
+    "lib",
+    "node_modules"
+  ],
+  "extends": "./node_modules/electron-webpack/tsconfig-base.json",
+  "filesGlob": [
+    "src/**/*.ts",
+    "test/**/*.ts"
+  ],
+  "formatCodeOptions": {
+    "convertTabsToSpaces": true,
+    "indentSize": 2,
+    "insertSpaceAfterCommaDelimiter": true,
+    "insertSpaceAfterSemicolonInForStatements": true,
+    "insertSpaceBeforeAndAfterBinaryOperators": true,
+    "insertSpaceAfterKeywordsInControlFlowStatements": true,
+    "insertSpaceAfterFunctionKeywordForAnonymousFunctions": false,
+    "insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis": false,
+    "newLineCharacter": "\n",
+    "placeOpenBraceOnNewLineForFunctions": false,
+    "placeOpenBraceOnNewLineForControlBlocks": false,
+    "tabSize": 2
+  }
 }

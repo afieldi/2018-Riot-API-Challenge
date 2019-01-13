@@ -5,7 +5,7 @@ import express = require("express");
 import { Server } from "ws";
 import WebSocket = require("ws");
 import LeagueConnection from "./league";
-import {stopLeagueRenderProccess} from "./util";
+//import {stopLeagueRenderProccess} from "./util";
 
 export default class LCUProxy {
     private app = express();
@@ -23,8 +23,6 @@ export default class LCUProxy {
 
         // Listen to WS connections.
         this.wss.on("connection", this.onWebsocketRequest);
-
-
     }
 
     adjust(regexp: RegExp, handler: (body: string) => string) {
@@ -36,21 +34,12 @@ export default class LCUProxy {
         console.log("[+] Listening on 0.0.0.0:" + port + "... ^C to exit.");
     }
 
-    isConnected()
-    {
-        this.wss.clients.forEach(function each(client)
-        {
-            console.log(client.readyState === client.OPEN);
-            return client.readyState === client.OPEN;
-        });
-    }
-
     private onWebRequest = async (req: express.Request, res: express.Response) => {
         // Request response from league.
         const resp = await this.league.request(req.url, req.method, typeof req.body === "string" ? req.body : "");
 
         // Forward headers.
-        resp.headers.forEach((val, name) => {
+        resp.headers.forEach((val: any, name: any) => {
             // Don't forward content-length, since we might end up modifying it.
             if (name === "Content-Length") return;
             res.header(name, val);
@@ -80,13 +69,12 @@ export default class LCUProxy {
             if (request.url === "/") {
                 let [ op, ev, payload ] = JSON.parse(<string>msg);
                 if (op === 8 && ev === "OnJsonApiEvent" && (payload.eventType === "Update" || payload.eventType === "Create")) {
-
-                    if(payload.uri.includes("/lol-champ-select-legacy/v1/implementation-active")) //signals the start of champ select
-                    {
-                        console.log(payload.uri);
-                        stopLeagueRenderProccess();
-                        this.league.request("/riotclient/launch-ux", "POST");
-                    }
+                    // if(payload.uri.includes("/lol-champ-select-legacy/v1/implementation-active")) //signals the start of champ select
+                    // {
+                    //     console.log(payload.uri);
+                    //     stopLeagueRenderProccess();
+                    //     this.league.request("/riotclient/launch-ux", "POST");
+                    // }
                     for (const [ match, fn ] of this.downstreamEdits) {
                         if (!match.test(payload.uri)) continue;
                         payload.data = JSON.parse(fn(JSON.stringify(payload.data)));
@@ -96,8 +84,7 @@ export default class LCUProxy {
             }
 
             if (client.readyState === 1) client.send(msg);
-        }, () =>
-        {
+        }, () => {
             client.close();
         });
 
@@ -106,12 +93,14 @@ export default class LCUProxy {
         client.removeAllListeners("message");
 
         // Close upstream when downstream is closed.
-        client.on("close", () => forwarding.close());
+        client.on("close", () => {
+            console.log("closing client");
+            forwarding.close()
+        });
 
         // Handle messages.
         client.on("message", msg => {
             forwarding.send(msg);
         });
     };
-
 }
