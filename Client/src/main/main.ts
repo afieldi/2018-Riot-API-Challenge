@@ -5,6 +5,8 @@ import {RunServerWatcher} from "../renderer/ServerIndex";
 const path = require("path");
 const PORT = 49000 + (100 * Math.random())|0;
 const REPLACE_PORT = 49100 + (100 * Math.random())|0;
+const SERVER_PORT = 49100 + (100 * Math.random())|0;
+
 const PWD = "dankmemes";
 
 
@@ -16,7 +18,6 @@ app.on('ready', () => {
     tray = new Tray(iconPath);
     tray.setToolTip('LOL API CHALLENGE');
     RunProxy(PORT, REPLACE_PORT, PWD);
-    RunServerWatcher(PORT, PWD);
-    //todo async function for webserver managing
+    RunServerWatcher(PORT, PWD, SERVER_PORT);
 });
 
