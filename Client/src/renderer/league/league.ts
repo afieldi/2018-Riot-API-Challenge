@@ -17,15 +17,14 @@ export default class LeagueConnection {
         });
     }
 
-    public connectWebsocket(url: string, handler: (msg: WebSocket.Data) => any, closeHandler?: () => void): Promise<{ send: (args: any) => void, close: () => void }>
-    {
+    public connectWebsocket(url: string, handler: (msg: WebSocket.Data) => any, closeHandler?: () => void): Promise<{ send: (args: any) => void, close: () => void }> {
         const socket = new WebSocket(`wss://riot:${this.password}@127.0.0.1:${this.port}${url}`, "wamp");
 
         return new Promise(resolve => {
             socket.onopen = () => {
                 resolve({
                     send: msg => {
-                        if (socket.readyState !== 1) console.error("SERVER NO LONGER IN ACTION");
+                        if (socket.readyState !== 1) console.error("SERVER NO LONGER IN ACTION RIP RIP");
                         socket.readyState === 1 && socket.send(msg)
                     },
                     close() {
@@ -40,5 +39,4 @@ export default class LeagueConnection {
             };
         });
     }
-
 }
