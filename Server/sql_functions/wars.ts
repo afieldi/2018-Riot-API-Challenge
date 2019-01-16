@@ -65,9 +65,18 @@ export class WarsSQL {
     }
 
     resolveGame(team1:string, team2:string, war:number, winner:number, callback:Function) {
+        if(winner > 2 || winner < 0) {
+            callback({"message": "Invalid winner"});
+            return;
+        }
         var query:string = "UPDATE `riot-2018`.`clan_war_game` SET result = ? WHERE team_1=? AND team_2=? AND war=?"
         this.sql.query(query, [winner, team1, team2, war], (err, results, fields) => {
-            
+            if(err) {
+                callback({"message": "Something went wrong"});
+            }
+            else {
+                callback({"message": "Game was resolved"});
+            }
         });
     }
 }
