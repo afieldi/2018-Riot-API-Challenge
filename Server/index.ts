@@ -48,6 +48,7 @@ conn.connect((err) => {
     initializeRoutes(SQLData);
 
     app.listen(1000);
+    console.log("Listening on port 1000");
 });
 
 function initializeRoutes(SQLData:SQL) {
