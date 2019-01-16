@@ -14,26 +14,22 @@ export function setup(app, sql:SQL) {
             // They have a clan
             sql.clan.addClan(body, () => {
                 // Add player
-                riotApi.user.getUser(body["display_name"], (data) => {
-                    sql.player.addPlayer(data, () => {
-                        // Add player to clan
-                        sql.clan.addPlayer(body["clan_tag"], data["puuid"], () => {
-                            console.log("Player added");
-                            res.json({"message": "Player added"});
-                            return;
-                        });
+                sql.player.addPlayer(body, () => {
+                    // Add player to clan
+                    sql.clan.addPlayer(body["clan_tag"], body["puuid"], () => {
+                        console.log("Player added");
+                        res.json({"message": "Player added"});
+                        return;
                     });
                 });
             });
         }
         else {
             // They don't have a clan
-            riotApi.user.getUser(body["display_name"], (data) => {
-                sql.player.addPlayer(data, () => {
-                    console.log("Player added");
-                    res.json({"message": "Player added"});
-                    return;
-                });
+            sql.player.addPlayer(body, () => {
+                console.log("Player added");
+                res.json({"message": "Player added"});
+                return;
             });
         }
 
