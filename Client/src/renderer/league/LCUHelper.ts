@@ -30,11 +30,33 @@ export class LCUHelper
 
     public InviteToLobby(players: any)
     {
-        //todo
+        const data = {
+            "eligibility": {
+                "eligible": true,
+                "queueId": -1,
+                "restrictions": []
+            },
+            "errorType": "",
+            "fromSummonerId": 0,
+            "fromSummonerName": "",
+            "id": "",
+            "invitationMetaData": null,
+            "state": "Pending",
+            "timestamp": "",
+            "toSummonerId": 0,
+            "toSummonerName": ""
+        };
+
+        for(let player of players)
+        {
+            data["toSummonerId"] = player["summonerID"]; //change to whatever arek passes me
+            data["id"] = player["summonerID"].toString();
+            this.leagueconnection.request("lobby/v1/lobby", "POST", data)
+        }
     }
 
-    public AcceptLobbyInvite(player: any)
+    public AcceptLobbyInvite(inviteID: string)
     {
-        //todo
+        this.leagueconnection.request("/lol-lobby/v2/received-invitations/" + inviteID + "/accept", "POST")
     }
 }
