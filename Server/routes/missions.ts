@@ -20,6 +20,15 @@ export function setup(app, sql:SQL) {
         res.json({"message": "not yet implemented"});
     });
 
+    app.route("/missions/puuid/:id").get((req, res) => {
+        sql.mission.getMissionsByPuuid(req.params.id, (results) => {
+            res.send(results);
+        });
+    })
+    .put((req, res) => {
+        res.json({"message": "not yet implemented"});
+    });
+
     app.route("/missions/update/:id").put((req, res) => {
         // Only accepts an update to the quantity
         if(req.body.current_progress == undefined) {

@@ -3,7 +3,7 @@ export class MissionSQL {
 
     }
     getMissionsByAccountId(accountId:number, callback:Function) {
-        var query:string = "SELECT * FROM assigned_mission LEFT JOIN player ON assigned_mission.player = player.entity_id WHERE summoner_id = ?";
+        var query:string = "SELECT * FROM assigned_mission LEFT JOIN player ON assigned_mission.entity = player.entity_id WHERE summoner_id = ?";
         this.sql.query(query, [accountId], (err, results, fields) => {
             if(err) {
                 console.log(err);
@@ -13,8 +13,9 @@ export class MissionSQL {
             callback(results);
         });
     }
+
     getMissionsBySummonerId(summoner_id:number, callback:Function) {
-        var query:string = "SELECT * FROM assigned_mission LEFT JOIN player ON assigned_mission.player = player.entity_id WHERE account_id = ?";
+        var query:string = "SELECT * FROM assigned_mission LEFT JOIN player ON assigned_mission.entity = player.entity_id WHERE account_id = ?";
         this.sql.query(query, [summoner_id], (err, results, fields) => {
             if(err) {
                 console.log(err);
@@ -24,6 +25,19 @@ export class MissionSQL {
             callback(results);
         });
     }
+
+    getMissionsByPuuid(puuid:number, callback:Function) {
+        var query:string = "SELECT * FROM assigned_mission LEFT JOIN player ON assigned_mission.entity = player.entity_id WHERE entity_id = ?";
+        this.sql.query(query, [puuid], (err, results, fields) => {
+            if(err) {
+                console.log(err);
+                callback({"message": "Sorry there was an unexpected error"});
+                return;
+            }
+            callback(results);
+        });
+    }
+
     updateMissionProgress(mission_id:number, new_progress:number, callback:Function) {
         var query:string = "UPDATE assigned_mission SET current_progress = ? WHERE mission_id = ?";
         this.sql.query(query, [new_progress, mission_id], (err, results, fields) => {
@@ -36,6 +50,6 @@ export class MissionSQL {
         });
     }
     assignToAllPlayers(mission_id:number, callback:Function) {
-        var query:string = "INSERT INTO assigned_mission () SELECT mission_id, 0, max_progress, "
+        var query:string = "INSERT INTO assigned_mission () SELECT mission_id, 0, max_progress, ";
     }
 }

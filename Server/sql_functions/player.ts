@@ -5,12 +5,9 @@ export class PlayerSQL {
     addPlayer(data:Object, callback:Function) {
         var query:string = "INSERT INTO entity (entity_id, display_name) VALUES (?, ?)";
         // Create general entity
-        console.log(data);
-        this.sql.query(query, [data["puuid"], data["name"]], (err, results, fields) => {
+        this.sql.query(query, [data["puuid"], data["display_name"]], (err, results, fields) => {
             if(err){
                 console.log(err);
-                callback();
-                return;
             }
 
             // Now add player
@@ -31,7 +28,7 @@ export class PlayerSQL {
         });
     }
     selectPlayerByAccountId(accountId:Number, callback:Function) {
-        var query:string = "SELECT * FROM player WHERE account_id=?";
+        var query:string = "SELECT * FROM player LEFT JOIN entity ON (entity.entity_id = player.entity_id) WHERE account_id=?";
         this.sql.query(query, [accountId], (err, results, fields) => {
             if(err) {
                 console.log(err);
@@ -43,7 +40,7 @@ export class PlayerSQL {
         });
     }
     selectPlayerBySummonerId(summoner_id:Number, callback:Function) {
-        var query:string = "SELECT * FROM player WHERE summoner_id=?";
+        var query:string = "SELECT * FROM player LEFT JOIN entity ON (entity.entity_id = player.entity_id) WHERE summoner_id=?";
         this.sql.query(query, [summoner_id], (err, results, fields) => {
             if(err) {
                 console.log(err);
@@ -54,7 +51,7 @@ export class PlayerSQL {
         });
     }
     selectPlayerByPuuid(puuid:String, callback:Function) {
-        var query:string = "SELECT * FROM player WHERE entity_id=?";
+        var query:string = "SELECT * FROM player LEFT JOIN entity ON (entity.entity_id = player.entity_id) WHERE player.entity_id=?";
         this.sql.query(query, [puuid], (err, results, fields) => {
             if(err) {
                 console.log(err);
