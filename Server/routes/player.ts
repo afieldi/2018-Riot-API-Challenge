@@ -6,7 +6,6 @@ export function setup(app, sql:SQL) {
     // Adding players
     app.route("/player").put((req, res) => {
         var body:Object = req.body;
-        console.log(body);
         if(body["display_name"] == undefined) {
             res.json({"message": "A display_name is required"});
             return;

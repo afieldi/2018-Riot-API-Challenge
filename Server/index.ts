@@ -12,6 +12,7 @@ dotenv.config({path: `${__dirname}/.env`});
 import { setup as missionSetup } from './routes/missions';
 import { setup as playerSetup } from './routes/player';
 import { setup as leaderboardSetup } from './routes/leaderboard';
+import { setup as warSetup } from './routes/wars';
 
 import { SQL } from './sql_functions';
 
@@ -27,16 +28,16 @@ var conn = mysql.createConnection({
     database: "riot-2018"
 });
 
-app.use(function (request, response, next) {
-    response.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
-    response.header("Access-Control-Allow-Headers", "Origin, XRequested-With, Content-Type, Accept ");
-    response.header('Access-Control-Allow-Methods', 'POST, PATCH, GET, PUT, DELETE, OPTIONS ');
-    next();
-});
+// app.use(function (request, response, next) {
+//     response.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
+//     response.header("Access-Control-Allow-Headers", "Origin, XRequested-With, Content-Type, Accept ");
+//     response.header('Access-Control-Allow-Methods', 'POST, PATCH, GET, PUT, DELETE, OPTIONS ');
+//     next();
+// });
 
 // respond with "hello world" when a GET request is made to the homepage
 app.route("/").get((req, res) => {
-      res.send('hello world');
+    res.send('hello world');
 });
 
 // Connect to database
@@ -56,6 +57,7 @@ function initializeRoutes(SQLData:SQL) {
     missionSetup(app, SQLData);
     playerSetup(app, SQLData);
     leaderboardSetup(app, SQLData);
+    warSetup(app, SQLData);
 }
 
 function createSQL():SQL {

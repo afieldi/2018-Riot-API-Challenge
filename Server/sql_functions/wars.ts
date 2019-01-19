@@ -9,6 +9,7 @@ export class WarsSQL {
         var query:string = "INSERT INTO clan_war_entry SELECT war_id, ? FROM clan_war WHERE status = 'SIGN_UP' LIMIT 1";
         this.sql.query(query, [puuid], (err, results, fields) => {
             if(err) {
+                console.log(err);
                 callback({"message": "Something went wrong"});
                 return;
             }
@@ -18,7 +19,7 @@ export class WarsSQL {
 
     createClanWar(callback:Function) {
         var query:string =  "INSERT INTO clan_war (status) VALUES ('NOT_STARTED')";
-        this.sql.query(query, [], (err, results, fields) => {
+        this.sql.query(query, [], (err, results, fields) => { 
             if(err) {
                 callback({"message": "Something went wrong"});
             }
@@ -48,6 +49,18 @@ export class WarsSQL {
             }
             else {
                 callback({"message": "Clan War was started"});
+            }
+        });
+    }
+
+    endWar(callback:Function) {
+        var query:string = "UPDATE `riot-2018`.`clan_war` SET `status`='FINISHED' WHERE `status`='IN_PROGRESS'";
+        this.sql.query(query, [], (err, results, fields) => {
+            if(err) {
+                callback({"message": "Something went wrong"});
+            }
+            else {
+                callback({"message": "Clan War has finished"});
             }
         });
     }
