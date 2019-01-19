@@ -4,7 +4,7 @@ export class LCUHelper
 {
     constructor(private leagueconnection: LeagueConnection){}
 
-    public CreateCustomLobby()
+    public CreateCustomLobby(Lobbyname: string )
     {
         const data =
             {
@@ -20,8 +20,8 @@ export class LCUHelper
                                 "spectatorPolicy":"AllAllowed",
                                 "teamSize":5
                             },
-                        "lobbyName":"Name",
-                        "lobbyPassword":null
+                        "lobbyName":Lobbyname,
+                        "lobbyPassword":"PATRICKIN2018"
                     },
                 "isCustom":true
             };
@@ -55,8 +55,21 @@ export class LCUHelper
         }
     }
 
-    public AcceptLobbyInvite(inviteID: string)
+    public async AcceptLobbyInvite(playerjson: any)
     {
-        this.leagueconnection.request("/lol-lobby/v2/received-invitations/" + inviteID + "/accept", "POST")
+
+        //timing hack
+        setTimeout(null,10000);
+
+        //accept the invite
+        var recievedinvites = JSON.parse((await this.leagueconnection.request("/lol-lobby/v2/received-invitations/", "GET")).body.read().toString());
+        for(var i = 0; i < recievedinvites.length; i++)
+        {
+            if(recievedinvites[i]["fromSummonerId"] === playerjson["summonerID"])
+            {
+                const  inviteID = recievedinvites[i]["invitationId"];
+                this.leagueconnection.request("/lol-lobby/v2/received-invitations/" + inviteID + "/accept", "POST")
+            }
+        }
     }
 }
