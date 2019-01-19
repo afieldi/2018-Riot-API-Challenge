@@ -16,7 +16,7 @@ const iconPath = path.join(__dirname, 'Caitlyn.png');
 let tray = null;
 app.on('ready', () => {
     tray = new Tray(iconPath);
-    tray.setToolTip('LOL API CHALLENGE');
+    tray.setToolTip('Make Clubs Great Again');
     RunProxy(PORT, REPLACE_PORT, PWD);
     RunServerWatcher(PORT, PWD, SERVER_PORT);
 });

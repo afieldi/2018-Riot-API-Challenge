@@ -6,23 +6,26 @@ import express = require("express");
 
 import { Server } from "ws";
 import WebSocket = require("ws");
+import {ResponseRequest} from "request";
+import {setupRoutes} from "./league/ServerRoutes";
 //import {stopLeagueRenderProccess} from "./util";
 
-export default class Server {
+export default class ServerProxy {
     private app = express();
     private server = createServer(this.app);
     private wss = new Server({ server: this.server });
 
 
-    constructor() {
+    constructor(private leagueconnection: LeagueConnection) {
         // Parse every body as text, regardless of actual type.
-        this.app.use(bodyParser.text({ type: () => true }));
+        this.app.use(bodyParser.text({type: () => true}));
 
         // Listen to every HTTP request.
         this.app.all("*", this.onWebRequest);
 
         // Listen to WS connections.
         this.wss.on("connection", this.onWebsocketRequest);
+        setupRoutes(this.app, this.leagueconnection);
     }
 
     listen(port: number) {
@@ -43,26 +46,8 @@ export default class Server {
 
 export async function RunServerWatcher(PORT: number, PWD: string, SERVER_PORT: number)
 {
-    var server = new Server();
+    const league = new LeagueConnection(PORT, PWD);
+    const server = new ServerProxy(league);
     server.listen(SERVER_PORT);
     console.log("server being watched");
-    (async () =>
-    {
-        const league = new LeagueConnection(PORT, PWD);
-        try {
-            // Wait for user to log in.
-            while (true) {
-                let resp = await league.request("/lol-summoner/v1/current-summoner");
-                if (resp.status !== 404)
-                    break;
-                await new Promise(resolve => setTimeout(resolve, 1000));
-            }
-        }
-        catch(exception)
-        {
-            console.log(exception)
-        }
-
-
-    })().catch(console.error);
 }
