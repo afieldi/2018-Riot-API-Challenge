@@ -12,10 +12,10 @@ export class LeaderboardComponent implements OnInit {
     title:string = "";
     leaderboard:Array<Object>;
     constructor(private store:StoreService) {
-        
     }
 
     ngOnInit() {
+        console.log(this.type);
         this.title = "Leaderboard for " + this.type.toLowerCase() + "s";
         console.log(this.type);
         this.store.getLeaderboard(this.type, 100, (leaderboard) => {
