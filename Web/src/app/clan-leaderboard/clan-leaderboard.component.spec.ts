@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LeaderboardsComponent } from './leaderboards.component';
+import { ClanLeaderboardComponent } from './clan-leaderboard.component';
 
-describe('LeaderboardsComponent', () => {
-  let component: LeaderboardsComponent;
-  let fixture: ComponentFixture<LeaderboardsComponent>;
+describe('ClanLeaderboardComponent', () => {
+  let component: ClanLeaderboardComponent;
+  let fixture: ComponentFixture<ClanLeaderboardComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LeaderboardsComponent ]
+      declarations: [ ClanLeaderboardComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LeaderboardsComponent);
+    fixture = TestBed.createComponent(ClanLeaderboardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -92,4 +92,23 @@ export class WarsSQL {
             }
         });
     }
+
+    getPlayers(callback:Function) {
+        var query:string = `
+        SELECT entity_id, summoner_id, clan_id FROM clan_war_entry c 
+        JOIN player p ON c.player = p.entity_id
+        JOIN clan_war w ON w.war_id = c.war
+        JOIN clan_member cm ON cm.player_id = c.player
+
+        WHERE w.status = 'SIGN_UP'`
+
+        this.sql.query(query, [], (err, results, fields) => {
+            if(err) {
+                callback({"message": "Something went wrong"});
+            }
+            else {
+                callback(results);
+            }
+        });
+    }
 }

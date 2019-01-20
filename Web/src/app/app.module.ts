@@ -4,16 +4,18 @@ import { NgModule } from "@angular/core";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { HomeComponent } from "./home/home.component";
-import { LeaderboardsComponent } from "./leaderboards/leaderboards.component";
 import { LeaderboardComponent } from "./leaderboard/leaderboard.component";
 import { HttpClientModule } from '../../node_modules/@angular/common/http';
+import { PlayerLeaderboardComponent } from './player-leaderboard/player-leaderboard.component';
+import { ClanLeaderboardComponent } from './clan-leaderboard/clan-leaderboard.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         HomeComponent,
-        LeaderboardsComponent,
-        LeaderboardComponent
+        LeaderboardComponent,
+        PlayerLeaderboardComponent,
+        ClanLeaderboardComponent
     ],
     imports: [BrowserModule, 
             AppRoutingModule,

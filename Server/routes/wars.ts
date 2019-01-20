@@ -14,4 +14,9 @@ export function setup(app, sql:SQL) {
             res.json(msg);
         });
     });
+    app.route("/war/players/get").get((req, res) => {
+        sql.wars.getPlayers((results) => {
+            res.send(results); 
+        });
+    });
 }
