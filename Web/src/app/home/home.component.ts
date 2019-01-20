@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { LeaderboardType } from "../self-defined/enums";
+import {Router} from "@angular/router";
 
 @Component({
     selector: "app-home",
@@ -9,7 +10,19 @@ import { LeaderboardType } from "../self-defined/enums";
 export class HomeComponent implements OnInit {
     player = LeaderboardType.PLAYER;
     clan = LeaderboardType.CLAN;
-    constructor() {}
 
     ngOnInit() {}
+
+    constructor(private router:Router) {
+
+    }
+
+    toPlayer() {
+        this.router.navigate(["/player"]);
+    }
+
+    toClan() {
+        this.router.navigate(["/clan"]);
+    }
+
 }

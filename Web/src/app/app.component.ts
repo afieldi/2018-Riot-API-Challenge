@@ -7,7 +7,7 @@ import { Router } from '../../node_modules/@angular/router';
     styleUrls: ["./app.component.css"]
 })
 export class AppComponent implements OnInit{
-    title = "Web";
+    title = "Club Leaderboard";
     constructor(private router:Router) {
 
     }

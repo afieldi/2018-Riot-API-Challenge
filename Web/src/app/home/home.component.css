@@ -12,3 +12,50 @@
     border-radius: 10px 10px 0 0;
     padding: 5px 0 0 0;
 }
+
+.home-header{
+    font-family: 'Oswald', sans-serif;
+    font-size: 4.5rem;
+    color: white;
+    font-weight: 800;
+}
+
+.home-subtitle{
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.5rem;
+    color: white;
+    font-weight: 900;
+}
+
+.main-container{
+    width: 50%;
+    height: 60%;
+    margin:0 auto;
+    margin-top: 12%;
+}
+.title-container{
+    width: 80%;
+    height: 30%;
+    margin:0 auto;
+    margin-top: 50px;
+}
+
+.button {
+    background-color: #08a6ff;
+    border: none;
+    color: white;
+    font-family: 'Oswald', sans-serif;
+    padding: 15px 85px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin:0 auto;
+    margin-right: 10px;
+}
+
+.button:hover
+{
+    cursor: pointer;
+    background-color: #0cabff;
+}
