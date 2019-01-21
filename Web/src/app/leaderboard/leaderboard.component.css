@@ -1,21 +1,39 @@
 .table-title {
     width: 100%;
     text-align: center;
-    font-family: arial, sans-serif;
+    font-family: Oswald, sans-serif;
+    font-size: 2.5rem;
+    color: white;
+
 }
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
+    margin-left:auto;
+    margin-right:auto;
 }
 
 td,
 th {
-    border: 1px solid black;
-    text-align: left;
-    padding: 8px;
+    font-family: 'Oswald', sans-serif;
+    font-size: large;
+    display: inline-block;
+    margin: 0 auto;
+    min-height: 50px;
+    text-align: center;
+    background-color: white;
+    padding-left: 15%;
+    padding-right: 15%;
 }
 
 tr:nth-child(even) {
     background-color: #dddddd;
+}
+
+.icon-img{
+    max-width: 30px;
+    max-height: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
 }

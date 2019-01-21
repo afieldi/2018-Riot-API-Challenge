@@ -1,3 +1,4 @@
+
 .nav-items-left {
     list-style: none;
     padding: 0;
@@ -6,19 +7,43 @@
 
 .nav-item {
     display: inline-block;
-    min-width: 50px;
+    min-width: 90px;
     padding: 0 10px;
     height: 100%;
     line-height: 50px;
     text-align: center;
+    alignment: center;
     transition: .5s;
     color: white;
-    font-family: sans-serif;
+    font-family: 'Oswald', sans-serif;
+    font-size: large;
+
+}
+
+.nav-img {
+    display: inline-block;
+    min-width: 70px;
+    max-height: 70px;
+    padding: 0 10px;
+    height: 100%;
+    line-height: 50px;
+    text-align: center;
+    color: white;
+    font-family: 'Oswald', sans-serif;
+    vertical-align: middle;
+
+}
+
+.logo-icon {
+    min-width: 70px;
+    max-height: 70px;
+
 }
 
 .nav-item:hover {
     cursor: pointer;
-    background-color: #B75D69;
+    box-shadow: inset 0 -3px 0 0 white;
+
 }
 
 .nav-bar {

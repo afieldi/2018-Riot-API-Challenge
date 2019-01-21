@@ -1,15 +1,24 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div class="nav-bar">
-    <ul class="nav-items-left">
-        <li class="nav-item">
-            <a (click)="toHome()">Home</a>
-        </li>
-        <li class="nav-item">
-            <a (click)="toPlayer()">Player</a>
-        </li>
-        <li class="nav-item">
-            <a (click)="toClan()">Clan</a>
-        </li>
-    </ul>
-</div>
+<nav class="navbar navbar-expand-md" style="margin-top: 1%">
+    <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2" style="margin-left: 18%">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-img" (click)="toHome()">
+                <img src="../assets/icon3.png" class="logo-icon"/>
+            </li>
+        </ul>
+    </div>
+    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2" style="margin-right: 18%">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a (click)="toHome()">Home</a>
+            </li>
+            <li class="nav-item">
+                <a (click)="toPlayer()">Player</a>
+            </li>
+            <li class="nav-item">
+                <a (click)="toClan()">Clan</a>
+            </li>
+        </ul>
+    </div>
+</nav>
 <router-outlet></router-outlet>
