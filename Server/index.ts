@@ -18,7 +18,7 @@ import { SQL } from './sql_functions';
 
 var app = express();
 // Configure app
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false, limit: '50mb' }));
 app.use(bodyParser.json())
 // Connect to mysql
 var conn = mysql.createConnection({

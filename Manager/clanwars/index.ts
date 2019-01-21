@@ -6,12 +6,33 @@ function genereateWar() {
         
         var matches = [];
         var teamsTeams = createTeams(teamsArray);
-        var onevones = 
+        var onevones = matchPlayers(teamsTeams[0]);
+        var fivevfives = matchPlayers(teamsTeams[1]);
+        console.log(fivevfives[0])
+        // JSON.stringify(onevones);
+        var options = {
+            form: {
+                "players": JSON.stringify(fivevfives)
+            }
+        }
+        // // Add 5v5s
+        request.post("http://localhost:1000/war/game/add", options, (err, res, data) => {
+            console.log(data);
+        });
+        // Add 1v1s
+        options = {
+            form: {
+                "players": JSON.stringify(onevones)
+            }
+        }
+        request.post("http://localhost:1000/war/game/add", options, (err, res, data) => {
+            console.log(data);
+        });
     });
 }
 
 function getPlayers(callback:Function) {
-    request.get("http://localhost:1000/war/players/get", (err, res, data) => {
+    request.get("http://localhost:1000/war/players/get/1", (err, res, data) => {
         callback(JSON.parse(data));
     });
 }
@@ -58,7 +79,7 @@ function createTeams(clans:Array<Array<object>>):Array<object> {
             if(soloPlayers[currentClan] == undefined)
                 soloPlayers[currentClan] = [];
             var rand = Math.floor(Math.random() * players.length);
-            soloPlayers[currentClan].push(players[rand]);
+            soloPlayers[currentClan].push([players[rand]]);
             players.splice(rand, 1);
         }
         var numberOfTeams = players.length / 5;
@@ -74,8 +95,25 @@ function createTeams(clans:Array<Array<object>>):Array<object> {
     return [soloPlayers, fivesPlayers];
 }
 
-function matchPlayers(teams:object) {
-    
+function matchPlayers(clans:object):Array<Array<object>> {
+    var matches = [];
+    for(var clan in clans) {
+        for(var team in clans[clan]) {
+            var randomClan = clan;
+            var randomTeam = 0;
+            // Get other team
+            while(randomClan == clan && Object.keys(clans).length > 1 || clans[randomClan].length == 0) {
+                randomClan = Object.keys(clans)[(Math.floor(Math.random() * Object.keys(clans).length)).toString()];
+                randomTeam = Math.floor(Math.random() * clans[randomClan].length);
+            }
+
+            // Add them to a match
+            matches.push([clans[clan][team], clans[randomClan][randomTeam]]);
+            clans[clan].splice(team, 1);
+            clans[randomClan].splice(randomTeam, 1);
+        }
+    }
+    return matches
 }
 
 genereateWar();

@@ -14,9 +14,25 @@ export function setup(app, sql:SQL) {
             res.json(msg);
         });
     });
-    app.route("/war/players/get").get((req, res) => {
-        sql.wars.getPlayers((results) => {
+    app.route("/war/players/get/:id").get((req, res) => {
+        sql.wars.getPlayers(req.params.id, (results) => {
             res.send(results); 
         });
+    });
+    app.route("/war/game/add").post((req, res) => {
+        var matches = JSON.parse(req.body.players);
+        for(var match in matches) {
+            var players = matches[match];
+            sql.wars.createGame(players[0][0]["clan_id"], players[1][0]["clan_id"], (game_id) => {
+                for(var team in players) {
+                    for (var player in players[team]) {
+                        sql.wars.addPLayerToGame(players[team][player]["entity_id"], game_id, team, () => {
+    
+                        });
+                    }
+                }
+            });
+        }
+        res.send("Added game")
     });
 }

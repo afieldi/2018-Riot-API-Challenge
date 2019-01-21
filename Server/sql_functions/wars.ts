@@ -41,6 +41,18 @@ export class WarsSQL {
         });
     }
 
+    setUpWar(callback:Function) {
+        var query:string = "UPDATE `riot-2018`.`clan_war` SET `status`='SET_UP' WHERE `status`='SIGN_UP'";
+        this.sql.query(query, [], (err, results, fields) => {
+            if(err) {
+                callback({"message": "Something went wrong"});
+            }
+            else {
+                callback({"message": "War is being setup"});
+            }
+        });
+    }
+
     startWar(callback:Function) {
         var query:string = "UPDATE `riot-2018`.`clan_war` SET `status`='IN_PROGRESS' WHERE `status`='SIGN_UP'";
         this.sql.query(query, [], (err, results, fields) => {
@@ -66,16 +78,30 @@ export class WarsSQL {
     }
 
     createGame(team1:string, team2:string, callback:Function) {
-        var query:string = "INSERT INTO `riot-2018`.`clan_war_game` (team_1, team_2, war, result) VALUES SELECT ?, ?, war_id, 0 FROM clan_war WHERE status='SET_UP'";
-        this.sql.query(query, [], (err, results, fields) => {
+        var query:string = "INSERT INTO `riot-2018`.`clan_war_game` (team_1, team_2, war, result) SELECT ?, ?, war_id, 0 FROM clan_war WHERE status='SET_UP'";
+        this.sql.query(query, [team1, team2], (err, results, fields) => {
             if(err) {
+                console.log(err);
                 callback({"message": "Something went wrong"});
             }
             else {
-                callback({"message": "Clan War was started"});
+                callback(results.insertId);
             }
         });
     }
+
+    addPLayerToGame(player:object, game:number, team:string, callback:Function) {
+        var query:string = "INSERT INTO clan_war_member (clan_war_game, player, team) VALUES (?, ?, ?)";
+        this.sql.query(query, [game, player, team], (err, results, fields) => {
+            if(err) {
+                // console.log(err);
+                callback({"message": "Something went wrong"});
+            }
+            else {
+                callback({"message": "Player added to game"});
+            }
+        });
+    } 
 
     resolveGame(team1:string, team2:string, war:number, winner:number, callback:Function) {
         if(winner > 2 || winner < 0) {
@@ -93,16 +119,16 @@ export class WarsSQL {
         });
     }
 
-    getPlayers(callback:Function) {
+    getPlayers(war:number, callback:Function) {
         var query:string = `
         SELECT entity_id, summoner_id, clan_id FROM clan_war_entry c 
         JOIN player p ON c.player = p.entity_id
         JOIN clan_war w ON w.war_id = c.war
         JOIN clan_member cm ON cm.player_id = c.player
 
-        WHERE w.status = 'SIGN_UP'`
+        WHERE w.war_id = ?`
 
-        this.sql.query(query, [], (err, results, fields) => {
+        this.sql.query(query, [war], (err, results, fields) => {
             if(err) {
                 callback({"message": "Something went wrong"});
             }
@@ -111,4 +137,5 @@ export class WarsSQL {
             }
         });
     }
+
 }
