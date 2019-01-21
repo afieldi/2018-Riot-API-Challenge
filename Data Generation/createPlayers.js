@@ -24,7 +24,6 @@ fs.readFile("words.txt", 'utf8', (err, data) => {
                 "clan_tag": clans[clan]["tag"]
             }
         }
-        console.log(options);
         request.put("http://localhost:1000/player", options, (err, res, data) => {
             console.log(data);
         });

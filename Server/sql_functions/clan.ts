@@ -17,12 +17,22 @@ export class ClanSQL {
             // Add clan to entity
             query = "INSERT INTO entity VALUES (?, ?)";
             this.sql.query(query, [data["clan_tag"], data["clan_name"]], (err, results:any[], fields) => {
-                if(err) console.log(err);
+                if(err)  {
+                    if(err.code != "ER_DUP_ENTRY") {
+                        console.log(err);
+                    }
+                }
 
                 // Add clan to clan table
                 query = "INSERT INTO clan (entity_id) VALUES (?)";
-                this.sql.query(query, [data["clan_tag"], data["clan_name"]], (err, results, fields) => {
-                    if(err) console.log(err);
+                console.log("addng clan")
+                this.sql.query(query, [data["clan_tag"]], (err, results, fields) => {
+                    if(err)  {
+                        console.log(err);
+                        if(err.code != "ER_DUP_ENTRY") {
+                            console.log(err);
+                        }
+                    }
                     callback();
                 });
             });
