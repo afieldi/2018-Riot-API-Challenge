@@ -6,9 +6,9 @@ import { LeaderboardType } from './self-defined/enums';
     providedIn: "root"
 })
 export class StoreService {
-    host = "http://localhost:1000"
+    host = "http://localhost:1000";
     constructor(private http: HttpClient) {}
-    
+
     getLeaderboard(type:LeaderboardType, numb:Number = 100, callback:Function) {
         var uri = this.host + "/leaderboard/current/" + type.toLowerCase();
         this.http.get(uri).subscribe((data) => {
