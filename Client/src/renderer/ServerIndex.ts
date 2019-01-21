@@ -6,11 +6,10 @@ import express = require("express");
 
 import { Server } from "ws";
 import WebSocket = require("ws");
-import {ResponseRequest} from "request";
 import {setupRoutes} from "./league/ServerRoutes";
 //import {stopLeagueRenderProccess} from "./util";
 
-export default class ServerProxy {
+class ServerProxy {
     private app = express();
     private server = createServer(this.app);
     private wss = new Server({ server: this.server });

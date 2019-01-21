@@ -57,18 +57,14 @@ export class LCUHelper
 
     public async AcceptLobbyInvite(playerjson: any)
     {
-
-        //timing hack
-        setTimeout(null,10000);
-
         //accept the invite
-        var recievedinvites = JSON.parse((await this.leagueconnection.request("/lol-lobby/v2/received-invitations/", "GET")).body.read().toString());
-        for(var i = 0; i < recievedinvites.length; i++)
+        const recievedinvites = JSON.parse((await this.leagueconnection.request("/lol-lobby/v2/received-invitations/", "GET")).body.read().toString());
+        for(let i = 0; i < recievedinvites.length; i++)
         {
             if(recievedinvites[i]["fromSummonerId"] === playerjson["summonerID"])
             {
                 const  inviteID = recievedinvites[i]["invitationId"];
-                this.leagueconnection.request("/lol-lobby/v2/received-invitations/" + inviteID + "/accept", "POST")
+                this.leagueconnection.request("/lol-lobby/v2/received-invitations/" + inviteID + "/accept", "POST");
             }
         }
     }

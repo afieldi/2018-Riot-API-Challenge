@@ -91,7 +91,7 @@ export async function RunProxy(PORT: number, REPLACE_PORT: number, PWD: string)
                         }
                     ],
                     "helperText": "",
-                    "iconImageUrl": "/lol-game-data/assets/v1/champion-icons/143.png",
+                    "iconImageUrl": "/fe/lol-missions/events/images/missions/leveling/MissionIcon-WOTD.png",
                     "id": "ef810430-f81d-11e8-81fc-02cbe124d5e4",
                     "internalName": "neeko18_intro",
                     "isNew": false,
@@ -109,7 +109,7 @@ export async function RunProxy(PORT: number, REPLACE_PORT: number, PWD: string)
                     "missionType": "ONETIME",
                     "objectives": [
                         {
-                            "description": "Win a PvP game as Zyra",
+                            "description": "Kill 7 champions",
                             "hasObjectiveBasedReward": false,
                             "progress": {
                                 "currentProgress": 0,
@@ -121,7 +121,7 @@ export async function RunProxy(PORT: number, REPLACE_PORT: number, PWD: string)
                             "type": "LEGS"
                         },
                         {
-                            "description": "Win 4 PvP games either with or against Zyra",
+                            "description": "Kill 3 dragons",
                             "hasObjectiveBasedReward": false,
                             "progress": {
                                 "currentProgress": 4,
@@ -145,7 +145,7 @@ export async function RunProxy(PORT: number, REPLACE_PORT: number, PWD: string)
                             "iconUrl": "/fe/lol-loot/assets/loot_item_icons/currency_champion.png",
                             "isObjectiveBasedReward": false,
                             "itemId": "",
-                            "quantity": 3000,
+                            "quantity": 10,
                             "rewardFulfilled": false,
                             "rewardGroup": "0",
                             "rewardGroupSelected": false,
@@ -157,7 +157,7 @@ export async function RunProxy(PORT: number, REPLACE_PORT: number, PWD: string)
                     "seriesName": "",
                     "startTime": 1544025600000,
                     "status": "PENDING",
-                    "title": "Meet Zyra",
+                    "title": "I Want To Be The Very Best",
                     "viewed": true
                 });
                 return JSON.stringify(json);
