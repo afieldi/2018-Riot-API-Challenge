@@ -16,7 +16,7 @@ export class LeaderboardComponent implements OnInit {
 
     ngOnInit() {
         console.log(this.type);
-        this.title =  this.type.toLowerCase() + " LEADERBOARD";
+        this.title =  this.type + " LEADERBOARD";
         console.log(this.type);
         this.store.getLeaderboard(this.type, 100, (leaderboard) => {
             console.log(leaderboard);
