@@ -1,18 +1,24 @@
-<div class="table-title">{{title}}</div>
-<table>
-    <thead>
-        <tr>
+<div class="main-container">
+    <div class="table-title">{{title}}</div>
+    <table>
+        <thead >
+        <tr style="background-color: white ">
             <td>
                 <img src="../../assets/Person%20Icon.png" class="icon-img"/>
-                <b>Player</b>
+                <b>PLAYER</b>
             </td>
-            <td><b>Score</b></td>
+            <td>
+                <img src="../../assets/score.png" class="icon-img"/>
+                <b>SCORE</b>
+            </td>
         </tr>
-    </thead>
-    <tbody>
+        </thead>
+        <tbody>
         <tr *ngFor="let entry of leaderboard">
             <td>{{entry.display_name}}</td>
             <td>{{entry.points}}</td>
         </tr>
-    </tbody>
-</table>
+        </tbody>
+    </table>
+</div>
+
