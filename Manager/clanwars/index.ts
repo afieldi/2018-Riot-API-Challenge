@@ -8,7 +8,6 @@ function genereateWar() {
         var teamsTeams = createTeams(teamsArray);
         var onevones = matchPlayers(teamsTeams[0]);
         var fivevfives = matchPlayers(teamsTeams[1]);
-        console.log(fivevfives[0])
         // JSON.stringify(onevones);
         var options = {
             form: {
@@ -30,6 +29,10 @@ function genereateWar() {
         });
     });
 }
+
+// function () {
+
+// }
 
 function getPlayers(callback:Function) {
     request.get("http://localhost:1000/war/players/get/1", (err, res, data) => {
