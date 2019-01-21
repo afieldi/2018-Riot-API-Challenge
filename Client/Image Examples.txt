@@ -1,0 +1,11 @@
+/fe/lol-new-player-experience/tutorial_summoners_rift_mid_arrow.png
+/fe/lol-new-player-experience/reward-xp.png
+/fe/lol-missions/events/images/missions/leveling/MissionIcon-WOTD.png
+/fe/lol-missions/events/images/eog/rewards/leveling/features/XP.png
+/fe/lol-new-player-experience/tutorial_summoners_rift_base_arrows.png
+/fe/lol-new-player-experience/reward-xp.png
+/lol-game-data/assets/ASSETS/Loot/NB-Fire-Poro-490px-small.png
+/fe/lol-new-player-experience/tutorial_summoners_rift_shop.png
+/lol-game-data/assets/ASSETS/Missions/preseason2018-thumbnail.png
+/lol-game-data/assets/v1/profile-icons/3897.jpg
+/lol-game-data/assets/v1/profile-icons/3897.jpg
