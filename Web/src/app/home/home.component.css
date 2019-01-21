@@ -18,6 +18,7 @@
     font-size: 4.5rem;
     color: white;
     font-weight: 800;
+    grid-area: a;
 }
 
 .home-subtitle{
@@ -25,6 +26,7 @@
     font-size: 1.5rem;
     color: white;
     font-weight: 900;
+    grid-area: b;
 }
 
 .main-container{
@@ -38,6 +40,9 @@
     height: 30%;
     margin:0 auto;
     margin-top: 50px;
+    display: grid;
+    grid-template-areas: 'a a' 'b b' 'c d';
+    column-gap: 10px;
 }
 
 .button {
@@ -45,13 +50,14 @@
     border: none;
     color: white;
     font-family: 'Oswald', sans-serif;
-    padding: 15px 85px;
+    padding: 15px 0;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
     margin:0 auto;
     margin-right: 10px;
+    width: 100%
 }
 
 .button:hover
