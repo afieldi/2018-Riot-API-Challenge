@@ -1,4 +1,4 @@
-import LeagueConnection from "./league";
+import LeagueConnection from "../league/league";
 
 export class LCUHelper
 {

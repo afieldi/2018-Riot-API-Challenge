@@ -48,3 +48,7 @@ export function startUx(commandLine: string) {
  export function stopLeagueRenderProccess() {
      child_process.exec(`WMIC PROCESS WHERE name='LeagueClientUxRender.exe' DELETE`);
 }
+
+export function startLeagueRenderNoArgs(){
+    child_process.execSync(`"C:\\Riot Games\\League of Legends\\RADS\\projects\\league_client\\releases\\0.0.0.181\\deploy\\LeagueClientUxRender.exe"`)
+}

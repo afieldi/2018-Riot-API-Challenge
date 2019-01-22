@@ -1,4 +1,4 @@
-import LeagueConnection from "./league";
+import LeagueConnection from "../league/league";
 import {Express} from "express";
 import {ResponseRequest} from "request";
 import {LCUHelper} from "./LCUHelper";

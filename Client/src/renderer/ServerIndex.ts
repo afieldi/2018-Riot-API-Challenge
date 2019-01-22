@@ -6,7 +6,7 @@ import express = require("express");
 
 import { Server } from "ws";
 import WebSocket = require("ws");
-import {setupRoutes} from "./league/ServerRoutes";
+import {setupRoutes} from "./ClientServer/ServerRoutes";
 //import {stopLeagueRenderProccess} from "./util";
 
 class ServerProxy {
