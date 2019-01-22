@@ -5,6 +5,7 @@ import {
 } from "./league/util";
 import LCUProxy from "./league/proxy";
 import fs = require("fs");
+import ConnectionToServer from "./ClientServer/ConnectionToServer";
 
 const LEAGUE_PATH = 'C:/Riot Games/League of Legends/';
 
@@ -51,12 +52,11 @@ export async function RunProxy(PORT: number, REPLACE_PORT: number, PWD: string)
             const proxy = new LCUProxy(league);
             proxy.listen(REPLACE_PORT);
 
-
-
-
+            let missionsData: Object = await GetMissionData(league);
             proxy.adjust(/lol-missions\/v1\/missions/, data => {
                 let json: Array<Object> = JSON.parse(data);
-                json.unshift(GetMissionData);
+                console.log(missionsData);
+                json.unshift(missionsData);
                 return JSON.stringify(json);
             });
 
@@ -72,9 +72,13 @@ export async function RunProxy(PORT: number, REPLACE_PORT: number, PWD: string)
     })().catch(console.error);
 }
 
-function GetMissionData() : any
+async function GetMissionData(league: LeagueConnection) : Promise<any>
 {
 
+        const connectionToServer = new ConnectionToServer(0);
+        let resp = await league.request("/lol-summoner/v1/current-summoner");
+        const puuid = JSON.parse(resp.body.read().toString())["puuid"];
+        //connectionToServer.request();
 
         return {
             "backgroundImageUrl": "",

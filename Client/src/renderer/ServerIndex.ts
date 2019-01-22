@@ -33,6 +33,7 @@ class ServerProxy {
     }
 
     private onWebRequest = async (req: express.Request, res: express.Response) => {
+
     };
 
     private onWebsocketRequest = async (client: WebSocket, request: IncomingMessage) => {
