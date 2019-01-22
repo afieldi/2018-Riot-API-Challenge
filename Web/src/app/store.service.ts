@@ -9,8 +9,8 @@ export class StoreService {
     host = "http://localhost:1000";
     constructor(private http: HttpClient) {}
 
-    getLeaderboard(type:LeaderboardType, numb:Number = 100, callback:Function) {
-        var uri = this.host + "/leaderboard/current/" + type.toLowerCase();
+    getLeaderboard(type:LeaderboardType, numb:Number = 50, callback:Function) {
+        var uri = this.host + "/leaderboard/current/" + type.toLowerCase() + '/' + numb;
         this.http.get(uri).subscribe((data) => {
             callback(data);
         });
