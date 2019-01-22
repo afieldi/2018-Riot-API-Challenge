@@ -14,6 +14,16 @@ export function setup(app, sql:SQL) {
             res.json(msg);
         });
     });
+    app.route("/war/setup/start").put((req, res) => {
+        sql.wars.setUpWar((response) => {
+            res.send(response);
+        });
+    });
+    app.route("/war/games/start").put((req, res) => {
+        sql.wars.startWar((response) => {
+            res.send(response);
+        });
+    });
     app.route("/war/players/get/:id").get((req, res) => {
         sql.wars.getPlayers(req.params.id, (results) => {
             res.send(results); 
@@ -34,5 +44,20 @@ export function setup(app, sql:SQL) {
             });
         }
         res.send("Added game")
+    });
+    app.route("/war/game/get").get((req, res) => {
+        sql.wars.getGames((games) => {
+            var object = {};
+            for(var i in games) {
+                var player = games[i];
+                if(object[player["clan_war_game"]] == undefined) {
+                    object[player["clan_war_game"]] = [];
+                    object[player["clan_war_game"]].push([]);
+                    object[player["clan_war_game"]].push([]);
+                }
+                object[player["clan_war_game"]][player["team"]].push(player);
+            }
+            res.send(object);
+        });
     });
 }

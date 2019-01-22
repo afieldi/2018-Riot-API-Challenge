@@ -1,6 +1,21 @@
 var request = require("request");
 
-function genereateWar() {
+export function genereateWar() {
+    // set war to setup
+    request.put("http://localhost:1000/war/setup/start", (err, res, data) => {
+        generateTeams();
+    });
+}
+
+export function startWar() {
+    request.put("http://localhost:1000/war/games/start", (err, res, data) => {
+        getMatches((player:object) => {
+
+        });
+    });
+}
+
+function generateTeams() {
     getPlayers((players:Object) => {
         var teamsArray:Array<Array<object>> = generateArray(players);
         
@@ -14,7 +29,7 @@ function genereateWar() {
                 "players": JSON.stringify(fivevfives)
             }
         }
-        // // Add 5v5s
+        // Add 5v5s
         request.post("http://localhost:1000/war/game/add", options, (err, res, data) => {
             console.log(data);
         });
@@ -29,10 +44,6 @@ function genereateWar() {
         });
     });
 }
-
-// function () {
-
-// }
 
 function getPlayers(callback:Function) {
     request.get("http://localhost:1000/war/players/get/1", (err, res, data) => {
@@ -119,4 +130,19 @@ function matchPlayers(clans:object):Array<Array<object>> {
     return matches
 }
 
-genereateWar();
+function getMatches(callback:Function) {
+    request.get('http://localhost:1000/war/game/get', (err, response, data) => {
+        callback(JSON.parse(data));
+    });
+}
+
+// genereateWar();
+getMatches((data) => {
+    console.log(data);
+    for(var key in data) {
+        var game = data[key];
+        for(var team of game) {
+            
+        }
+    }
+});
