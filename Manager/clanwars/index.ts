@@ -9,8 +9,15 @@ export function genereateWar() {
 
 export function startWar() {
     request.put("http://localhost:1000/war/games/start", (err, res, data) => {
-        getMatches((player:object) => {
-
+        getMatches((matches:object) => {
+            for(var key in matches) {
+                var game = matches[key];
+                for(var team of game) {
+                    for(var player of team) {
+                        // Send some data to players here
+                    }
+                }
+            }
         });
     });
 }
@@ -138,11 +145,5 @@ function getMatches(callback:Function) {
 
 // genereateWar();
 getMatches((data) => {
-    console.log(data);
-    for(var key in data) {
-        var game = data[key];
-        for(var team of game) {
-            
-        }
-    }
+    
 });

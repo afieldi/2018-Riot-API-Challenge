@@ -3,8 +3,8 @@ export class LeaderboardSQL {
 
     }
 
-    getCurrentPlayerLeaderboard(callback:Function) {
-        var query:string = "SELECT * FROM leaderboard l, leaderboard_entry le, player p, entity e where l.leaderboard_id = le.leaderboard_id and le.entity = p.entity_id and e.entity_id = p.entity_id and type = 'PLAYER' and active = 1";
+    getCurrentPlayerLeaderboard(max:number, callback:Function) {
+        var query:string = `SELECT * FROM leaderboard l, leaderboard_entry le, player p, entity e where l.leaderboard_id = le.leaderboard_id and le.entity = p.entity_id and e.entity_id = p.entity_id and type = 'PLAYER' and active = 1 LIMIT ${max}`;
         this.sql.query(query, [], (err, results, fields) => {
             if(err) {
                 console.log(err);
@@ -15,8 +15,8 @@ export class LeaderboardSQL {
         });
     }    
 
-    getCurrentClanLeaderboard(callback:Function) {
-        var query:string = "SELECT * FROM leaderboard l, leaderboard_entry le, clan c, entity e where l.leaderboard_id = le.leaderboard_id and le.entity = c.entity_id and e.entity_id = c.entity_id and type = 'CLAN' and active = 1";
+    getCurrentClanLeaderboard(max:number, callback:Function) {
+        var query:string = `SELECT * FROM leaderboard l, leaderboard_entry le, clan c, entity e where l.leaderboard_id = le.leaderboard_id and le.entity = c.entity_id and e.entity_id = c.entity_id and type = 'CLAN' and active = 1 LIMIT ${max}`;
         this.sql.query(query, [], (err, results, fields) => {
             if(err) {
                 console.log(err);

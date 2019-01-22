@@ -12,4 +12,5 @@ export function setup(app) {
             res.json(data);
         });
     });
+    // app.route("/war/setup")
 }
