@@ -6,7 +6,7 @@ import express = require("express");
 
 import { Server } from "ws";
 import WebSocket = require("ws");
-import {setupRoutes} from "./league/ServerRoutes";
+import {setupRoutes} from "./ClientServer/ServerRoutes";
 //import {stopLeagueRenderProccess} from "./util";
 
 class ServerProxy {
@@ -33,6 +33,7 @@ class ServerProxy {
     }
 
     private onWebRequest = async (req: express.Request, res: express.Response) => {
+
     };
 
     private onWebsocketRequest = async (client: WebSocket, request: IncomingMessage) => {
