@@ -1,6 +1,8 @@
 import {RunProxy} from "../renderer";
 import {RunServerWatcher} from "../renderer/ServerIndex";
 
+const localtunnel = require('localtunnel');
+
 //const url = require("url");
 const path = require("path");
 const PORT = 49000 + (100 * Math.random())|0;
@@ -17,7 +19,13 @@ let tray = null;
 app.on('ready', () => {
     tray = new Tray(iconPath);
     tray.setToolTip('Make Clubs Great Again');
-    RunProxy(PORT, REPLACE_PORT, PWD);
-    RunServerWatcher(PORT, PWD, SERVER_PORT);
+    var mytunnel = localtunnel(PORT, (err:any, tunnel:any) => {
+        if(err) throw err;
+        console.log("TUNNEL CREATED!!!!");
+        console.log(tunnel.url);
+        RunProxy(PORT, REPLACE_PORT, PWD, tunnel.url + ":" + PORT);
+        RunServerWatcher(PORT, PWD, SERVER_PORT);
+    });
+    
 });
 

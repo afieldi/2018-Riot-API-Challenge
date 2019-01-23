@@ -49,6 +49,7 @@ class ServerProxy {
 
 export async function RunServerWatcher(PORT: number, PWD: string, SERVER_PORT: number)
 {
+    
     const league = new LeagueConnection(PORT, PWD);
     const server = new ServerProxy(league);
     server.listen(SERVER_PORT);

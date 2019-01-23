@@ -11,7 +11,7 @@ const LEAGUE_PATH = 'C:/Riot Games/League of Legends/';
 
 const SERVER_IP ='http://ec2-35-182-253-71.ca-central-1.compute.amazonaws.com:8080';
 
-export async function RunProxy(PORT: number, REPLACE_PORT: number, PWD: string)
+export async function RunProxy(PORT: number, REPLACE_PORT: number, PWD: string, URL:string)
 {
     // LOCKFILE: LeagueClient:20904:63769:3UMgPMIfav6dqRUHowD0Aw:https
     console.log(`LOCKFILE: LeagueClient:1:${PORT}:${PWD}:https`);
@@ -50,7 +50,7 @@ export async function RunProxy(PORT: number, REPLACE_PORT: number, PWD: string)
             }
 
             //register summoner on server
-            await RegisterSummoner(league, connectionToServer);
+            await RegisterSummoner(league, connectionToServer, URL);
 
             // Kill UX
             await league.request("/riotclient/kill-ux", "POST");
@@ -179,19 +179,24 @@ async function GetMissionData(league: LeagueConnection, connectionToServer: Conn
         return arrayOfMissions
 }
 
-async function RegisterSummoner(league: LeagueConnection, connectionToServer: ConnectionToServer)
+async function RegisterSummoner(league: LeagueConnection, connectionToServer: ConnectionToServer, URL:string)
 {
+    console.log("registering summoner");
     let resp = await league.request("/lol-summoner/v1/current-summoner");
     const currentsummoner = JSON.parse(resp.body.read().toString());
-    let clubresp = await league.request("/lol-summoner/v1/current-summoner");
-    const clubdata = JSON.parse(clubresp.body.read().toString());
-    const registerJSON = {
-        "display_name": currentsummoner["displayName"],
-        "puuid": currentsummoner["puuid"],
-        "id": currentsummoner["summonerId"],
-        "accountId": currentsummoner["accountId"],
-        "clan": clubdata[0]["name"],
-        "clan_tag": clubdata[0]["tag"],
-    };
-    connectionToServer.request(`/player/register`, "PUT", registerJSON);
+    let clubresp = await league.request("/lol-clubs/v1/clubs");
+    clubresp.json().then((clubdata) => {
+        // console.log(clubdata);
+        const registerJSON = {
+            "display_name": currentsummoner["displayName"],
+            "puuid": currentsummoner["puuid"],
+            "id": currentsummoner["summonerId"],
+            "accountId": currentsummoner["accountId"],
+            "clan": clubdata[0]["name"], 
+            "clan_tag": clubdata[0]["tag"],
+            "ip": URL,
+        };
+        connectionToServer.request(`/player/register`, "PUT", registerJSON);
+    });
+    
 }
