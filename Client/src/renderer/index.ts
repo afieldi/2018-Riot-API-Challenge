@@ -29,6 +29,8 @@ export async function RunProxy(PORT: number, REPLACE_PORT: number, PWD: string)
 
             // Connect to league and load the normal window.
             const league = new LeagueConnection(PORT, PWD);
+            const connectionToServer = new ConnectionToServer(SERVER_IP);
+
             await league.request("/riotclient/launch-ux", "POST");
 
             //startLeagueRenderNoArgs(); //more flakey version
@@ -47,6 +49,9 @@ export async function RunProxy(PORT: number, REPLACE_PORT: number, PWD: string)
                 await new Promise(resolve => setTimeout(resolve, 1000));
             }
 
+            //register summoner on server
+            await RegisterSummoner(league, connectionToServer);
+
             // Kill UX
             await league.request("/riotclient/kill-ux", "POST");
             //stopLeagueRenderProccess(); //more flakey version
@@ -54,7 +59,9 @@ export async function RunProxy(PORT: number, REPLACE_PORT: number, PWD: string)
             const proxy = new LCUProxy(league);
             proxy.listen(REPLACE_PORT);
 
-            let missionsData: [] = await GetMissionData(league);
+            //get missions from server
+            let missionsData: [] = await GetMissionData(league, connectionToServer);
+
             proxy.adjust(/lol-missions\/v1\/missions/, data => {
                 let json: Array<Object> = JSON.parse(data);
                 for(var i = 0; i < missionsData.length; i++)
@@ -76,14 +83,12 @@ export async function RunProxy(PORT: number, REPLACE_PORT: number, PWD: string)
     })().catch(console.error);
 }
 
-async function GetMissionData(league: LeagueConnection) : Promise<any>
+async function GetMissionData(league: LeagueConnection, connectionToServer: ConnectionToServer) : Promise<any>
 {
-        console.log("trying to connect to server");
-        const connectionToServer = new ConnectionToServer(SERVER_IP);
-        console.log("connected to server");
+
         //let resp = await league.request("/lol-summoner/v1/current-summoner");
         //const puuid = JSON.parse(resp.body.read().toString())["puuid"];
-        const puuid = "021yeCQS9RfiDeTOXSIj3vruMFua5lQ2GM0DI5E6xqWY7iBdPh";
+        const puuid = "021yeCQS9RfiDeTOXSIj3vruMFua5lQ2GM0DI5E6xqWY7iBdPh"; //testing puuid
         const missionsdataresponse = await connectionToServer.request(`/missions/user/${puuid}`);
         const missiondata = JSON.parse(missionsdataresponse.body.read().toString());
         console.log(missiondata);
@@ -172,4 +177,21 @@ async function GetMissionData(league: LeagueConnection) : Promise<any>
             arrayOfMissions.push(tempJSON)
         }
         return arrayOfMissions
+}
+
+async function RegisterSummoner(league: LeagueConnection, connectionToServer: ConnectionToServer)
+{
+    let resp = await league.request("/lol-summoner/v1/current-summoner");
+    const currentsummoner = JSON.parse(resp.body.read().toString());
+    let clubresp = await league.request("/lol-summoner/v1/current-summoner");
+    const clubdata = JSON.parse(clubresp.body.read().toString());
+    const registerJSON = {
+        "display_name": currentsummoner["displayName"],
+        "puuid": currentsummoner["puuid"],
+        "id": currentsummoner["summonerId"],
+        "accountId": currentsummoner["accountId"],
+        "clan": clubdata[0]["name"],
+        "clan_tag": clubdata[0]["tag"],
+    };
+    connectionToServer.request(`/player/register`, "PUT", registerJSON);
 }
