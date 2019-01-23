@@ -1,0 +1,28 @@
+<div class="main-container">
+    <div class="table-title">{{title}}</div>
+    <table>
+        <thead >
+        <tr style="background-color: white ">
+            <td>
+                <img src="../../assets/Person%20Icon.png" class="icon-img"/>
+                <b>player</b>
+            </td>
+            <td>
+                <img src="../../assets/score.png" class="icon-img"/>
+                <b>Clan</b>
+            </td>
+            <td>
+                <b>Fight Button</b>
+            </td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let figher of board">
+            <td>{{fighter.display_name}}</td>
+            <td>{{fighter.clan_name}}</td>
+            <td><button>FIGHT ME</button></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+

@@ -1,0 +1,35 @@
+.main {
+    position: relative;
+    width: 80%;
+    left: 10%;
+    opacity: .85;
+    padding: 20px 5%;
+    background-color: rgb(21, 21, 26);
+    color: whitesmoke;
+    border-radius: 10px;
+}
+
+.title {
+    width: 100%;
+    text-align: center;
+    font-size: 2em;
+    font-family: 'Oswald', sans-serif;
+}
+
+.sub-title {
+    font-size: 1.7em;
+    font-family: 'Oswald', sans-serif;
+    /* text-align: center; */
+}
+
+.download-link {
+    text-align: center;
+    font-size: 1.5em;
+    width: 100%;
+    display: block;
+}
+
+p {
+    margin-bottom: 0;
+    /* font-family: 'Courier New', Courier, monospace; */
+}

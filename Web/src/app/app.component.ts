@@ -24,4 +24,12 @@ export class AppComponent implements OnInit{
     toHome() {
         this.router.navigate([""]);
     }
+
+    toChallenge() {
+        this.router.navigate(["challenge"]);
+    }
+
+    toDownload() {
+        this.router.navigate(["download"]);
+    }
 }

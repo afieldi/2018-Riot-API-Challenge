@@ -8,6 +8,8 @@ import { LeaderboardComponent } from "./leaderboard/leaderboard.component";
 import { HttpClientModule } from '../../node_modules/@angular/common/http';
 import { PlayerLeaderboardComponent } from './player-leaderboard/player-leaderboard.component';
 import { ClanLeaderboardComponent } from './clan-leaderboard/clan-leaderboard.component';
+import { ChallengeComponent } from './challenge/challenge.component';
+import { DownloadComponent } from './download/download.component';
 
 @NgModule({
     declarations: [
@@ -15,7 +17,9 @@ import { ClanLeaderboardComponent } from './clan-leaderboard/clan-leaderboard.co
         HomeComponent,
         LeaderboardComponent,
         PlayerLeaderboardComponent,
-        ClanLeaderboardComponent
+        ClanLeaderboardComponent,
+        ChallengeComponent,
+        DownloadComponent
     ],
     imports: [BrowserModule, 
             AppRoutingModule,

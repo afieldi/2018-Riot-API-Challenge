@@ -1,0 +1,52 @@
+.table-title {
+    width: 100%;
+    font-family: 'Oswald', sans-serif;
+    font-size: 2.5rem;
+    color: white;
+    margin-bottom: 10px;
+}
+table {
+    font-family: 'Oswald', sans-serif;
+    width: 100%;
+    alignment: center;
+    margin-left:auto;
+    margin-right:auto;
+    opacity: .9;
+}
+
+td,
+th {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.4rem;
+    display: inline-block;
+    min-height: 50px;
+    padding-left: 5%;
+    padding-right: 5%;
+    text-align: center;
+    /* width: 50%; */
+}
+
+tr:nth-child(even){
+    background-color: white;
+}
+tr:nth-child(odd) {
+    background-color: #cacaca;
+}
+b{
+    margin-top: 10px;
+    display: inline-block;
+}
+.icon-img{
+    max-width: 30px;
+    max-height: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 7px;
+}
+.main-container{
+    width: 60%;
+    margin:0 auto;
+    alignment: center;
+}
+
+
