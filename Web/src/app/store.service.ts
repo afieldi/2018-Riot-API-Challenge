@@ -6,7 +6,7 @@ import { LeaderboardType } from './self-defined/enums';
     providedIn: "root"
 })
 export class StoreService {
-    host = "http://localhost:1000";
+    host = "http://localhost:8000";
     constructor(private http: HttpClient) {}
 
     getLeaderboard(type:LeaderboardType, numb:Number = 50, callback:Function) {
