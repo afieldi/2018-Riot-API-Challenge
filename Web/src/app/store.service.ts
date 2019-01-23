@@ -29,4 +29,13 @@ export class StoreService {
             callback(data);
         });
     }
+
+    checkClient(callback:Function) {
+        var uri = "http://localhost:4800/lol/me"
+        this.http.get(uri).subscribe((data) => {
+            callback(data);
+        }, (err) => {
+            callback({"error": 400});
+        });
+    }
 }

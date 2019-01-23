@@ -23,7 +23,7 @@ th {
     padding-left: 5%;
     padding-right: 5%;
     text-align: center;
-    /* width: 50%; */
+    width: 33%;
 }
 
 tr:nth-child(even){

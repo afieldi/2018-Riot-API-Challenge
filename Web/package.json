@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "public": "ng serve --disable-host-check true",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
