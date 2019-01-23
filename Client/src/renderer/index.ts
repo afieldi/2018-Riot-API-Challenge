@@ -9,6 +9,8 @@ import ConnectionToServer from "./ClientServer/ConnectionToServer";
 
 const LEAGUE_PATH = 'C:/Riot Games/League of Legends/';
 
+const SERVER_IP ='http://ec2-35-182-253-71.ca-central-1.compute.amazonaws.com:8080';
+
 export async function RunProxy(PORT: number, REPLACE_PORT: number, PWD: string)
 {
     // LOCKFILE: LeagueClient:20904:63769:3UMgPMIfav6dqRUHowD0Aw:https
@@ -52,11 +54,13 @@ export async function RunProxy(PORT: number, REPLACE_PORT: number, PWD: string)
             const proxy = new LCUProxy(league);
             proxy.listen(REPLACE_PORT);
 
-            let missionsData: Object = await GetMissionData(league);
+            let missionsData: [] = await GetMissionData(league);
             proxy.adjust(/lol-missions\/v1\/missions/, data => {
                 let json: Array<Object> = JSON.parse(data);
-                console.log(missionsData);
-                json.unshift(missionsData);
+                for(var i = 0; i < missionsData.length; i++)
+                {
+                    json.unshift(missionsData[i]);
+                }
                 return JSON.stringify(json);
             });
 
@@ -74,100 +78,98 @@ export async function RunProxy(PORT: number, REPLACE_PORT: number, PWD: string)
 
 async function GetMissionData(league: LeagueConnection) : Promise<any>
 {
-
-        const connectionToServer = new ConnectionToServer(0);
-        let resp = await league.request("/lol-summoner/v1/current-summoner");
-        const puuid = JSON.parse(resp.body.read().toString())["puuid"];
-        //connectionToServer.request();
-
-        return {
-            "backgroundImageUrl": "",
-            "celebrationType": "VIGNETTE",
-            "clientNotifyLevel": "ALWAYS",
-            "completedDate": -1,
-            "completionExpression": "1 or 2",
-            "cooldownTimeMillis": -1,
-            "description": "",
-            "display": {
-                "attributes": []
-            },
-            "displayType": "ALWAYS",
-            "endTime": Date.now() + 24 * 3600 * 1000,
-            "expiringWarnings": [
+        console.log("trying to connect to server");
+        const connectionToServer = new ConnectionToServer(SERVER_IP);
+        console.log("connected to server");
+        //let resp = await league.request("/lol-summoner/v1/current-summoner");
+        //const puuid = JSON.parse(resp.body.read().toString())["puuid"];
+        const puuid = "021yeCQS9RfiDeTOXSIj3vruMFua5lQ2GM0DI5E6xqWY7iBdPh";
+        const missionsdataresponse = await connectionToServer.request(`/missions/user/${puuid}`);
+        const missiondata = JSON.parse(missionsdataresponse.body.read().toString());
+        console.log(missiondata);
+        var arrayOfMissions  = [];
+        for(var i = 0; i < missiondata.length; i++)
+        {
+            var tempJSON =
                 {
-                    "alertTime": 1546675140000,
-                    "message": "",
-                    "type": ""
-                }
-            ],
-            "helperText": "",
-            "iconImageUrl": "/fe/lol-missions/events/images/missions/leveling/MissionIcon-WOTD.png",
-            "id": "ef810430-f81d-11e8-81fc-02cbe124d5e4",
-            "internalName": "neeko18_intro",
-            "isNew": false,
-            "lastUpdatedTimestamp": Date.now(),
-            "locale": "en_US",
-            "metadata": {
-                "tutorial": {
-                    "displayRewards": {},
-                    "queueId": "",
-                    "stepNumber": -1,
-                    "useChosenChampion": false,
-                    "useQuickSearchMatchmaking": false
-                }
-            },
-            "missionType": "ONETIME",
-            "objectives": [
-                {
-                    "description": "Kill 7 champions",
-                    "hasObjectiveBasedReward": false,
-                    "progress": {
-                        "currentProgress": 0,
-                        "lastViewedProgress": 0,
-                        "totalCount": 1
+                    "backgroundImageUrl": "",
+                    "celebrationType": "VIGNETTE",
+                    "clientNotifyLevel": "ALWAYS",
+                    "completedDate": -1,
+                    "completionExpression": "",
+                    "cooldownTimeMillis": -1,
+                    "description": missiondata[i]["description"],
+                    "display": {
+                        "attributes": []
                     },
-                    "rewardGroups": [],
-                    "sequence": 1,
-                    "type": "LEGS"
-                },
-                {
-                    "description": "Kill 3 dragons",
-                    "hasObjectiveBasedReward": false,
-                    "progress": {
-                        "currentProgress": 4,
-                        "lastViewedProgress": 4,
-                        "totalCount": 4
+                    "displayType": "ALWAYS",
+                    "endTime": Date.now() + 24 * 3600 * 1000,
+                    "expiringWarnings": [
+                        {
+                            "alertTime": 1546675140000,
+                            "message": "",
+                            "type": ""
+                        }
+                    ],
+                    "helperText": missiondata[i]["type"] + " Mission for: " + missiondata[i]["reward"] + " Points" ,
+                    "iconImageUrl": missiondata[i]["icon_path"],
+                    "id": "ef810430-f81d-11e8-81fc-02cbe124d5e4",
+                    "internalName": "neeko18_intro",
+                    "isNew": false,
+                    "lastUpdatedTimestamp": Date.now(),
+                    "locale": "en_US",
+                    "metadata": {
+                        "tutorial": {
+                            "displayRewards": {},
+                            "queueId": "",
+                            "stepNumber": -1,
+                            "useChosenChampion": false,
+                            "useQuickSearchMatchmaking": false
+                        }
                     },
-                    "rewardGroups": [],
-                    "sequence": 2,
-                    "type": "LEGS"
-                }
-            ],
-            "requirements": [],
-            "rewardStrategy": {
-                "groupStrategy": "ALL_GROUPS",
-                "selectMaxGroupCount": 0,
-                "selectMinGroupCount": 0
-            },
-            "rewards": [
-                {
-                    "description": "",
-                    "iconUrl": "/fe/lol-loot/assets/loot_item_icons/currency_champion.png",
-                    "isObjectiveBasedReward": false,
-                    "itemId": "",
-                    "quantity": 10,
-                    "rewardFulfilled": false,
-                    "rewardGroup": "0",
-                    "rewardGroupSelected": false,
-                    "rewardType": "BLUE_ESSENCE",
-                    "sequence": 1,
-                    "uniqueName": ""
-                }
-            ],
-            "seriesName": "",
-            "startTime": 1544025600000,
-            "status": "PENDING",
-            "title": "I Want To Be The Very Best",
-            "viewed": true
-        };
+                    "missionType": "ONETIME",
+                    "objectives": [
+                        {
+                            "description": "Kill 7 champions",
+                            "hasObjectiveBasedReward": false,
+                            "progress": {
+                                "currentProgress": missiondata[i]["curent_progress"],
+                                "lastViewedProgress": 0,
+                                "totalCount": missiondata[i]["max_progress"]
+                            },
+                            "rewardGroups": [],
+                            "sequence": 1,
+                            "type": "LEGS"
+                        }
+                    ],
+                    "requirements": [],
+                    "rewardStrategy": {
+                        "groupStrategy": "ALL_GROUPS",
+                        "selectMaxGroupCount": 0,
+                        "selectMinGroupCount": 0
+                    },
+                    "rewards": [
+                        {
+                            "description": "",
+                            "iconUrl": "/fe/lol-loot/assets/loot_item_icons/currency_champion.png",
+                            "isObjectiveBasedReward": false,
+                            "itemId": "",
+                            "quantity": missiondata[i]["reward"],
+                            "rewardFulfilled": false,
+                            "rewardGroup": "0",
+                            "rewardGroupSelected": false,
+                            "rewardType": "SUMMONER_ICON",
+                            "sequence": 1,
+                            "uniqueName": ""
+                        }
+                    ],
+                    "seriesName": "",
+                    "startTime": 1544025600000,
+                    "status": "PENDING",
+                    "title": missiondata[i]["title"],
+                    "viewed": true
+                };
+            arrayOfMissions.push(tempJSON)
+        }
+        return arrayOfMissions
 }
