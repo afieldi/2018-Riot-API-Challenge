@@ -76,7 +76,7 @@ CREATE TABLE `clan` (
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `riot-2018`.`clan_AFTER_INSERT` AFTER INSERT ON `clan` FOR EACH ROW
+/*!50003 CREATE*/ /*!50017 DEFINER=CURRENT_USER*/ /*!50003 TRIGGER `riot-2018`.`clan_AFTER_INSERT` AFTER INSERT ON `clan` FOR EACH ROW
 BEGIN
 INSERT INTO `riot-2018`.assigned_mission (assigned_mission.mission_id, assigned_mission.entity) SELECT available_mission.mission_id, NEW.entity_id FROM available_mission join mission on (available_mission.mission_id = mission.mission_id) WHERE mission.type = 'CLAN';
 INSERT INTO `riot-2018`.leaderboard_entry (leaderboard_entry.leaderboard_id, leaderboard_entry.entity) SELECT leaderboard.leaderboard_id, NEW.entity_id FROM leaderboard WHERE active = 1 AND leaderboard.type='CLAN';
@@ -275,7 +275,7 @@ CREATE TABLE `player` (
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `riot-2018`.`player_AFTER_INSERT` AFTER INSERT ON `player` FOR EACH ROW
+/*!50003 CREATE*/ /*!50017 DEFINER=CURRENT_USER*/ /*!50003 TRIGGER `riot-2018`.`player_AFTER_INSERT` AFTER INSERT ON `player` FOR EACH ROW
 BEGIN
 INSERT INTO `riot-2018`.assigned_mission (assigned_mission.mission_id, assigned_mission.entity) SELECT available_mission.mission_id, NEW.entity_id FROM available_mission join mission on (available_mission.mission_id = mission.mission_id) WHERE TYPE = 'PLAYER';
 INSERT INTO `riot-2018`.leaderboard_entry (leaderboard_entry.leaderboard_id, leaderboard_entry.entity) SELECT leaderboard.leaderboard_id, NEW.entity_id FROM leaderboard WHERE active = 1 AND type='PLAYER';
