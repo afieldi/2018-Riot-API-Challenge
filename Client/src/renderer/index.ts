@@ -86,9 +86,9 @@ export async function RunProxy(PORT: number, REPLACE_PORT: number, PWD: string, 
 async function GetMissionData(league: LeagueConnection, connectionToServer: ConnectionToServer) : Promise<any>
 {
 
-        //let resp = await league.request("/lol-summoner/v1/current-summoner");
-        //const puuid = JSON.parse(resp.body.read().toString())["puuid"];
-        const puuid = "021yeCQS9RfiDeTOXSIj3vruMFua5lQ2GM0DI5E6xqWY7iBdPh"; //testing puuid
+        let resp = await league.request("/lol-summoner/v1/current-summoner");
+        const puuid = JSON.parse(resp.body.read().toString())["puuid"];
+        // const puuid = "021yeCQS9RfiDeTOXSIj3vruMFua5lQ2GM0DI5E6xqWY7iBdPh"; //testing puuid
         const missionsdataresponse = await connectionToServer.request(`/missions/user/${puuid}`);
         const missiondata = JSON.parse(missionsdataresponse.body.read().toString());
         console.log(missiondata);
