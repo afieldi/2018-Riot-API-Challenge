@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.4",
+    "request": "^2.88.0",
     "ts-node": "^7.0.1",
     "typescript": "^3.2.2"
   }
