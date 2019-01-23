@@ -27,7 +27,12 @@ export class MissionSQL {
     }
 
     getMissionsByPuuid(puuid:number, callback:Function) {
-        var query:string = "SELECT * FROM assigned_mission LEFT JOIN player ON assigned_mission.entity = player.entity_id WHERE entity_id = ?";
+        var query:string = `SELECT title, description, reward, type, curent_progress, max_progress, date_assigned, duration_hours, icon_path
+        FROM assigned_mission am
+        LEFT JOIN mission m ON am.mission_id = m.mission_id 
+        LEFT JOIN clan_member cm ON am.entity = cm.player_id or cm.clan_id = am.entity
+        WHERE cm.player_id = ?
+        AND active = 'ACTIVE'`;
         this.sql.query(query, [puuid], (err, results, fields) => {
             if(err) {
                 console.log(err);

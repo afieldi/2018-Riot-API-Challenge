@@ -18,7 +18,7 @@ export class LeaderboardComponent implements OnInit {
         console.log(this.type);
         this.title =  this.type + " LEADERBOARD";
         console.log(this.type);
-        this.store.getLeaderboard(this.type, 100, (leaderboard) => {
+        this.store.getLeaderboard(this.type, 25, (leaderboard) => {
             console.log(leaderboard);
             this.leaderboard = leaderboard;
         });

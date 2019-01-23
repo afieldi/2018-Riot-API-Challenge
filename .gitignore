@@ -4,3 +4,6 @@ node_modules
 /Client/node_modules
 /Client/dist
 .env
+package-lock.json
+*.ppk
+*.pem

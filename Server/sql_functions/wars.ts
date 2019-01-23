@@ -54,7 +54,7 @@ export class WarsSQL {
     }
 
     startWar(callback:Function) {
-        var query:string = "UPDATE `riot-2018`.`clan_war` SET `status`='IN_PROGRESS' WHERE `status`='SIGN_UP'";
+        var query:string = "UPDATE `riot-2018`.`clan_war` SET `status`='IN_PROGRESS' WHERE `status`='SET_UP'";
         this.sql.query(query, [], (err, results, fields) => {
             if(err) {
                 callback({"message": "Something went wrong"});
@@ -86,6 +86,19 @@ export class WarsSQL {
             }
             else {
                 callback(results.insertId);
+            }
+        });
+    }
+
+    getGames(callback:Function) {
+        var query:string = "SELECT * FROM `riot-2018`.clan_war_member c join player p on c.player = p.entity_id";
+        this.sql.query(query, [], (err, results, fields) => {
+            if(err) {
+                console.log(err);
+                callback({"message": "Something went wrong"});
+            }
+            else {
+                callback(results);
             }
         });
     }

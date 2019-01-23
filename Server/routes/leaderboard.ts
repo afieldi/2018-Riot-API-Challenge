@@ -1,14 +1,14 @@
 import { SQL } from "../sql_functions";
 
 export function setup(app, sql:SQL) {
-    app.route('/leaderboard/current/player').get((req, res) => {
-        sql.leaderboard.getCurrentPlayerLeaderboard((results) => {
+    app.route('/leaderboard/current/player/:number').get((req, res) => {
+        sql.leaderboard.getCurrentPlayerLeaderboard(req.params.number, (results) => {
             res.send(results);
         });
     });
 
-    app.route('/leaderboard/current/clan').get((req, res) => {
-        sql.leaderboard.getCurrentClanLeaderboard((results) => {
+    app.route('/leaderboard/current/clan/:number').get((req, res) => {
+        sql.leaderboard.getCurrentClanLeaderboard(req.params.number, (results) => {
             res.send(results);
         });
     });

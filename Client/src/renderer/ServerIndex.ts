@@ -20,15 +20,18 @@ class ServerProxy {
         this.app.use(bodyParser.text({type: () => true}));
 
         // Listen to every HTTP request.
-        this.app.all("*", this.onWebRequest);
-
+        // this.app.all("*", this.onWebRequest);
+        this.app.route("/").get((req, res) => {
+            res.send("Hello world");
+        });
         // Listen to WS connections.
-        this.wss.on("connection", this.onWebsocketRequest);
+        // this.wss.on("connection", this.onWebsocketRequest);
         setupRoutes(this.app, this.leagueconnection);
     }
 
     listen(port: number) {
-        this.server.listen(port);
+        // this.server.listen(port);
+        this.app.listen(port);
         console.log("[+] Listening on 0.0.0.0:" + port + "... ^C to exit.");
     }
 

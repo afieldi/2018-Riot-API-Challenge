@@ -8,7 +8,7 @@ import * as express from 'express';
 import * as dotenv from 'dotenv';
 // TODO Refactor database to use more fucking logical ids
 dotenv.config({path: `${__dirname}/.env`});
-
+var https = require('https');
 import { setup as missionSetup } from './routes/missions';
 import { setup as playerSetup } from './routes/player';
 import { setup as leaderboardSetup } from './routes/leaderboard';
@@ -22,14 +22,15 @@ app.use(bodyParser.urlencoded({ extended: false, limit: '50mb' }));
 app.use(bodyParser.json())
 // Connect to mysql
 var conn = mysql.createConnection({
-    host: "localhost",
+    host: "riot-2018.chwqb24onmqi.ca-central-1.rds.amazonaws.com",
     user: "root",
-    password: "Arek7000",
+    password: "password",
     database: "riot-2018"
 });
 
 app.use(function (request, response, next) {
-    response.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
+    // response.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
+    response.setHeader('Access-Control-Allow-Origin', '*');
     response.header("Access-Control-Allow-Headers", "Origin, XRequested-With, Content-Type, Accept ");
     response.header('Access-Control-Allow-Methods', 'POST, PATCH, GET, PUT, DELETE, OPTIONS ');
     next();
@@ -49,6 +50,9 @@ conn.connect((err) => {
     initializeRoutes(SQLData);
 
     app.listen(1000);
+    // var server = https.createServer(app).listen(1000, function() {
+    //     console.log('Https App started');
+    // });
     console.log("Listening on port 1000");
 });
 
