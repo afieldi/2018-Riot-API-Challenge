@@ -18,11 +18,17 @@ class ServerProxy {
     constructor(private leagueconnection: LeagueConnection) {
         // Parse every body as text, regardless of actual type.
         this.app.use(bodyParser.text({type: () => true}));
-
+        this.app.use(function (request:any, response:any, next:any) {
+            // response.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
+            response.setHeader('Access-Control-Allow-Origin', '*');
+            response.header("Access-Control-Allow-Headers", "Origin, XRequested-With, Content-Type, Accept ");
+            response.header('Access-Control-Allow-Methods', 'POST, PATCH, GET, PUT, DELETE, OPTIONS ');
+            next();
+        });
         // Listen to every HTTP request.
         // this.app.all("*", this.onWebRequest);
         this.app.route("/").get((req, res) => {
-            res.send("Hello world");
+            res.json({"message": "hello world"});
         });
         // Listen to WS connections.
         // this.wss.on("connection", this.onWebsocketRequest);
