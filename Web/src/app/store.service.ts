@@ -38,4 +38,15 @@ export class StoreService {
             callback({"error": 400});
         });
     }
+
+    setupLobby(url:string, otherUser:Array<object>, callback:Function) {
+        this.http.put(url, {"toSummonerId": otherUser}).subscribe((res) => {
+            callback(res);
+        });
+    }
+    acceptLobby(url:string, from:string, callback:Function) {
+        this.http.put(url, {"acceptSummonerId": from}).subscribe((res) => {
+            callback(res);
+        });
+    }
 }
