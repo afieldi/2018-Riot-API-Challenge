@@ -11,7 +11,7 @@ const PWD = "dankmemes";
 
 
 const { app, Tray } = require('electron');
-const iconPath = path.join(__dirname, 'Caitlyn.png');
+const iconPath = path.join(__dirname, 'MainIcon.png');
 
 let tray = null;
 app.on('ready', () => {
