@@ -12,5 +12,14 @@ export function setup(app) {
             res.send(data);
         });
     });
-    
+
+    app.route("/player/disconnect").put((req, res) => {
+
+    });
+
+    app.route("/player/challenge/:id").get((req, res) => {
+        request.get(`${host}/player/challenge/:id`, (err, response, data) => {
+            res.send(data);
+        });
+    });
 }

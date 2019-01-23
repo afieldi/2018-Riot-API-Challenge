@@ -63,4 +63,10 @@ export function setup(app, sql:SQL) {
             res.send(results);
         });
     });
+
+    app.route("player/challenge/:id").get((req, res) => {
+        sql.player.getChallengePlayers(req.params.id, (results) => {
+            res.send(results);
+        })
+    });
 }

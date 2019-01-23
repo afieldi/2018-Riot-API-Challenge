@@ -192,10 +192,11 @@ async function RegisterSummoner(league: LeagueConnection, connectionToServer: Co
             "puuid": currentsummoner["puuid"],
             "id": currentsummoner["summonerId"],
             "accountId": currentsummoner["accountId"],
-            "clan": clubdata[0]["name"], 
+            "clan_name": clubdata[0]["name"],
             "clan_tag": clubdata[0]["tag"],
             "ip": URL,
         };
+        console.log(registerJSON);
         connectionToServer.request(`/player/register`, "PUT", registerJSON);
     });
     
