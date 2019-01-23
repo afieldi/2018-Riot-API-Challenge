@@ -51,7 +51,7 @@ export class ClanSQL {
         console.log(clanTag + ":" + puuid);
         var query:string = "INSERT INTO clan_member(clan_id, player_id) VALUES(?, ?)";
         this.sql.query(query, [clanTag, puuid], (err, results, fields) => {
-            if(err) throw err;
+            if(err) console.log(err);
             callback();
         });
     }

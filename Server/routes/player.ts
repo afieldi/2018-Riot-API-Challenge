@@ -1,6 +1,7 @@
 import {} from "../sql_functions/player";
 import { SQL } from "../sql_functions";
 import { riotApi } from "../globals";
+import { ResponseRequest } from "../../../../../node_modules/@types/request";
 
 export function setup(app, sql:SQL) {
     // Adding players
@@ -10,16 +11,24 @@ export function setup(app, sql:SQL) {
             res.json({"message": "A display_name is required"});
             return;
         }
+        var ip = req.headers['x-forwarded-for'] || 
+        req.connection.remoteAddress || 
+        req.socket.remoteAddress ||
+        (req.connection.socket ? req.connection.socket.remoteAddress : null);
+        body["ip"] = ip;
         if(body["clan_tag"] != undefined && body["clan_tag"].length >= 1 && body["clan_name"] != undefined && body["clan_name"].length >= 1) {
             // They have a clan
             sql.clan.addClan(body, () => {
+                
                 // Add player
                 sql.player.addPlayer(body, () => {
-                    // Add player to clan
-                    sql.clan.addPlayer(body["clan_tag"], body["puuid"], () => {
-                        console.log("Player added");
-                        res.json({"message": "Player added"});
-                        return;
+                    sql.player.setIp(body["puuid"], ip, () => {
+                        // Add player to clan
+                        sql.clan.addPlayer(body["clan_tag"], body["puuid"], () => {
+                            console.log("Player added");
+                            res.json({"message": "Player added"});
+                            return;
+                        });
                     });
                 });
             });
@@ -27,9 +36,11 @@ export function setup(app, sql:SQL) {
         else {
             // They don't have a clan
             sql.player.addPlayer(body, () => {
-                console.log("Player added");
-                res.json({"message": "Player added"});
-                return;
+                sql.player.setIp(body["puuid"], ip, () => {
+                    console.log("Player added");
+                    res.json({"message": "Player added"});
+                    return;
+                });
             });
         }
 

@@ -19,6 +19,15 @@ export class PlayerSQL {
             });
         });
     }
+
+    setIp(player:string, ip:string, callback:Function) {
+        var query:string = "UPDATE player SET ip = ? WHERE entity_id = ?";
+        this.sql.query(query, [ip, player], (err, results, fields) => {
+            if(err) console.log(err);
+            callback();
+            return;
+        });
+    }
     addToClan(player_id:string, clan_id:string, callback:Function) {
         var query:string = "INSERT INTO clan_member (clan_id, player_id) VALUES (?, ?)";
         this.sql.query(query, [clan_id, player_id], (err, results, fields) => {
