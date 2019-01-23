@@ -73,14 +73,14 @@ export class PlayerSQL {
 
     getChallengePlayers(player1:string, callback:Function) {
         var query = `SELECT e.display_name as player_name, z.display_name as clan_name, z.entity_id as clan_tag, player.ip as ip from player JOIN
-        (SELECT player_id, clan_id FROM clan_member WHERE player_id <> "?") AS c1
+        (SELECT player_id, clan_id FROM clan_member JOIN entity ee ON ee.entity_id = clan_member.player_id WHERE player_id <> ? AND ee.display_name <> ?) AS c1
         ON c1.player_id = player.entity_id
         JOIN entity e
         ON player.entity_id = e.entity_id
         JOIN entity z
         ON z.entity_id = c1.clan_id
         `
-        this.sql.query(query, [player1], (err, results, fields) => {
+        this.sql.query(query, [player1, player1], (err, results, fields) => {
             if(err) {
                 console.log(err);
                 callback({"message": "Sorry there was an unexpected error"});

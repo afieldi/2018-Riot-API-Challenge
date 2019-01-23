@@ -14,11 +14,12 @@ export function setup(app) {
     });
 
     app.route("/player/disconnect").put((req, res) => {
-
+        res.send("not yet implemented");
     });
 
     app.route("/player/challenge/:id").get((req, res) => {
-        request.get(`${host}/player/challenge/:id`, (err, response, data) => {
+        request.get(`${host}/player/challenge/${req.params.id}`, (err, response, data) => {
+            if(err) console.log(err);
             res.send(data);
         });
     });
