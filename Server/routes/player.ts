@@ -10,10 +10,7 @@ export function setup(app, sql:SQL) {
             res.json({"message": "A display_name is required"});
             return;
         }
-        var ip = req.headers['x-forwarded-for'] || 
-        req.connection.remoteAddress || 
-        req.socket.remoteAddress ||
-        (req.connection.socket ? req.connection.socket.remoteAddress : null);
+        var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
         body["ip"] = ip;
         if(body["clan_tag"] != undefined && body["clan_tag"].length >= 1 && body["clan_name"] != undefined && body["clan_name"].length >= 1) {
             // They have a clan
