@@ -4,12 +4,13 @@ import fetch, { Response } from "node-fetch";
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 export default class ConnectionToServer {
-    constructor(private port: number) {}
+    constructor(private ip: string,  ) {}
 
     public async request(url: string, method = "GET", body?: string | object): Promise<Response> {
-        return fetch(`https://127.0.0.1:${this.port}${url}`, {
+        console.log(`${this.ip}${url}`);
+        return fetch(`${this.ip}${url}`, {
             headers: {
-                Authorization: "Basic " + new Buffer("riot:" + this.password).toString("base64"),
+                Authorization: "Basic",
                 "Content-Type": "application/json"
             },
             method,
