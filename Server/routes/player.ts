@@ -12,15 +12,13 @@ export function setup(app, sql:SQL) {
             return;
         }
         console.log(requestIp.getClientIp(req));
-        var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-        body["ip"] = ip;
         if(body["clan_tag"] != undefined && body["clan_tag"].length >= 1 && body["clan_name"] != undefined && body["clan_name"].length >= 1) {
             // They have a clan
             sql.clan.addClan(body, () => {
                 
                 // Add player
                 sql.player.addPlayer(body, () => {
-                    sql.player.setIp(body["puuid"], ip, () => {
+                    sql.player.setIp(body["puuid"], body["ip"], () => {
                         // Add player to clan
                         sql.clan.addPlayer(body["clan_tag"], body["puuid"], () => {
                             console.log("Player added");
@@ -34,7 +32,7 @@ export function setup(app, sql:SQL) {
         else {
             // They don't have a clan
             sql.player.addPlayer(body, () => {
-                sql.player.setIp(body["puuid"], ip, () => {
+                sql.player.setIp(body["puuid"], body["ip"], () => {
                     console.log("Player added");
                     res.json({"message": "Player added"});
                     return;
