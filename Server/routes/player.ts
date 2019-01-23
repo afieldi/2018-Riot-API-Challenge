@@ -1,7 +1,6 @@
 import {} from "../sql_functions/player";
 import { SQL } from "../sql_functions";
 import { riotApi } from "../globals";
-import { ResponseRequest } from "../../../../../node_modules/@types/request";
 
 export function setup(app, sql:SQL) {
     // Adding players
