@@ -1,6 +1,7 @@
 import {} from "../sql_functions/player";
 import { SQL } from "../sql_functions";
 import { riotApi } from "../globals";
+var requestIp = require('request-ip');
 
 export function setup(app, sql:SQL) {
     // Adding players
@@ -10,6 +11,7 @@ export function setup(app, sql:SQL) {
             res.json({"message": "A display_name is required"});
             return;
         }
+        console.log(requestIp.getClientIp(req));
         var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
         body["ip"] = ip;
         if(body["clan_tag"] != undefined && body["clan_tag"].length >= 1 && body["clan_name"] != undefined && body["clan_name"].length >= 1) {
