@@ -111,7 +111,7 @@ async function GetMissionData(league: LeagueConnection) : Promise<any>
                             "type": ""
                         }
                     ],
-                    "helperText": missiondata[i]["type"] + "Mission",
+                    "helperText": missiondata[i]["type"] + " Mission for: " + missiondata[i]["reward"] + " Points" ,
                     "iconImageUrl": missiondata[i]["icon_path"],
                     "id": "ef810430-f81d-11e8-81fc-02cbe124d5e4",
                     "internalName": "neeko18_intro",
@@ -158,7 +158,7 @@ async function GetMissionData(league: LeagueConnection) : Promise<any>
                             "rewardFulfilled": false,
                             "rewardGroup": "0",
                             "rewardGroupSelected": false,
-                            "rewardType": "BLUE_ESSENCE",
+                            "rewardType": "SUMMONER_ICON",
                             "sequence": 1,
                             "uniqueName": ""
                         }
