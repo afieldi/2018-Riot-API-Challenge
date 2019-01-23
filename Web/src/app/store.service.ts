@@ -15,4 +15,11 @@ export class StoreService {
             callback(data);
         });
     }
+
+    getClanGames(war:number=1, callback:Function) {
+        var uri = this.host + "/leaderboard/current/" + war;
+        this.http.get(uri).subscribe((data) => {
+            callback(data);
+        });
+    }
 }
