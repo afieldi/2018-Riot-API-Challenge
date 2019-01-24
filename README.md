@@ -110,7 +110,7 @@ npm run dev
 
 
 
-#Everything Else AKA Web Stuff
+# Everything Else AKA Web Stuff
 The server was divided up into 4 main sections. These are the database itself (Database), a server to access the database (Database Server) and a management server(Management Server) that contains all the business logic and finally the Website. 
 
 ![Image of Overall Architecture](URL)
