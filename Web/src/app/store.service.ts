@@ -61,7 +61,7 @@ export class StoreService {
                 callback(-1);
                 return;
             }
-            var url = "http://localhost:8000/war/status/" + data.puuid;
+            var url = `${this.host}/war/status/` + data.puuid;
             this.http.get(url).subscribe((res) => {
                 callback(res["code"]);
             });
