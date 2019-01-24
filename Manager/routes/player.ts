@@ -8,7 +8,7 @@ export function setup(app) {
             form: user
         }
         request.put(`${host}/player`, options, (err, response, data) => {
-            console.log(data);
+            // console.log(data);
             res.send(data);
         });
     });

@@ -5,7 +5,7 @@ export function setup(app) {
     app.route("/missions/user/:user").get((req, res) => {
         var user:string = req.params.user;
         request.get(`${host}/missions/puuid/${user}`, (err, response, data) => {
-            console.log(data);
+            // console.log(data);
             res.send(data);
         });
     });

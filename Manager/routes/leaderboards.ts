@@ -11,7 +11,7 @@ export function setup(app) {
     app.route('/leaderboard/current/clan/:number').get((req, res) => {
         request.get(`${host}/leaderboard/current/clan/${req.params.number}`, (err, response, data) => {
             if(err) console.log(err);
-            console.log(data);
+            // console.log(data);
             res.send(data);
         });
     });
