@@ -65,6 +65,9 @@ When the client initially launches it creates a tunnel for the server to communi
 ```
 Gamemode is aram which maps to the aram map but he draft strategy is tournament so that you can ban out some of the opponents champions or some of the OP champions. We decided to use a static password because in reality these lobbies are going to be filling up extremely quickly with our auto accept invite. In the future this would be set to a random hash. 
 
+You can see a demo of the feature over here:
+[![IMAGE ALT TEXT HERE](https://i.imgur.com/SY1yqci.png)](https://www.youtube.com/watch?v=zkY1zZsIDiE)
+
 Endpoints used:
 * /lol-summoner/v1/current-summoner
 * /lol-lobby/v2/lobby
