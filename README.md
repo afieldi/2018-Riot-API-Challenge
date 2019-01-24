@@ -162,4 +162,4 @@ Thank you for taking the time to look through our project!
 ![Poro waving image](https://vignette.wikia.nocookie.net/leagueoflegends/images/a/ab/Peace_Poro_Emote.png/revision/latest?cb=20181207233837)
 
 
-Insert Mission Here was created under Riot Games' "Legal Jibber Jabber" policy and uses assets owned by Riot Games. Riot Games does not endorse or sponsor this project.
+<sub>Insert Mission Here was created under Riot Games' "Legal Jibber Jabber" policy and uses assets owned by Riot Games. Riot Games does not endorse or sponsor this project.
