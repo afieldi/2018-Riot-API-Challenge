@@ -39,7 +39,7 @@ export class StoreService {
         });
     }
 
-    setupLobby(url:string, otherUser:Array<object>, callback:Function) {
+    setupLobby(url:string, otherUser:object, callback:Function) {
         this.http.put(url, {"toSummonerId": otherUser}).subscribe((res) => {
             callback(res);
         });

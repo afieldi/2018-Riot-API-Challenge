@@ -1,9 +1,13 @@
 .table-title {
-    width: 100%;
     font-family: 'Oswald', sans-serif;
     font-size: 2.5rem;
     color: white;
     margin-bottom: 10px;
+    display: inline;
+}
+
+.help {
+    display: inline;
 }
 table {
     font-family: 'Oswald', sans-serif;

@@ -79,6 +79,7 @@ export class PlayerSQL {
         ON player.entity_id = e.entity_id
         JOIN entity z
         ON z.entity_id = c1.clan_id
+        WHERE player.ip IS NOT NULL
         `
         this.sql.query(query, [player1, player1], (err, results, fields) => {
             if(err) {

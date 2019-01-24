@@ -4,8 +4,9 @@ export class LCUHelper
 {
     constructor(private leagueconnection: LeagueConnection){}
 
-    public CreateCustomLobby(Lobbyname: string )
+    public async CreateCustomLobby(Lobbyname: string = "its a lobby", players:any)
     {
+        console.log("TRYING TO CREATE LOBBY");
         const data =
             {
                 "customGameLobby":
@@ -15,44 +16,31 @@ export class LCUHelper
                                 "gameMode":"CLASSIC",
                                 "gameMutator":"",
                                 "gameServerRegion":"",
-                                "mapId":11,
+                                "mapId":12,
                                 "mutators":{"id":6},
                                 "spectatorPolicy":"AllAllowed",
                                 "teamSize":5
                             },
-                        "lobbyName":Lobbyname,
+                        "lobbyName":"Lobbyname",
                         "lobbyPassword":"PATRICKIN2018"
                     },
                 "isCustom":true
             };
-        this.leagueconnection.request("lobby/v1/lobby", "POST", data)
+        await this.leagueconnection.request("/lobby/v2/lobby", "POST", data);
+        // this.InviteToLobby(players);
     }
 
     public InviteToLobby(players: any)
     {
-        const data = {
-            "eligibility": {
-                "eligible": true,
-                "queueId": -1,
-                "restrictions": []
-            },
-            "errorType": "",
-            "fromSummonerId": 0,
-            "fromSummonerName": "",
-            "id": "",
-            "invitationMetaData": null,
-            "state": "Pending",
-            "timestamp": "",
-            "toSummonerId": 0,
-            "toSummonerName": ""
-        };
+        const data = [
+            {
+              "state": "Requested",
+              "toSummonerId": 0
+            }
+        ];
 
-        for(let player of players)
-        {
-            data["toSummonerId"] = player["summonerID"]; //change to whatever arek passes me
-            data["id"] = player["summonerID"].toString();
-            this.leagueconnection.request("lobby/v1/lobby", "POST", data)
-        }
+        data[0]["toSummonerId"] = parseInt(players["id"]); //change to whatever arek passes me
+        this.leagueconnection.request("/lol-lobby/v2/eog-invitations", "POST", data);
     }
 
     public async AcceptLobbyInvite(playerjson: any)

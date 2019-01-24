@@ -17,8 +17,8 @@ export class ChallengeComponent implements OnInit {
     ngOnInit() {
         this.store.checkClient((data) => {
             console.log(data);
-            if(data.error) {
-                if(data.error == 404) {
+            if(data.error || data.errorCode) {
+                if(data.httpStatus == 404) {
                     alert("Please Log in");
                 }
                 else if(data.error == 400) {
@@ -46,8 +46,8 @@ export class ChallengeComponent implements OnInit {
     fightPlayer(otherPlayer:object) {
         console.log(otherPlayer);
         this.inchallenge = true;
-        this.store.setupLobby("http://localhost:4800/lol/create-lobby", otherPlayer["summoner_id"], (res) => {
-            this.store.acceptLobby(otherPlayer.ip + "/lol/accept-lobby", this.currentSummoner["summonerId"], () => {
+        this.store.setupLobby("http://localhost:4800/lol/create-lobby", {"id": otherPlayer["summoner_id"], "name": otherPlayer["player_name"]}, (res) => {
+            this.store.acceptLobby(otherPlayer["ip"] + "/lol/accept-lobby", this.currentSummoner["summonerId"], () => {
 
             });
         });
