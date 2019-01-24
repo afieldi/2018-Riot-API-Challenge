@@ -85,7 +85,7 @@ Another smaller issue that we experienced was a timing issue, we needed to delay
 ### Closing Remarks 
 Overall the client was decently hard to work with, learning how to set up the proxy so that we could see missions through the client was hard but rewarding. I would like to see more official support from riot to better document the client for us developers to work with. I think that we could make a lot more awesome stuff if we better understood how the client worked. 
 
-##How To Install
+## How To Install
 ```
 git clone https://github.com/Earleking/2018-Riot-API-Challenge.git
 goto $clonedir/Client
