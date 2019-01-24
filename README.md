@@ -1,10 +1,10 @@
 # Entry For the 2018 Riot API Challenge
 ## Created by Earleking and Vexrax
 
-# INTRO 
+# Introduction 
 Hello, this is our project, PROJECT_NAME_HERE. The goal of this project was to help foster a stronger communal environment in League of Legends. While you play with 9 other people each game there is often very little connecting any of you before or after the game. With PROJECT_NAME_HERE we try to achieve this goal by using what we feel is an underdeveloped feature that Riot has previously implemented, Clubs.
 
-# WHAT IT DOES
+# What it Does
 There are 2 main parts to this project - club and individual missions along with what we have dubbed club wars. Both of these events award what are called Leaderboard Points. Both Clubs and individual Players can accumulate Leaderboard Points and the top scorers of these points are displayed on the leaderboards page on our website. 
 
 ## Missions
