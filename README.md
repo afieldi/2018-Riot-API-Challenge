@@ -2,6 +2,7 @@
 Created by Earleking and Vexrax
 
 [Leaderboard Website](http://riot-api-2018.herokuapp.com/)
+
 [Client](https://github.com/Earleking/2018-Riot-API-Challenge/tree/master/Client)
 
 # Introduction 
