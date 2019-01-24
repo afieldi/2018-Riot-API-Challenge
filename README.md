@@ -2,6 +2,7 @@
 Created by Earleking and Vexrax
 
 [Leaderboard Website](http://riot-api-2018.herokuapp.com/)
+[Client](https://github.com/Earleking/2018-Riot-API-Challenge/tree/master/Client)
 
 # Introduction 
 Hello, this is our project, Insert Mission Here. The goal of this project was to help foster a stronger communal environment in League of Legends. While you play with 9 other people each game there is often very little connecting any of you before or after the game. With Insert Mission Here we try to achieve this goal by using what we feel is an underdeveloped feature that Riot has previously implemented, Clubs.
