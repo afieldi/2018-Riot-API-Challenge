@@ -13,34 +13,38 @@ export class LCUHelper
                     {
                         "configuration":
                             {
-                                "gameMode":"CLASSIC",
+                                "gameMode":"ARAM",
                                 "gameMutator":"",
                                 "gameServerRegion":"",
                                 "mapId":12,
                                 "mutators":{"id":6},
                                 "spectatorPolicy":"AllAllowed",
-                                "teamSize":5
+                                "teamSize":1
                             },
-                        "lobbyName":"Lobbyname",
+                        "lobbyName":Lobbyname,
                         "lobbyPassword":"PATRICKIN2018"
                     },
                 "isCustom":true
             };
-        await this.leagueconnection.request("/lobby/v2/lobby", "POST", data);
-        // this.InviteToLobby(players);
+
+        await this.leagueconnection.request("/lol-lobby/v2/lobby", "POST", data);
+
+        this.InviteToLobby(players);
     }
 
-    public InviteToLobby(players: any)
+    public async InviteToLobby(players: any)
     {
+
+        delay(5000); //timing hack
         const data = [
             {
               "state": "Requested",
-              "toSummonerId": 0
+              "toSummonerId": players["body"]["toSummonerId"]
             }
         ];
 
-        data[0]["toSummonerId"] = parseInt(players["id"]); //change to whatever arek passes me
-        this.leagueconnection.request("/lol-lobby/v2/eog-invitations", "POST", data);
+        await this.leagueconnection.request("/lol-lobby/v2/lobby/invitations", "POST", data);
+
     }
 
     public async AcceptLobbyInvite(playerjson: any)
@@ -56,4 +60,8 @@ export class LCUHelper
             }
         }
     }
+}
+
+async function delay(ms: number) {
+    return new Promise( resolve => setTimeout(resolve, ms) );
 }
