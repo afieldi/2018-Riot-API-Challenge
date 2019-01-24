@@ -28,7 +28,10 @@ These steps can be represented by this diagram:
 
 When you log in the home screen will have missions similar to the ones in the image below or at the following **youtube** link: 
 http://www.youtube.com/watch?v=nxp2FtBHDmY
+
 [![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/nxp2FtBHDmY/0.jpg)](http://www.youtube.com/watch?v=nxp2FtBHDmY)
+
+
 
 Endpoints used:
 * /lol-summoner/v1/current-summoner
