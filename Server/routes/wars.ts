@@ -60,4 +60,15 @@ export function setup(app, sql:SQL) {
             res.send(object);
         });
     });
+    app.route("/war/current/setup").get((req, res) => {
+        sql.wars.getSignUpWar((data) => {
+            res.send(data);
+        });
+    });
+
+    app.route("/war/player/:player/:war").get((req, res) => {
+        sql.wars.getPlayerInWar(req.params.war, req.params.player, (data) => {
+            res.send(data);
+        });
+    });
 }

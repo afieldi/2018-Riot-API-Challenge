@@ -103,6 +103,32 @@ export class WarsSQL {
         });
     }
 
+    getSignUpWar(callback:Function) {
+        var query:string = "SELECT * FROM clan_war WHERE status = 'SIGN_UP'";
+        this.sql.query(query, [], (err, results, fields) => {
+            if(err) {
+                console.log(err);
+                callback({"message": "Something went wrong"});
+            }
+            else {
+                callback(results);
+            }
+        });
+    }
+
+    getPlayerInWar(warId, player, callback:Function) {
+        var query:string = "SELECT * FROM clan_war_entry WHERE war = ? AND player = ?";
+        this.sql.query(query, [warId, player], (err, results, fields) => {
+            if(err) {
+                console.log(err);
+                callback({"message": "Something went wrong"});
+            }
+            else {
+                callback(results);
+            }
+        });
+    }
+
     addPLayerToGame(player:object, game:number, team:string, callback:Function) {
         var query:string = "INSERT INTO clan_war_member (clan_war_game, player, team) VALUES (?, ?, ?)";
         this.sql.query(query, [game, player, team], (err, results, fields) => {

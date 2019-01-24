@@ -12,5 +12,24 @@ export function setup(app) {
             res.json(data);
         });
     });
-    // app.route("/war/setup")
+    app.route("/war/status/:puuid").get((req, res) => {
+        request.get(`${host}/war/current/setup`, (err, response, data) => {
+            var data = JSON.parse(data);
+            if(data.length == 0) {
+                res.json({"code": 1});
+                return;
+            }
+            else {
+                request.get(`${host}/war/player/${req.params.puuid}/${data[0]["war_id"]}`, (err, response, data) => {
+                    var data = JSON.parse(data);
+                    if(data.length == 0) {
+                        res.json({"code": 2});
+                    }
+                    else {
+                        res.json({"code": 3});
+                    }
+                });
+            }
+        });
+    });
 }
