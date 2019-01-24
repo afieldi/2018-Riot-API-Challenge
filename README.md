@@ -21,7 +21,7 @@ We hope that these missions give people a reason to engage with their club membe
 
 While group missions are great, we wanted to create a singular event that would bring entire clubs together to play, cheer and win together. To this end we created Club wars. These would be auto generated custom games between clubs. You would register for a club war and then when the time came you would be automatically inserted into a game along with your teammates to face off against another clan for honor, glory, and some leaderboard points.
 
-# Club Challenges
+## Club Challenges
  
 For a reason we made these 1v1s. These are 1v1s that can take place between members of different clubs at any time. You can go onto the web portal and challenge any of the available players to a 1v1. You can’t challenge anyone from the same club because friends shouldn’t fight. 
 # The Client
@@ -53,7 +53,7 @@ These steps can be represented by this diagram:
 ![](https://raw.githubusercontent.com/Earleking/2018-Riot-API-Challenge/master/Documentation/Riot%20Missions%20our%20Implimentation.png)
 
 When you log in the home screen will have missions similar to the ones in the image below or at the following youtube link: 
-[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/nxp2FtBHDmY/0.jpg)](http://www.youtube.com/watch?v=nxp2FtBHDmY)
+[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/nxp2FtBHDmY/1.jpg)](http://www.youtube.com/watch?v=nxp2FtBHDmY)
 
 
 Endpoints used:
@@ -111,7 +111,7 @@ npm run dev
 
 
 
-# Everything Else AKA Web Stuff
+# Web Development
 The server was divided up into 4 main sections. These are the database itself (Database), a server to access the database (Database Server) and a management server(Management Server) that contains all the business logic and finally the Website. 
 
 ![Image of Overall Architecture](URL)
@@ -140,7 +140,7 @@ Another issue that we encountered
 # Future Plans
 Unfortunately there are likely not to be many future for this project in its’ entirety. To display missions we had to setup a proxy that intercepts and alters mission data before it gets to your client. While allowed for this API Challenge, this is not acceptable for a publicly distributed application. Due to this there it is likely that even if we continue this project, it will be in a different form. 
 
-However that is not to say we have no regrets with this project. There were a lot of things that we wanted to include but simply didn’t have the time for. For example we wanted to create custom missions for players. For example, if we noticed that you were a bad warder in past games we would give you missions like, “Achieve this vision score” in a game or something. Another idea for the future was creating pools of clans. We would try and match up clans of similar size into smaller pools. The goal of this in the future would be to create a group of people that you eventually get to know by playing against them consistently. 
+However that is not to say we have no regrets with this project. There were a lot of things that we wanted to include but simply didn’t have the time for. For example we wanted to create personalized missions for players. For example, if we noticed that you were a bad warder in past games we would give you missions such as, “Achieve x vision score” in a game. Another idea for the future was creating pools of clans. We would try and match up clans of similar size into smaller pools. The goal of this would be to eventually create a group of people that you get to know by playing against them consistently. 
 
 # Conclusion
 
