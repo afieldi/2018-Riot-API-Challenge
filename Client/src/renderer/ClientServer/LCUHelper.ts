@@ -13,13 +13,13 @@ export class LCUHelper
                     {
                         "configuration":
                             {
-                                "gameMode":"CLASSIC",
+                                "gameMode":"ARAM",
                                 "gameMutator":"",
                                 "gameServerRegion":"",
                                 "mapId":12,
                                 "mutators":{"id":6},
                                 "spectatorPolicy":"AllAllowed",
-                                "teamSize":5
+                                "teamSize":1
                             },
                         "lobbyName":Lobbyname,
                         "lobbyPassword":"PATRICKIN2018"
@@ -35,7 +35,7 @@ export class LCUHelper
     public async InviteToLobby(players: any)
     {
 
-        delay(2000); //timing hack
+        delay(5000); //timing hack
         const data = [
             {
               "state": "Requested",
