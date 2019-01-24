@@ -9,7 +9,7 @@ There are 2 main parts to this project - club and individual missions along with
 
 ## Missions
 
-![Image of Client Showing Missions](URL)
+![](https://i.imgur.com/5KqLV9F.png)
 
 In PROJECT_NAME_HERE we are able to assign custom missions. There are two main types of these missions - club missions and solo missions. The solo missions are assigned to each player and they must be completed individually. Club missions on the other hand are assigned to a club. When logged into the client ever player in the club will be assigned this mission and every player is able to contribute to the missions success. 
 
@@ -52,8 +52,9 @@ These steps can be represented by this diagram:
 
 ![](https://raw.githubusercontent.com/Earleking/2018-Riot-API-Challenge/master/Documentation/Riot%20Missions%20our%20Implimentation.png)
 
-When you log in the home screen will have missions similar to the ones in the image below or at the following youtube link: https://youtu.be/nxp2FtBHDmY
-![](https://i.imgur.com/5KqLV9F.png)
+When you log in the home screen will have missions similar to the ones in the image below or at the following youtube link: 
+[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/nxp2FtBHDmY/0.jpg)](http://www.youtube.com/watch?v=nxp2FtBHDmY)
+
 
 Endpoints used:
 * /lol-summoner/v1/current-summoner
