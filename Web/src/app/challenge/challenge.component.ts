@@ -9,6 +9,7 @@ import { StoreService } from "../store.service";
 export class ChallengeComponent implements OnInit {
     title: string = "WELCOME TO THE THUNDERDOME";
     board: Array<object>;
+    overlay:string = "hidden";
     currentSummoner:object = undefined;
     name:string = "!";
     inchallenge:boolean = true;
@@ -54,5 +55,13 @@ export class ChallengeComponent implements OnInit {
         
     }
 
+    showOverlay() {
+        console.log('hh')
+        this.overlay = "visible";
+    }
+
+    hideOverlay() {
+        this.overlay = "hidden";
+    }
     
 }

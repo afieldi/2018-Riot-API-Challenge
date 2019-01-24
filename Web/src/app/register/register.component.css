@@ -1,0 +1,19 @@
+.main-section {
+    position: relative;
+    width: 80%;
+    left: 10%;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    color: white;
+}
+
+.title {
+    text-align: center;
+    display: block;
+    font-size: 2.5em;
+    font-family: 'Oswald', sans-serif;
+}
+
+.status-message {
+    text-align: center;
+}

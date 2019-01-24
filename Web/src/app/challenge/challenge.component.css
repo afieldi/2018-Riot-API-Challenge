@@ -56,6 +56,10 @@ b{
     position: relative;
     filter: invert(100%);
 }
+
+.info-img:hover {
+    cursor: pointer;
+}
 .main-container{
     width: 60%;
     margin:0 auto;
@@ -66,8 +70,7 @@ b{
     height: 100vh;
     width: 100vw;
     position: absolute;
-    background-color: black;
-    opacity: .7;
+    background-color: rgba(0, 0, 0, 0.7);
     top: 0;
 }
 
@@ -78,6 +81,12 @@ b{
     top: 0;
     position: relative;
     top: 10%;
+    opacity: .9;
+    padding: 10px 2%;
+}
+
+.overlay:hover {
+    cursor: pointer;
 }
 
 .overlay-title {

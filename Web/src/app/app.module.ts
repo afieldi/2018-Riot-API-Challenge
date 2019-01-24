@@ -10,6 +10,7 @@ import { PlayerLeaderboardComponent } from './player-leaderboard/player-leaderbo
 import { ClanLeaderboardComponent } from './clan-leaderboard/clan-leaderboard.component';
 import { ChallengeComponent } from './challenge/challenge.component';
 import { DownloadComponent } from './download/download.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
     declarations: [
@@ -19,7 +20,8 @@ import { DownloadComponent } from './download/download.component';
         PlayerLeaderboardComponent,
         ClanLeaderboardComponent,
         ChallengeComponent,
-        DownloadComponent
+        DownloadComponent,
+        RegisterComponent
     ],
     imports: [BrowserModule, 
             AppRoutingModule,

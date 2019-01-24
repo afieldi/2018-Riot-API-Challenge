@@ -54,4 +54,20 @@ export class StoreService {
             callback(res);
         });
     }
+
+    checkStatus(callback:Function) {
+        this.checkClient((data) => {
+            if(data.error || data.errorCode) {
+                if(data.httpStatus == 404) {
+                    callback(0);
+                }
+                else if(data.error == 400) {
+                    alert("Couldn't find app");
+                }
+                else {
+                    alert("Unknown error");
+                }
+            }
+        });
+    }
 }

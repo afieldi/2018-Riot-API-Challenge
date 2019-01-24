@@ -1,0 +1,15 @@
+<div class="main-section">
+    <div class="title">Sign Up for Clan War</div>
+    <hr style="background-color: white; width: 80%;">
+    <p *ngIf="status==0" class="status-message">Checking status of clan-war sign-up</p>
+
+    <p *ngIf="status==1" class="status-message">Sorry, there isn't a clan war in the sign-up phase right now. Please check back later</p>
+
+    <div *ngIf="status==2">
+        <p class="status-message">Click the button below to sign-up</p>
+    </div>
+
+    <p *ngIf="status==3" class="status-message">You have already signed-up for the upcoming clan war(That probably will never happen. Sorry!)</p>
+
+    <p *ngIf="status==-1" class="status-message">Sorry couldn't find you. Are you sure your client is open?</p>
+</div>

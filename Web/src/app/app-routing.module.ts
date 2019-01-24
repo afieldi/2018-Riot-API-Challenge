@@ -5,13 +5,15 @@ import { PlayerLeaderboardComponent } from './player-leaderboard/player-leaderbo
 import { ClanLeaderboardComponent } from './clan-leaderboard/clan-leaderboard.component';
 import { DownloadComponent } from './download/download.component';
 import { ChallengeComponent } from './challenge/challenge.component';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
     {path: "", component: HomeComponent},
     {path: "player", component: PlayerLeaderboardComponent},
     {path: "clan", component: ClanLeaderboardComponent},
     {path: "download", component: DownloadComponent},
-    {path: "challenge", component: ChallengeComponent}
+    {path: "challenge", component: ChallengeComponent},
+    {path: "signup", component: RegisterComponent}
 ];
 
 @NgModule({

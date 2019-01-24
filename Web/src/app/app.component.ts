@@ -32,4 +32,8 @@ export class AppComponent implements OnInit{
     toDownload() {
         this.router.navigate(["download"]);
     }
+
+    toSignUp() {
+        this.router.navigate(["signup"]);
+    }
 }

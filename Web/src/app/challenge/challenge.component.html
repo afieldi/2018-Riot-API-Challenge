@@ -1,5 +1,5 @@
 <div class="main-container">
-    <div class="table-title">{{title}}  </div><img src="../../assets/info-icon.png" class="info-img"/>
+    <div class="table-title">{{title}}</div><img src="../../assets/info-icon.png" class="info-img" (click)="showOverlay()"/>
     <table>
         <thead >
             <tr style="background-color: white ">
@@ -25,11 +25,21 @@
         </tbody>
     </table>
 </div>
-
-<!-- <div class="overlay-back">
+<div class="overlay-back" (click)="hideOverlay()" [style.visibility]= "overlay">
     <div class="overlay">
         <div class="overlay-title">What is this page?</div>
         <hr style="background-color: black; width: 80%;">
-        <p>This is </p>
+        <p>This is a page where you can challenge players from other clans
+            If you are unable to see the "FIGHT ME" button, it means that the website was unable to 
+            find out client running on your computer. 
+        </p>
+        <p>If this is a mistake and the client is actually running, try either refreshing the web page,
+            restarting your client or both. If you do not have the client you will not be able to challenge
+            other users. Sorry!
+        </p>
+        <p>To challenge another user just click the button next to their name. You will be taken to a lobby screen
+            on your client. You will not be able to challenge another opponent until you refresh the page. 
+        </p>
+        <p>Anyway thats about all. Happy questing!</p>
     </div>
-</div> -->
+</div>
