@@ -1,8 +1,9 @@
 # Entry For the 2018 Riot API Challenge
+# Insert Mission Here
 ## Created by Earleking and Vexrax
 
 # Introduction 
-Hello, this is our project, PROJECT_NAME_HERE. The goal of this project was to help foster a stronger communal environment in League of Legends. While you play with 9 other people each game there is often very little connecting any of you before or after the game. With PROJECT_NAME_HERE we try to achieve this goal by using what we feel is an underdeveloped feature that Riot has previously implemented, Clubs.
+Hello, this is our project, Insert Mission Here. The goal of this project was to help foster a stronger communal environment in League of Legends. While you play with 9 other people each game there is often very little connecting any of you before or after the game. With Insert Mission Here we try to achieve this goal by using what we feel is an underdeveloped feature that Riot has previously implemented, Clubs.
 
 # What it Does
 There are 2 main parts to this project - club and individual missions along with what we have dubbed club wars. Both of these events award what are called Leaderboard Points. Both Clubs and individual Players can accumulate Leaderboard Points and the top scorers of these points are displayed on the leaderboards page on our website. 
@@ -11,7 +12,7 @@ There are 2 main parts to this project - club and individual missions along with
 
 ![Image of Missions](https://i.imgur.com/5KqLV9F.png)
 
-In PROJECT_NAME_HERE we are able to assign custom missions. There are two main types of these missions - club missions and solo missions. The solo missions are assigned to each player and they must be completed individually. Club missions on the other hand are assigned to a club. When logged into the client ever player in the club will be assigned this mission and every player is able to contribute to the missions success. 
+In Insert Mission Here we are able to assign custom missions. There are two main types of these missions - club missions and solo missions. The solo missions are assigned to each player and they must be completed individually. Club missions on the other hand are assigned to a club. When logged into the client ever player in the club will be assigned this mission and every player is able to contribute to the missions success. 
 
 We hope that these missions give people a reason to engage with their club members to complete the club missions. Ultimately we hope this will both help foster engagement in current players as well as try to get existing players to help their friends get into the game.
 
@@ -108,16 +109,13 @@ npm run dev
 ```
 
 
-
-
-
 # Web Development
 The server was divided up into 4 main sections. These are the database itself (Database), a server to access the database (Database Server) and a management server(Management Server) that contains all the business logic and finally the Website. 
 
 ![Image of Overall Architecture](https://i.imgur.com/FnAtuMf.png)
 
 ## Management Server
-The management server is the center of PROJECT_NAME_HERE. It is what connects all of the individual pieces together turning it into one functioning body. The website and the client both make calls for data and functionality to this server. After querying the Database Server and transforming any necessary data it returns them where they are displayed. This server is created using TypeScript along with an Express server. Along with the Database Server it is served on an EC2 Amazon Web Services instance.
+The management server is the center of Insert Mission Here. It is what connects all of the individual pieces together turning it into one functioning body. The website and the client both make calls for data and functionality to this server. After querying the Database Server and transforming any necessary data it returns them where they are displayed. This server is created using TypeScript along with an Express server. Along with the Database Server it is served on an EC2 Amazon Web Services instance.
 
 ## Database and Database Server
 
@@ -130,12 +128,12 @@ The Database Server is coded in TypeScript and is very barebones. It is only abl
 ## Website
 ![Image of Angular Logo](https://angular.io/assets/images/logos/angularjs/AngularJS-Shield.svg)
 
-Keeping in line with the TypeScript theme, Angular 7 was used to create the web portal for PROJECT_NAME_HERE. We both wanted to use Angular in particular for this project as neither of us had extensive experience with Single-Page Websites and they seemed extremely powerful. Using Angular’s powerful templating engine and dynamic http calls made the entire development process much easier.
+Keeping in line with the TypeScript theme, Angular 7 was used to create the web portal for Insert Mission Here. We both wanted to use Angular in particular for this project as neither of us had extensive experience with Single-Page Websites and they seemed extremely powerful. Using Angular’s powerful templating engine and dynamic http calls made the entire development process much easier.
 
 ## Issues
-Throughout this development process we encountered many issues while developing our web applications. One of the main issues was communication. To ease the integration of our many components we used HTTP methods to communicate. While this was easy at first it became much more difficult near the end of the project when more data needed to be passed quickly. If we were to do a project like this we would used sockets to communicate between our Client and our Management Server.
+Throughout this development process we encountered many issues while developing our web applications. One of the main issues was communication. To ease the integration of our many components we used HTTP methods to communicate. While this was easy at first it became much more difficult near the end of the project when more data needed to be passed quickly. It was a major problem when we were trying to determine when someone disconnected from our application as if it is force closed there is no time to send a closing HTTP request. If we were to do a project like this we would used sockets to communicate between our Client and our Management Server.
 
-Another issue that we encountered 
+Another issue that we encountered was recording mission progress. Because each mission needs to be updated individually with different code multiple implementations would need to be used. This is quite time consuming even for the small number of missions that we created for the purpose of the project. At the moment we are unsure of how to fix this in the future while maintaining diversity in the types missions. 
 
 # Future Plans
 Unfortunately there are likely not to be many future for this project in its’ entirety. To display missions we had to setup a proxy that intercepts and alters mission data before it gets to your client. While allowed for this API Challenge, this is not acceptable for a publicly distributed application. Due to this there it is likely that even if we continue this project, it will be in a different form. 
