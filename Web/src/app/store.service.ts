@@ -74,9 +74,10 @@ export class StoreService {
                 callback(-1);
                 return;
             }
-            var url = "http://localhost:8000/war/status/" + data.puuid;
-            this.http.get(url).subscribe((res) => {
-                callback(res["code"]);
+            var url = `${this.host}/war/register/` + data.puuid;
+            // var url = "http://localhost:8000/war/register/" + data.puuid;
+            this.http.put(url, {}).subscribe((res) => {
+                callback();
             });
         });
     }

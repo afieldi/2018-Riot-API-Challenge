@@ -7,9 +7,10 @@
 
     <div *ngIf="status==2">
         <p class="status-message">Click the button below to sign-up</p>
+        <button (click)="register()">Sign Up</button>
     </div>
 
-    <p *ngIf="status==3" class="status-message">You have already signed-up for the upcoming clan war(That probably will never happen. Sorry!)</p>
+    <p *ngIf="status==3" class="status-message">You have already signed-up for the upcoming clan war (It probably will never happen. Sorry!)</p>
 
     <p *ngIf="status==-1" class="status-message">Sorry couldn't find you. Are you sure your client is open?</p>
 </div>

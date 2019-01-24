@@ -5,6 +5,7 @@
     background-color: rgba(0, 0, 0, 0.6);
     border-radius: 10px;
     color: white;
+    padding: 25px 10%;
 }
 
 .title {
@@ -16,4 +17,11 @@
 
 .status-message {
     text-align: center;
+}
+
+button {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
 }
