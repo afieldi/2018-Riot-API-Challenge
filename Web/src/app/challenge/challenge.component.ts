@@ -46,7 +46,7 @@ export class ChallengeComponent implements OnInit {
     fightPlayer(otherPlayer:object) {
         console.log(otherPlayer);
         this.inchallenge = true;
-        this.store.setupLobby("http://localhost:4800/lol/create-lobby", {"id": otherPlayer["summoner_id"], "name": otherPlayer["player_name"]}, (res) => {
+        this.store.setupLobby("http://localhost:4800/lol/create-lobby", otherPlayer["summoner_id"], (res) => {
             this.store.acceptLobby(otherPlayer["ip"] + "/lol/accept-lobby", this.currentSummoner["summonerId"], () => {
 
             });

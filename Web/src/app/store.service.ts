@@ -40,7 +40,12 @@ export class StoreService {
     }
 
     setupLobby(url:string, otherUser:object, callback:Function) {
-        this.http.put(url, {"toSummonerId": otherUser}).subscribe((res) => {
+        var options = {
+            body: {
+                "toSummonerId": otherUser
+            }
+        }
+        this.http.put(url, options).subscribe((res) => {
             callback(res);
         });
     }

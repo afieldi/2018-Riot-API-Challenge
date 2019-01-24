@@ -47,10 +47,42 @@ b{
     margin-right: 10px;
     margin-bottom: 7px;
 }
+.info-img {
+    max-height: 50px;
+    height: 2.5em;
+    width: 2.5em;
+    max-width: 50px;
+    top: -10px;
+    position: relative;
+    filter: invert(100%);
+}
 .main-container{
     width: 60%;
     margin:0 auto;
     alignment: center;
 }
 
+.overlay-back {
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    background-color: black;
+    opacity: .7;
+    top: 0;
+}
 
+.overlay {
+    width: 70%;
+    left: 15%;
+    background-color: white;
+    top: 0;
+    position: relative;
+    top: 10%;
+}
+
+.overlay-title {
+    color: black;
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+
+}
