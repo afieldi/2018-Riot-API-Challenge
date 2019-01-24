@@ -23,7 +23,8 @@ While group missions are great, we wanted to create a singular event that would 
 
 ## Club Challenges
  
-For a reason we made these 1v1s. These are 1v1s that can take place between members of different Clubs at any time. You can go onto the web portal and challenge any of the available players to a 1v1. You can’t challenge anyone from the same Club because friends shouldn’t fight. 
+While the Club Wars allow larger for larger Club events, we also wanted to allow for players who might not be able to partake in these due to real world constraints to participate in Club conflicts. These are 1v1s that can take place between members of different Clubs at any time. You can go onto the web portal and challenge any of the available players to a 1v1. You can’t challenge anyone from the same Club because friends shouldn’t fight. 
+
 # The Client
 #### Technologies
 ![alt-text](https://d2eip9sf3oo6c2.cloudfront.net/tags/images/000/000/256/square_256/nodejslogo.png) ![alt-text](https://d2eip9sf3oo6c2.cloudfront.net/tags/images/000/000/377/square_256/typescriptlang.png) 
