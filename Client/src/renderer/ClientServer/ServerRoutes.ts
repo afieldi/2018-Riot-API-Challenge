@@ -1,6 +1,5 @@
 import LeagueConnection from "../league/league";
 import {Express} from "express";
-import {ResponseRequest} from "request";
 import {LCUHelper} from "./LCUHelper";
 
 export function setupRoutes(app: Express, leagueconnection: LeagueConnection)
@@ -17,6 +16,7 @@ export function setupRoutes(app: Express, leagueconnection: LeagueConnection)
     });
     app.route("/lol/me").get((req, res) => {
         leagueconnection.request("/lol-summoner/v1/current-summoner").then((resp) => {
+            console.log(req);
             const currentsummoner = JSON.parse(resp.body.read().toString());
             res.send(currentsummoner);
         });

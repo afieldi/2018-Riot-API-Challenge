@@ -1,7 +1,6 @@
 import {RunProxy} from "../renderer";
 import {RunServerWatcher} from "../renderer/ServerIndex";
 
-const localtunnel = require('localtunnel');
 const ngrok = require('ngrok');
 //const url = require("url");
 const path = require("path");

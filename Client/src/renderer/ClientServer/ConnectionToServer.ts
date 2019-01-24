@@ -1,4 +1,3 @@
-import WebSocket = require("ws");
 import fetch, { Response } from "node-fetch";
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";

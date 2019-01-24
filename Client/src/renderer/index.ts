@@ -1,7 +1,7 @@
 import LeagueConnection from "./league/league";
 import {
-    getUxArguments, startFoundation, startLeagueRenderNoArgs, startUx, stopLeague,
-    stopLeagueRenderProccess
+    getUxArguments, startFoundation, startLeagueRenderNoArgs, startUx, stopLeague, stopLeagueRenderProccess,
+
 } from "./league/util";
 import LCUProxy from "./league/proxy";
 import fs = require("fs");
@@ -31,9 +31,14 @@ export async function RunProxy(PORT: number, REPLACE_PORT: number, PWD: string, 
             const league = new LeagueConnection(PORT, PWD);
             const connectionToServer = new ConnectionToServer(SERVER_IP);
 
-            await league.request("/riotclient/launch-ux", "POST");
-
-            //startLeagueRenderNoArgs(); //more flakey version
+            /**
+             *  NOTE TO GENE:
+             *  use  await league.request("/riotclient/launch-ux", "POST"); for good version
+             *  startLeagueRenderNoArgs(); //more flakey version
+             *
+             */
+            //await league.request("/riotclient/launch-ux", "POST"); //good version
+            startLeagueRenderNoArgs(); //more flakey version
 
             let args = null;
             while (!args) {
@@ -53,8 +58,15 @@ export async function RunProxy(PORT: number, REPLACE_PORT: number, PWD: string, 
             await RegisterSummoner(league, connectionToServer, URL);
 
             // Kill UX
-            await league.request("/riotclient/kill-ux", "POST");
-            //stopLeagueRenderProccess(); //more flakey version
+            /**
+             * NOTE TO GENE:
+             *  USE   await league.request("/riotclient/kill-ux", "POST"); for good version
+             *  stopLeagueRenderProccess(); //more flakey version
+             */
+            //await league.request("/riotclient/kill-ux", "POST"); //good
+            stopLeagueRenderProccess(); //more flakey version
+
+
             // Configure the proxy.
             const proxy = new LCUProxy(league);
             proxy.listen(REPLACE_PORT);
