@@ -5,8 +5,7 @@ Created by Earleking and Vexrax
 Hello, this is our project, Insert Mission Here. The goal of this project was to help foster a stronger communal environment in League of Legends. While you play with 9 other people each game there is often very little connecting any of you before or after the game. With Insert Mission Here we try to achieve this goal by using what we feel is an underdeveloped feature that Riot has previously implemented, Clubs.
 
 # What it Does
-There are 2 main parts to this project - club and individual missions along with what we have dubbed Club Wars. Both of these events award what are called Leaderboard Points. Both Clubs and Individual Players can accumulate Leaderboard Points and the top scorers of these points are displayed on the leaderboards page on our website. There are seperate leaderboards for Clubs and Individual Players and any points awarded through missions would go towards their respective leaderboards.
-
+There are 2 main parts to this project - missions for clubs and individuals along with what we have dubbed Club Wars. When a user completes a mission they earn points towards their respective leaderboard, either their club leaderboard or their individual leaderboard. Players can accumulate Leaderboard Points and the top scorers of these points are displayed on the leaderboards page on our website. In addition to regular missions you can earn points by challenging you fellow players and clubs, a club war will put you into a winner take all 5v5 summoner's rift match where you will take points from the other team if you win. A solo war will put you into a howling abyss match. We feel like our project will not only give players a reason to be in a club but also give them extra incentive to complete missions.
 ## Missions
 
 ![Image of Missions](https://i.imgur.com/5KqLV9F.png)
