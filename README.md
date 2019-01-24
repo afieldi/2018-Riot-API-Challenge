@@ -9,7 +9,7 @@ There are 2 main parts to this project - club and individual missions along with
 
 ## Missions
 
-![](https://i.imgur.com/5KqLV9F.png)
+![Image of Missions](https://i.imgur.com/5KqLV9F.png)
 
 In PROJECT_NAME_HERE we are able to assign custom missions. There are two main types of these missions - club missions and solo missions. The solo missions are assigned to each player and they must be completed individually. Club missions on the other hand are assigned to a club. When logged into the client ever player in the club will be assigned this mission and every player is able to contribute to the missions success. 
 
@@ -17,7 +17,7 @@ We hope that these missions give people a reason to engage with their club membe
 
 ## Club Wars
 
-![Image of Client Showing A 1v1](URL)
+![Image of Client Showing A 1v1](https://i.imgur.com/vdp15lN.png)
 
 While group missions are great, we wanted to create a singular event that would bring entire clubs together to play, cheer and win together. To this end we created Club wars. These would be auto generated custom games between clubs. You would register for a club war and then when the time came you would be automatically inserted into a game along with your teammates to face off against another clan for honor, glory, and some leaderboard points.
 
@@ -114,21 +114,21 @@ npm run dev
 # Web Development
 The server was divided up into 4 main sections. These are the database itself (Database), a server to access the database (Database Server) and a management server(Management Server) that contains all the business logic and finally the Website. 
 
-![Image of Overall Architecture](URL)
+![Image of Overall Architecture](https://i.imgur.com/FnAtuMf.png)
 
 ## Management Server
 The management server is the center of PROJECT_NAME_HERE. It is what connects all of the individual pieces together turning it into one functioning body. The website and the client both make calls for data and functionality to this server. After querying the Database Server and transforming any necessary data it returns them where they are displayed. This server is created using TypeScript along with an Express server. Along with the Database Server it is served on an EC2 Amazon Web Services instance.
 
 ## Database and Database Server
 
-![Image of ER Diagram](URL)
+![Image of ER Diagram](https://i.imgur.com/1B7k3rn.png)
 
 Image above is the diagram of our database Schema. We needed to be able to extensively store data so that we can record mission progress as well as any club wars that are occuring. The database uses MySQL. We decided that because of how tightly linked a lot of this data is a relational database would be the best choice. From their we decided to use MySQL as it was one we both were familiar with. The final database is currently being hosted by Amazon Web Services.
 
 The Database Server is coded in TypeScript and is very barebones. It is only able to access and return data from the database. No data transformation occurs here and this server can only be accessed locally by the Management Server which is running on the same machine as it. 
 
 ## Website
-![Image of Angular Logo](URL)
+![Image of Angular Logo](https://angular.io/assets/images/logos/angularjs/AngularJS-Shield.svg)
 
 Keeping in line with the TypeScript theme, Angular 7 was used to create the web portal for PROJECT_NAME_HERE. We both wanted to use Angular in particular for this project as neither of us had extensive experience with Single-Page Websites and they seemed extremely powerful. Using Angular’s powerful templating engine and dynamic http calls made the entire development process much easier.
 
