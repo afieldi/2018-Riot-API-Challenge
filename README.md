@@ -11,7 +11,7 @@ There are 2 main parts to this project - club and individual missions along with
 
 ![Image of Missions](https://i.imgur.com/5KqLV9F.png)
 
-In Insert Mission Here we are able to assign custom missions. There are two main types of these missions - club missions and solo missions. The solo missions are assigned to each player and they must be completed individually. Club missions on the other hand are assigned to a Club. When logged into the client ever Player in the Club will be assigned this mission and every player is able to contribute to the missions success. 
+In Insert Mission Here we are able to assign custom missions. There are two main types of these missions - club missions and solo missions. The solo missions are assigned to each player and they must be completed individually. Club missions on the other hand are assigned to a Club. When logged into the client every Player in the Club will be assigned this mission and every player is able to contribute to the missions success. 
 
 We hope that these missions give people a reason to engage with their club members to complete the Club missions. Ultimately we hope this will both help foster engagement in current players as well as try to get existing players to help their friends get into the game.
 
