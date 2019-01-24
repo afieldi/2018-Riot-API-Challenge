@@ -111,7 +111,7 @@ npm run dev
 
 
 
-# Everything Else AKA Web Stuff
+# Web Development
 The server was divided up into 4 main sections. These are the database itself (Database), a server to access the database (Database Server) and a management server(Management Server) that contains all the business logic and finally the Website. 
 
 ![Image of Overall Architecture](URL)
@@ -140,7 +140,7 @@ Another issue that we encountered
 # Future Plans
 Unfortunately there are likely not to be many future for this project in its’ entirety. To display missions we had to setup a proxy that intercepts and alters mission data before it gets to your client. While allowed for this API Challenge, this is not acceptable for a publicly distributed application. Due to this there it is likely that even if we continue this project, it will be in a different form. 
 
-However that is not to say we have no regrets with this project. There were a lot of things that we wanted to include but simply didn’t have the time for. For example we wanted to create custom missions for players. For example, if we noticed that you were a bad warder in past games we would give you missions like, “Achieve this vision score” in a game or something. Another idea for the future was creating pools of clans. We would try and match up clans of similar size into smaller pools. The goal of this in the future would be to create a group of people that you eventually get to know by playing against them consistently. 
+However that is not to say we have no regrets with this project. There were a lot of things that we wanted to include but simply didn’t have the time for. For example we wanted to create personalized missions for players. For example, if we noticed that you were a bad warder in past games we would give you missions such as, “Achieve x vision score” in a game. Another idea for the future was creating pools of clans. We would try and match up clans of similar size into smaller pools. The goal of this would be to eventually create a group of people that you get to know by playing against them consistently. 
 
 # Conclusion
 
