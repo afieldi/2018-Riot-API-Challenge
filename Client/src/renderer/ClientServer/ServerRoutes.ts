@@ -7,7 +7,8 @@ export function setupRoutes(app: Express, leagueconnection: LeagueConnection)
 {
     const lcuhelper = new LCUHelper(leagueconnection);
     app.route('/lol/create-lobby').put((req: any, res:any) => {
-        lcuhelper.CreateCustomLobby("FUCKING JOSH", req.body["toSummonerId"]);
+        console.log(req.body);
+        lcuhelper.CreateCustomLobby("1v1 Clan War", JSON.parse(req.body.toString()));
         res.send("");
     });
     app.route('/lol/accept-lobby').put((req: any, res:any) => {
