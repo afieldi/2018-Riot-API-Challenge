@@ -98,6 +98,7 @@ When the client initially launches it creates a tunnel for the server to communi
 Gamemode is aram which maps to the aram map but he draft strategy is tournament so that you can ban out some of the opponents champions or some of the OP champions. We decided to use a static password because in reality these lobbies are going to be filling up extremely quickly with our auto accept invite. In the future this would be set to a random hash. 
 
 You can see a demo of the feature over here:
+https://youtu.be/zkY1zZsIDiE?t=28
 [![IMAGE ALT TEXT HERE](https://i.imgur.com/SY1yqci.png)](https://youtu.be/zkY1zZsIDiE?t=28)
 
 Endpoints used:
@@ -118,8 +119,9 @@ Overall the client was fairly hard to work with, especially learning how to set 
 ### How To Install
 PLEASE DO NOT INSTALL UNLESS YOU ARE A JUDGE FOR THE CONTEST.
 As we use a proxy for displaying the missions in the client this application unfortuantly is unsuitable for public distribution. 
-- [GitHub](https://github.com/Earleking/2018-Riot-API-Challenge/tree/master/Client) `git clone https://github.com/Earleking/2018-Riot-API-Challenge.git
+- [GitHub](https://github.com/Earleking/2018-Riot-API-Challenge/tree/master/Client) `
 ```
+git clone https://github.com/Earleking/2018-Riot-API-Challenge.git
 cd 2018-Riot-API-Challenge/Client
 npm install
 npm run dev
