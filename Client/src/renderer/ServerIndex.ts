@@ -1,18 +1,13 @@
 import LeagueConnection from "./league/league";
 
-import { createServer, IncomingMessage } from "http";
 import bodyParser = require("body-parser");
 import express = require("express");
 
-import { Server } from "ws";
-import WebSocket = require("ws");
 import {setupRoutes} from "./ClientServer/ServerRoutes";
 //import {stopLeagueRenderProccess} from "./util";
 
 class ServerProxy {
     private app = express();
-    private server = createServer(this.app);
-    private wss = new Server({ server: this.server });
 
 
     constructor(private leagueconnection: LeagueConnection) {
@@ -23,12 +18,14 @@ class ServerProxy {
             response.setHeader('Access-Control-Allow-Origin', '*');
             response.header("Access-Control-Allow-Headers", "Origin, XRequested-With, Content-Type, Accept ");
             response.header('Access-Control-Allow-Methods', 'POST, PATCH, GET, PUT, DELETE, OPTIONS ');
+            console.log(request);
             next();
         });
         // Listen to every HTTP request.
         // this.app.all("*", this.onWebRequest);
         this.app.route("/").get((req, res) => {
             res.json({"message": "hello world"});
+            console.log(req);
         });
         // Listen to WS connections.
         // this.wss.on("connection", this.onWebsocketRequest);
@@ -41,12 +38,8 @@ class ServerProxy {
         console.log("[+] Listening on 0.0.0.0:" + port + "... ^C to exit.");
     }
 
-    private onWebRequest = async (req: express.Request, res: express.Response) => {
 
-    };
 
-    private onWebsocketRequest = async (client: WebSocket, request: IncomingMessage) => {
-    };
 
 
 }

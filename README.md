@@ -1,12 +1,15 @@
 # Insert Mission Here
 Created by Earleking and Vexrax
 
+[Leaderboard Website](http://riot-api-2018.herokuapp.com/)
+
+[Client](https://github.com/Earleking/2018-Riot-API-Challenge/tree/master/Client)
+
 # Introduction 
 Hello, this is our project, Insert Mission Here. The goal of this project was to help foster a stronger communal environment in League of Legends. While you play with 9 other people each game there is often very little connecting any of you before or after the game. With Insert Mission Here we try to achieve this goal by using what we feel is an underdeveloped feature that Riot has previously implemented, Clubs.
 
 # What it Does
-There are 2 main parts to this project - club and individual missions along with what we have dubbed Club Wars. Both of these events award what are called Leaderboard Points. Both Clubs and Individual Players can accumulate Leaderboard Points and the top scorers of these points are displayed on the leaderboards page on our website. There are seperate leaderboards for Clubs and Individual Players and any points awarded through missions would go towards their respective leaderboards.
-
+There are 2 main parts to this project - missions for clubs and individuals along with what we have dubbed Club Wars. When a user completes a mission they earn points towards their respective leaderboard, either their club leaderboard or their individual leaderboard. Players can accumulate Leaderboard Points and the top scorers of these points are displayed on the leaderboards page on our website. In addition to regular missions you can earn points by challenging you fellow players and clubs, a club war will put you into a winner take all 5v5 summoner's rift match where you will take points from the other team if you win. A solo war will put you into a howling abyss match. We feel like our project will not only give players a reason to be in a club but also give them extra incentive to complete missions.
 ## Missions
 
 ![Image of Missions](https://i.imgur.com/5KqLV9F.png)
@@ -23,7 +26,8 @@ While group missions are great, we wanted to create a singular event that would 
 
 ## Club Challenges
  
-For a reason we made these 1v1s. These are 1v1s that can take place between members of different Clubs at any time. You can go onto the web portal and challenge any of the available players to a 1v1. You can’t challenge anyone from the same Club because friends shouldn’t fight. 
+While the Club Wars allow larger for larger Club events, we also wanted to allow for players who might not be able to partake in these due to real world constraints to participate in Club conflicts. These are 1v1s that can take place between members of different Clubs at any time. You can go onto the web portal and challenge any of the available players to a 1v1. You can’t challenge anyone from the same Club because friends shouldn’t fight. 
+
 # The Client
 #### Technologies
 ![alt-text](https://d2eip9sf3oo6c2.cloudfront.net/tags/images/000/000/256/square_256/nodejslogo.png) ![alt-text](https://d2eip9sf3oo6c2.cloudfront.net/tags/images/000/000/377/square_256/typescriptlang.png) 
@@ -94,6 +98,7 @@ When the client initially launches it creates a tunnel for the server to communi
 Gamemode is aram which maps to the aram map but he draft strategy is tournament so that you can ban out some of the opponents champions or some of the OP champions. We decided to use a static password because in reality these lobbies are going to be filling up extremely quickly with our auto accept invite. In the future this would be set to a random hash. 
 
 You can see a demo of the feature over here:
+https://youtu.be/zkY1zZsIDiE?t=28
 [![IMAGE ALT TEXT HERE](https://i.imgur.com/SY1yqci.png)](https://youtu.be/zkY1zZsIDiE?t=28)
 
 Endpoints used:
@@ -103,7 +108,7 @@ Endpoints used:
 * /lol-lobby/v2/received-invitations/
 
 ### Technical Challenges In The Client
-The main issue with this client was setting up the proxy, the LCU makes setting up the client a nightmare with multiple hoops that need to be jumped through in order to have your own custom missions appear. Another issue is that the client seems to re-instantiate the LCU on champ select so if we want to keep the UI clean we have to manually manage the render processes. Since the RiotClient endpoint isn’t allowed we used manual process killing and starting for a large part of the application which made the behaviour a lot more flakey than we would like. If you would like to see the less flakey behaviour feel free to enable the Riot client calls and disable the line below them. 
+The main issue with this client was setting up the proxy, the LCU makes setting up the client a nightmare with multiple hoops that need to be jumped through in order to have your own custom missions appear. Another issue is that the client seems to re-instantiate the LCU on champ select so if we want to keep the UI clean we have to manually manage the render processes. Since the RiotClient endpoint isn’t allowed we used manual process killing and starting for a large part of the application which made the behaviour a lot more flakey than we would like. If you would like to see the less flakey behaviour feel free to enable the Riot client calls and disable the line below them. The proxy that we set up also adds a lot of overhead in terms of load time to UI components, this slows the client down quite a bit.
 
 Another smaller issue that we experienced was a timing issue, we needed to delay sending the invite for 5000ms because sometimes the lobby wouldn’t be ready by the time our code hit the invite to lobby line. 
 
@@ -114,9 +119,10 @@ Overall the client was fairly hard to work with, especially learning how to set 
 ### How To Install
 PLEASE DO NOT INSTALL UNLESS YOU ARE A JUDGE FOR THE CONTEST.
 As we use a proxy for displaying the missions in the client this application unfortuantly is unsuitable for public distribution. 
-- [GitHub](https://github.com/Earleking/2018-Riot-API-Challenge/tree/master/Client) `git clone https://github.com/Earleking/2018-Riot-API-Challenge.git
+- [GitHub](https://github.com/Earleking/2018-Riot-API-Challenge/tree/master/Client) `
 ```
-cd Client
+git clone https://github.com/Earleking/2018-Riot-API-Challenge.git
+cd 2018-Riot-API-Challenge/Client
 npm install
 npm run dev
 ```
@@ -162,4 +168,4 @@ Thank you for taking the time to look through our project!
 ![Poro waving image](https://vignette.wikia.nocookie.net/leagueoflegends/images/a/ab/Peace_Poro_Emote.png/revision/latest?cb=20181207233837)
 
 
-
+<sub>Insert Mission Here was created under Riot Games' "Legal Jibber Jabber" policy and uses assets owned by Riot Games. Riot Games does not endorse or sponsor this project.
