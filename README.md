@@ -5,25 +5,25 @@ Created by Earleking and Vexrax
 Hello, this is our project, Insert Mission Here. The goal of this project was to help foster a stronger communal environment in League of Legends. While you play with 9 other people each game there is often very little connecting any of you before or after the game. With Insert Mission Here we try to achieve this goal by using what we feel is an underdeveloped feature that Riot has previously implemented, Clubs.
 
 # What it Does
-There are 2 main parts to this project - club and individual missions along with what we have dubbed club wars. Both of these events award what are called Leaderboard Points. Both Clubs and individual Players can accumulate Leaderboard Points and the top scorers of these points are displayed on the leaderboards page on our website. 
+There are 2 main parts to this project - club and individual missions along with what we have dubbed Club Wars. Both of these events award what are called Leaderboard Points. Both Clubs and Individual Players can accumulate Leaderboard Points and the top scorers of these points are displayed on the leaderboards page on our website. There are seperate leaderboards for Clubs and Individual Players and any points awarded through missions would go towards their respective leaderboards.
 
 ## Missions
 
 ![Image of Missions](https://i.imgur.com/5KqLV9F.png)
 
-In Insert Mission Here we are able to assign custom missions. There are two main types of these missions - club missions and solo missions. The solo missions are assigned to each player and they must be completed individually. Club missions on the other hand are assigned to a club. When logged into the client ever player in the club will be assigned this mission and every player is able to contribute to the missions success. 
+In Insert Mission Here we are able to assign custom missions. There are two main types of these missions - club missions and solo missions. The solo missions are assigned to each player and they must be completed individually. Club missions on the other hand are assigned to a Club. When logged into the client ever Player in the Club will be assigned this mission and every player is able to contribute to the missions success. 
 
-We hope that these missions give people a reason to engage with their club members to complete the club missions. Ultimately we hope this will both help foster engagement in current players as well as try to get existing players to help their friends get into the game.
+We hope that these missions give people a reason to engage with their club members to complete the Club missions. Ultimately we hope this will both help foster engagement in current players as well as try to get existing players to help their friends get into the game.
 
 ## Club Wars
 
 ![Image of Client Showing A 1v1](https://i.imgur.com/vdp15lN.png)
 
-While group missions are great, we wanted to create a singular event that would bring entire clubs together to play, cheer and win together. To this end we created Club wars. These would be auto generated custom games between clubs. You would register for a club war and then when the time came you would be automatically inserted into a game along with your teammates to face off against another clan for honor, glory, and some leaderboard points.
+While group missions are great, we wanted to create a singular event that would bring entire clubs together to play, cheer and win together. To this end we created Club Wars. These would be auto generated custom games between Clubs. You would register for a club war and then when the time came you would be automatically inserted into a game along with your teammates to face off against another clan for honor, glory, and some leaderboard points.
 
 ## Club Challenges
  
-For a reason we made these 1v1s. These are 1v1s that can take place between members of different clubs at any time. You can go onto the web portal and challenge any of the available players to a 1v1. You can’t challenge anyone from the same club because friends shouldn’t fight. 
+For a reason we made these 1v1s. These are 1v1s that can take place between members of different Clubs at any time. You can go onto the web portal and challenge any of the available players to a 1v1. You can’t challenge anyone from the same Club because friends shouldn’t fight. 
 # The Client
 #### Technologies
 ![alt-text](https://d2eip9sf3oo6c2.cloudfront.net/tags/images/000/000/256/square_256/nodejslogo.png) ![alt-text](https://d2eip9sf3oo6c2.cloudfront.net/tags/images/000/000/377/square_256/typescriptlang.png) 
@@ -94,7 +94,7 @@ When the client initially launches it creates a tunnel for the server to communi
 Gamemode is aram which maps to the aram map but he draft strategy is tournament so that you can ban out some of the opponents champions or some of the OP champions. We decided to use a static password because in reality these lobbies are going to be filling up extremely quickly with our auto accept invite. In the future this would be set to a random hash. 
 
 You can see a demo of the feature over here:
-[![IMAGE ALT TEXT HERE](https://i.imgur.com/SY1yqci.png)](https://www.youtube.com/watch?v=zkY1zZsIDiE)
+[![IMAGE ALT TEXT HERE](https://i.imgur.com/SY1yqci.png)](https://youtu.be/zkY1zZsIDiE?t=28)
 
 Endpoints used:
 * /lol-summoner/v1/current-summoner
@@ -103,12 +103,12 @@ Endpoints used:
 * /lol-lobby/v2/received-invitations/
 
 ### Technical Challenges In The Client
-The main issue with this client was setting up the proxy, the LCU makes setting up the client a nightmare with multiple hoops that need to be jumped through in order to have your own custom missions appear. Another issue is that the client seems to re-instantiate the LCU on champ select so if we want to keep the UI clean we have to manually manage the render processes. Since the RiotClient endpoint isn’t allowed we used manual process killing and starting for a large part of the application which made the behaviour a lot more flakey than we would like. If you would like to see the less flakey behaviour feel free to enable the riot client calls and disable the line below them. 
+The main issue with this client was setting up the proxy, the LCU makes setting up the client a nightmare with multiple hoops that need to be jumped through in order to have your own custom missions appear. Another issue is that the client seems to re-instantiate the LCU on champ select so if we want to keep the UI clean we have to manually manage the render processes. Since the RiotClient endpoint isn’t allowed we used manual process killing and starting for a large part of the application which made the behaviour a lot more flakey than we would like. If you would like to see the less flakey behaviour feel free to enable the Riot client calls and disable the line below them. 
 
 Another smaller issue that we experienced was a timing issue, we needed to delay sending the invite for 5000ms because sometimes the lobby wouldn’t be ready by the time our code hit the invite to lobby line. 
 
 ### Closing Remarks 
-Overall the client was fairly hard to work with, especially learning how to set up the proxy so that we could see missions through the client was hard but rewarding. I would like to see more official support from riot to better document the client for us developers to work with. I think that we could make a lot more awesome stuff if we better understood how the client worked. 
+Overall the client was fairly hard to work with, especially learning how to set up the proxy so that we could see missions through the client was hard but rewarding. I would like to see more official support from Riot to better document the client for us developers to work with. I think that we could make a lot more awesome stuff if we better understood how the client worked. 
 
     
 ### How To Install
@@ -122,7 +122,7 @@ npm run dev
 
 
 # Web Development
-The server was divided up into 4 main sections. These are the database itself (Database), a server to access the database (Database Server) and a management server(Management Server) that contains all the business logic and finally the Website. 
+The server was divided up into 4 main sections. These are the database itself (Database), a server to access the database (Database Server) and a management server (Management Server) that contains all the business logic and finally the Website. 
 
 ![Image of Overall Architecture](https://i.imgur.com/FnAtuMf.png)
 
@@ -154,7 +154,7 @@ However that is not to say we have no regrets with this project. There were a lo
 
 # Conclusion
 
-Expanding upon Clubs is something that we both feel is something that should be done. This project is simply our image of that future. Whether it takes this form or not, if Riot does end up expanding upon the vision of clubs it is something that we think everyone should be excited about. 
+Expanding upon Clubs is something that we both feel is something that should be done. This project is simply our image of that future. Whether it takes this form or not, if Riot does end up expanding upon the vision of Clubs it is something that we think everyone should be excited about. 
 
 Thank you for taking the time to look through our project!
 
