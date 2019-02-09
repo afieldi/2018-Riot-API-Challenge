@@ -1,5 +1,6 @@
 # Insert MissionsHere
 [Winner of the Creativity Category of the 2018 Riot API Challenge](https://www.riotgames.com/en/DevRel/api-challenge-recap-winter-2019)
+
 Created by Earleking and Vexrax
 
 [Leaderboard Website](http://riot-api-2018.herokuapp.com/)
