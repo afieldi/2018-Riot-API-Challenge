@@ -1,4 +1,5 @@
-# Insert Mission Here
+# Insert MissionsHere
+[Winner of the Creativity Category of the 2018 Riot API Challenge] (https://www.riotgames.com/en/DevRel/api-challenge-recap-winter-2019)
 Created by Earleking and Vexrax
 
 [Leaderboard Website](http://riot-api-2018.herokuapp.com/)
@@ -117,15 +118,8 @@ Overall the client was fairly hard to work with, especially learning how to set 
 
     
 ### How To Install
-PLEASE DO NOT INSTALL UNLESS YOU ARE A JUDGE FOR THE CONTEST.
 As we use a proxy for displaying the missions in the client this application unfortuantly is unsuitable for public distribution. 
-- [GitHub](https://github.com/Earleking/2018-Riot-API-Challenge/tree/master/Client) `
-```
-git clone https://github.com/Earleking/2018-Riot-API-Challenge.git
-cd 2018-Riot-API-Challenge/Client
-npm install
-npm run dev
-```
+
 
 
 # Web Development
